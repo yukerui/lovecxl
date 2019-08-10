@@ -7,15 +7,16 @@
   <meta name="description" content="test | lovexl">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="ThreadLocal源码分析定义:该类提供了线程局部变量。这些变量不同于它们的普通对应物，因为访问某个变量(通过get或者set)的每个线程都有自己的局部变量，它独立于变量的初始化副本。ThreadLocal实例通常是类中的private static字段，它们希望将状态与某一个线程相关联。 与线程同步机制的区别线程同步机制是多个线程共享一个变量，而ThreadLocal是为每一个线程创建一个单">
+<meta name="keywords" content="多线程">
 <meta property="og:type" content="article">
-<meta property="og:title" content="lovexl">
-<meta property="og:url" content="https://yukerui.github.io/lovecxl/2019/08/10/ThreadLocal/index.html">
+<meta property="og:title" content="ThreadLocal.md">
+<meta property="og:url" content="https://yukerui.github.io/lovecxl/2019/08/10/ThreadLocal-md/index.html">
 <meta property="og:site_name" content="lovexl">
 <meta property="og:description" content="ThreadLocal源码分析定义:该类提供了线程局部变量。这些变量不同于它们的普通对应物，因为访问某个变量(通过get或者set)的每个线程都有自己的局部变量，它独立于变量的初始化副本。ThreadLocal实例通常是类中的private static字段，它们希望将状态与某一个线程相关联。 与线程同步机制的区别线程同步机制是多个线程共享一个变量，而ThreadLocal是为每一个线程创建一个单">
-<meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-08-10T00:46:09.945Z">
+<meta property="og:locale" content="zh">
+<meta property="og:updated_time" content="2019-08-10T00:56:09.249Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="lovexl">
+<meta name="twitter:title" content="ThreadLocal.md">
 <meta name="twitter:description" content="ThreadLocal源码分析定义:该类提供了线程局部变量。这些变量不同于它们的普通对应物，因为访问某个变量(通过get或者set)的每个线程都有自己的局部变量，它独立于变量的初始化副本。ThreadLocal实例通常是类中的private static字段，它们希望将状态与某一个线程相关联。 与线程同步机制的区别线程同步机制是多个线程共享一个变量，而ThreadLocal是为每一个线程创建一个单">
 
 
@@ -152,6 +153,10 @@
     </form>
     <div class="tags-list">
     
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color4">多线程</a>
+    </li>
+    
     <div class="clearfix"></div>
 </div>
 
@@ -159,19 +164,19 @@
     <nav id="title-list-nav">
         
         <a  class=""
-           href="/2019/08/09/test/"
+           href="/lovecxl/2019/08/10/ThreadLocal-md/"
+           data-tag="多线程"
+           data-author="" >
+            <span class="post-title" title="ThreadLocal.md">ThreadLocal.md</span>
+            <span class="post-date" title="2019-08-10 08:54:33">2019/08/10</span>
+        </a>
+        
+        <a  class=""
+           href="/lovecxl/2019/08/09/test/"
            data-tag=""
            data-author="" >
             <span class="post-title" title="test">test</span>
             <span class="post-date" title="2019-08-09 18:01:23">2019/08/09</span>
-        </a>
-        
-        <a  class=""
-           href="/2019/08/10/ThreadLocal/"
-           data-tag=""
-           data-author="" >
-            <span class="post-title" title=""></span>
-            <span class="post-date" title="2019-08-10 08:50:04">2019/08/10</span>
         </a>
         
     </nav>
@@ -249,7 +254,7 @@
     <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="yu kerui">yu kerui</a></p>
     <p><span class="copy-title">发布时间:</span>2019-08-09, 18:01:23</p>
     <p><span class="copy-title">最后更新:</span>2019-08-09, 18:01:23</p>
-    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/08/09/test/" title="test">https://yukerui.github.io/lovecxl/2019/08/09/test/</a>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/lovecxl/2019/08/09/test/" title="test">https://yukerui.github.io/lovecxl/2019/08/09/test/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
     </p>
@@ -292,7 +297,7 @@
     /*作者、标签的自动补全*/
     $(function () {
         $('.search').AutoComplete({
-            'data': [],
+            'data': ['#多线程',],
             'itemHeight': 20,
             'width': 418
         }).AutoComplete('show');
