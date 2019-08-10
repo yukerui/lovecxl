@@ -52,7 +52,7 @@
 </div>
 
 <body>
-<aside class="nav mobile">
+<aside class="nav">
     <div class="nav-left">
         <a href="/" class="avatar_target">
     <img class="avatar" src="/img/jerry.jpg" />
@@ -204,12 +204,41 @@
         </div>
     </div>
 </aside>
-<div class="post index">
+<div class="post">
     <div class="pjax">
-        <article class="index">
-            <div class="toc-ref">
+        <article id="post-每天一个linux命令-管道的原理" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#blog的用途"><span class="toc-text">blog的用途</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#关于本人"><span class="toc-text">关于本人</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#博客信息"><span class="toc-text">博客信息</span></a></li></ol></li></ol></li></ol>
+    <div class="article-meta">
+        
+        
+        
+        
+    </div>
+    <div class="article-meta">
+        
+        创建时间:<time class="date" title='更新时间: 2019-08-10 21:57:07'>2019-08-10 20:31</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        
+        <span id="busuanzi_container_page_pv">
+            阅读:<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#categories-linux"><span class="toc-text">categories: linux  </span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -222,14 +251,46 @@
     }
 </style>
 </div>
-            <h1 id="blog的用途"><a href="#blog的用途" class="headerlink" title="blog的用途"></a>blog的用途</h1><p>主要用来记录一下学习中遇到的问题</p>
-<h2 id="关于本人"><a href="#关于本人" class="headerlink" title="关于本人"></a>关于本人</h2><p>普通211渣硕一枚,目前在秋招找工作</p>
-<h3 id="博客信息"><a href="#博客信息" class="headerlink" title="博客信息"></a>博客信息</h3><p>这个博客通过 <a href="https://hexo.io/">Hexo</a> 生成，部署在 <a href="https://pages.github.com/">GitHub Pages</a>，主题 <a href="https://github.com/yelog/hexo-theme-3-hexo">3-hexo</a> 已经在github上开源</p>
-<p>主要参考”叶落阁”博客的样式 <a href="https://yelog.org/">叶落阁</a></p>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <hr>
+<p>title: ‘每天一个linux命令:管道的原理’<br>top: false<br>cover: false<br>toc: true<br>mathjax: true<br>date: 2019-08-10 20:31:49<br>password:<br>summary: linux管道的原理<br>tags: linux  </p>
+<h2 id="categories-linux"><a href="#categories-linux" class="headerlink" title="categories: linux  "></a>categories: linux  </h2><p> &nbsp;&nbsp;经常被问到进程间是怎么通信的?常见的有socket，管道，消息队列，共享内存等。以后会专门写一个总结一下，这次研究一下管道是什么?<br> &nbsp;&nbsp;一般遇到这种名词的话一般都会想这个是用来解决什么问题了，又是怎么解决的。</p>
+<ul>
+<li>解决了什么问题?<ul>
+<li>前面提到了解决了进程间通信的问题,比如一个很简单的例子，想要在nohup.out中搜索某个</li>
+</ul>
+</li>
+</ul>
 
-        </article>
-        
-        
+      
+       
+    </div>
+</article>
+
+
+
+<div class="article_copyright">
+    <p><span class="copy-title">文章标题:</span></p>
+    
+    <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="yu kerui">yu kerui</a></p>
+    <p><span class="copy-title">发布时间:</span>2019-08-10, 20:31:49</p>
+    <p><span class="copy-title">最后更新:</span>2019-08-10, 21:57:07</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/08/10/每天一个linux命令-管道的原理/" title="">http://kerui.tk/2019/08/10/每天一个linux命令-管道的原理/</a>
+    <p>
+        <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+    </p>
+</div>
+
+
+
+
+
+    
+
+
+
+
     </div>
     <div class="copyright">
         <p class="footer-entry">©2019 yukerui</p>
