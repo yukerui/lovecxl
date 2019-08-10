@@ -2,21 +2,21 @@
 <html>
 <head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
-  <title>每天一个linux命令:管道的原理 | lovexl</title>
+  <title>每天一个linux命令-管道的原理 | lovexl</title>
   <meta name="keywords" content=" linux ">
-  <meta name="description" content="每天一个linux命令:管道的原理 | lovexl">
+  <meta name="description" content="每天一个linux命令-管道的原理 | lovexl">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="&amp;nbsp;&amp;nbsp;经常被问到进程间是怎么通信的?常见的有socket，管道，消息队列，共享内存等。以后会专门写一个总结一下，这次研究一下管道是什么? &amp;nbsp;&amp;nbsp;一般遇到这种名词的话一般都会想这个是用来解决什么问题了，又是怎么解决的。  解决了什么问题? 前面提到了解决了进程间通信的问题,比如一个很简单的例子，想要在nohup.out中搜索某个">
 <meta name="keywords" content="linux">
 <meta property="og:type" content="article">
-<meta property="og:title" content="每天一个linux命令:管道的原理">
+<meta property="og:title" content="每天一个linux命令-管道的原理">
 <meta property="og:url" content="http://kerui.tk/2019/08/10/每天一个linux命令-管道的原理/index.html">
 <meta property="og:site_name" content="lovexl">
 <meta property="og:description" content="&amp;nbsp;&amp;nbsp;经常被问到进程间是怎么通信的?常见的有socket，管道，消息队列，共享内存等。以后会专门写一个总结一下，这次研究一下管道是什么? &amp;nbsp;&amp;nbsp;一般遇到这种名词的话一般都会想这个是用来解决什么问题了，又是怎么解决的。  解决了什么问题? 前面提到了解决了进程间通信的问题,比如一个很简单的例子，想要在nohup.out中搜索某个">
 <meta property="og:locale" content="zh">
-<meta property="og:updated_time" content="2019-08-10T14:12:52.006Z">
+<meta property="og:updated_time" content="2019-08-10T14:16:21.422Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="每天一个linux命令:管道的原理">
+<meta name="twitter:title" content="每天一个linux命令-管道的原理">
 <meta name="twitter:description" content="&amp;nbsp;&amp;nbsp;经常被问到进程间是怎么通信的?常见的有socket，管道，消息队列，共享内存等。以后会专门写一个总结一下，这次研究一下管道是什么? &amp;nbsp;&amp;nbsp;一般遇到这种名词的话一般都会想这个是用来解决什么问题了，又是怎么解决的。  解决了什么问题? 前面提到了解决了进程间通信的问题,比如一个很简单的例子，想要在nohup.out中搜索某个">
 
 
@@ -168,14 +168,6 @@
     <nav id="title-list-nav">
         
         <a  class=""
-           href="/2019/08/10/ThreadLocal-md/"
-           data-tag="多线程"
-           data-author="" >
-            <span class="post-title" title="ThreadLocal">ThreadLocal</span>
-            <span class="post-date" title="2019-08-10 08:54:33">2019/08/10</span>
-        </a>
-        
-        <a  class=""
            href="/2019/08/10/Mysql/"
            data-tag=""
            data-author="" >
@@ -184,11 +176,11 @@
         </a>
         
         <a  class=""
-           href="/2019/08/09/test/"
-           data-tag=""
+           href="/2019/08/10/ThreadLocal-md/"
+           data-tag="多线程"
            data-author="" >
-            <span class="post-title" title="test">test</span>
-            <span class="post-date" title="2019-08-09 18:01:23">2019/08/09</span>
+            <span class="post-title" title="ThreadLocal">ThreadLocal</span>
+            <span class="post-date" title="2019-08-10 08:54:33">2019/08/10</span>
         </a>
         
         <a  class=""
@@ -203,8 +195,16 @@
            href="/2019/08/10/每天一个linux命令-管道的原理/"
            data-tag="linux"
            data-author="" >
-            <span class="post-title" title="每天一个linux命令:管道的原理">每天一个linux命令:管道的原理</span>
+            <span class="post-title" title="每天一个linux命令-管道的原理">每天一个linux命令-管道的原理</span>
             <span class="post-date" title="2019-08-10 22:11:55">2019/08/10</span>
+        </a>
+        
+        <a  class=""
+           href="/2019/08/09/test/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="test">test</span>
+            <span class="post-date" title="2019-08-09 18:01:23">2019/08/09</span>
         </a>
         
     </nav>
@@ -221,7 +221,7 @@
     <div class="pjax">
         <article id="post-每天一个linux命令-管道的原理" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">每天一个linux命令:管道的原理</h1>
+        <h1 class="article-title">每天一个linux命令-管道的原理</h1>
     
     <div class="article-meta">
         
@@ -237,7 +237,7 @@
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2019-08-10 22:12:52'>2019-08-10 22:11</time>
+        创建时间:<time class="date" title='更新时间: 2019-08-10 22:16:21'>2019-08-10 22:11</time>
         
     </div>
     <div class="article-meta">
@@ -290,12 +290,12 @@
 
 
 <div class="article_copyright">
-    <p><span class="copy-title">文章标题:</span>每天一个linux命令:管道的原理</p>
+    <p><span class="copy-title">文章标题:</span>每天一个linux命令-管道的原理</p>
     
     <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="yu kerui">yu kerui</a></p>
     <p><span class="copy-title">发布时间:</span>2019-08-10, 22:11:55</p>
-    <p><span class="copy-title">最后更新:</span>2019-08-10, 22:12:52</p>
-    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/08/10/每天一个linux命令-管道的原理/" title="每天一个linux命令:管道的原理">http://kerui.tk/2019/08/10/每天一个linux命令-管道的原理/</a>
+    <p><span class="copy-title">最后更新:</span>2019-08-10, 22:16:21</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/08/10/每天一个linux命令-管道的原理/" title="每天一个linux命令-管道的原理">http://kerui.tk/2019/08/10/每天一个linux命令-管道的原理/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
     </p>
