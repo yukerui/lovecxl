@@ -2,9 +2,9 @@
 <html>
 <head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
-  <title>test | lovexl</title>
+  <title>lovexl</title>
   <meta name="keywords" content>
-  <meta name="description" content="test | lovexl">
+  <meta name="description" content="lovexl">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta property="og:type" content="article">
 <meta property="og:title" content="test">
@@ -183,9 +183,7 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="post-test" class="article article-type-post" itemscope itemprop="blogPost">
-    
-        <h1 class="article-title">test</h1>
+        <article id="post-ThreadLocal" class="article article-type-post" itemscope itemprop="blogPost">
     
     <div class="article-meta">
         
@@ -195,7 +193,7 @@
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2019-08-09 18:01:23'>2019-08-09 18:01</time>
+        创建时间:<time class="date" title='更新时间: 2019-08-10 08:46:09'>2019-08-10 08:50</time>
         
     </div>
     <div class="article-meta">
@@ -217,7 +215,7 @@
     
     <div class="toc-ref">
     
-        
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#ThreadLocal源码分析"><span class="toc-text">ThreadLocal源码分析</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#定义"><span class="toc-text">定义:</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#与线程同步机制的区别"><span class="toc-text">与线程同步机制的区别</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -232,7 +230,18 @@
 </div>
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <h1 id="ThreadLocal源码分析"><a href="#ThreadLocal源码分析" class="headerlink" title="ThreadLocal源码分析"></a>ThreadLocal源码分析</h1><h2 id="定义"><a href="#定义" class="headerlink" title="定义:"></a>定义:</h2><p>该类提供了线程局部变量。这些变量不同于它们的普通对应物，因为访问某个变量(通过get或者set)的每个线程都有自己的局部变量，它独立于变量的初始化副本。ThreadLocal实例通常是类中的private static字段，它们希望将状态与某一个线程相关联。</p>
+<h2 id="与线程同步机制的区别"><a href="#与线程同步机制的区别" class="headerlink" title="与线程同步机制的区别"></a>与线程同步机制的区别</h2><p>线程同步机制是多个线程共享一个变量，而ThreadLocal是为每一个线程创建一个单独的变量副本。每个线程都可以独立的改变自己的副本而不影响别人。为多线程环境下变量问题提供了另外一种解决思路。</p>
+<p>ThreadLocal定义了四个方法:</p>
+<ul>
+<li>get(): 返回此线程局部变量的当前线程副本中的值</li>
+<li>initialValue(): 返回此线程局部变量的当前线程的“初始值”</li>
+<li>remove(): 删除当前线程局部变量当前线程的值</li>
+<li>set(T value): 将此线程局部变量的当前线程副本中的值设置为指定值</li>
+</ul>
+<p>除了以上的，ThreadLocal内部还有一个静态内部类ThreadLocalMap，get(),set(),remove()都是基于该内部操作。ThreadLocalMap提供了一种键值对方式存储每一个线程的变量副本的方法，key为当前ThreadLocal对象，value则是对应线程的变量副本。</p>
+<p>​    </p>
+
       
        
     </div>
@@ -241,12 +250,12 @@
 
 
 <div class="article_copyright">
-    <p><span class="copy-title">文章标题:</span>test</p>
+    <p><span class="copy-title">文章标题:</span></p>
     
     <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="yu kerui">yu kerui</a></p>
-    <p><span class="copy-title">发布时间:</span>2019-08-09, 18:01:23</p>
-    <p><span class="copy-title">最后更新:</span>2019-08-09, 18:01:23</p>
-    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/08/09/test/" title="test">https://yukerui.github.io/lovecxl/2019/08/09/test/</a>
+    <p><span class="copy-title">发布时间:</span>2019-08-10, 08:50:04</p>
+    <p><span class="copy-title">最后更新:</span>2019-08-10, 08:46:09</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/08/10/ThreadLocal/" title="">https://yukerui.github.io/lovecxl/2019/08/10/ThreadLocal/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
     </p>
