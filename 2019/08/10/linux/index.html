@@ -2,9 +2,9 @@
 <html>
 <head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
-  <title>lovexl</title>
+  <title>linux | lovexl</title>
   <meta name="keywords" content>
-  <meta name="description" content="lovexl">
+  <meta name="description" content="linux | lovexl">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="欢迎来到decrease的小站,主要分享java的一些知识">
 <meta property="og:type" content="article">
@@ -214,7 +214,9 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="post-Mysql" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-linux" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">linux</h1>
     
     <div class="article-meta">
         
@@ -224,7 +226,7 @@
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2019-08-10 21:48:38'>2019-08-10 16:09</time>
+        创建时间:<time class="date" title='更新时间: 2019-08-10 22:09:34'>2019-08-10 22:09</time>
         
     </div>
     <div class="article-meta">
@@ -246,7 +248,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#categories"><span class="toc-text">categories:  </span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Mysql并发控制"><span class="toc-text">Mysql并发控制</span></a></li></ol>
+        
     
 <style>
     .left-col .switch-btn,
@@ -261,16 +263,7 @@
 </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <hr>
-<p>title: Mysql<br>top: false<br>cover: false<br>toc: true<br>mathjax: true<br>date: 2019-08-10 16:09:34<br>password:<br>summary:<br>tags:  </p>
-<h2 id="categories"><a href="#categories" class="headerlink" title="categories:  "></a>categories:  </h2><p>#Mysql</p>
-<h2 id="Mysql并发控制"><a href="#Mysql并发控制" class="headerlink" title="Mysql并发控制"></a>Mysql并发控制</h2><p> &nbsp; &nbsp;假设表中的一行记录，在高并发的情况下，一个在读，另一个试图修改，有可能读的会报错退出，也有可能读到错误的数据，因此需要加锁，解决此问题的经典方法就是读写锁。<br> &nbsp;&nbsp;读写锁就是含有两把锁，通常被称为共享锁和排他锁,也叫读锁和写锁。读锁是共享的，读的过程互相不阻塞，而写锁是排他的，在写的过程中会阻塞其他写锁和读锁。</p>
-<p>##锁粒度<br> &nbsp;&nbsp;加锁的范围尽量只锁定想要锁定的部分数据。因为加锁的数据越小，争锁的几率就越小，系统的并发性就越高。<br> &nbsp;&nbsp;加锁本身就是一个耗费资源的操作，包括获得锁，检查锁，释放锁都会增加系统开销，因此说策略，无非就是在资源开销和数据安全性中寻找一个tradeoff。Mysql提供以下两种锁。</p>
-<ul>
-<li>表锁<br>它会锁定整张表，当在对表进行写操作前，需要先拿到写锁然后阻塞其他用户对该表的所有读写操作，只有没有写锁时，其他读取的用户才能拿到读锁。</li>
-<li>行级锁<br>行级锁可以最大程度的支持并发处理，在InnoDB和XtrDB中实现了行级锁。</li>
-</ul>
-
+        
       
        
     </div>
@@ -279,12 +272,12 @@
 
 
 <div class="article_copyright">
-    <p><span class="copy-title">文章标题:</span></p>
+    <p><span class="copy-title">文章标题:</span>linux</p>
     
     <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="yu kerui">yu kerui</a></p>
-    <p><span class="copy-title">发布时间:</span>2019-08-10, 16:09:34</p>
-    <p><span class="copy-title">最后更新:</span>2019-08-10, 21:48:38</p>
-    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/08/10/Mysql/" title="">http://kerui.tk/2019/08/10/Mysql/</a>
+    <p><span class="copy-title">发布时间:</span>2019-08-10, 22:09:34</p>
+    <p><span class="copy-title">最后更新:</span>2019-08-10, 22:09:34</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/08/10/linux/" title="linux">http://kerui.tk/2019/08/10/linux/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
     </p>
