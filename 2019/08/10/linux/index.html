@@ -6,18 +6,19 @@
   <meta name="keywords" content>
   <meta name="description" content="linux | lovexl">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="title: 每天一个linux命令-管道的原理date: 2019-08-10 22:11:55   tags: linux   &amp;nbsp;&amp;nbsp;经常被问到进程间是怎么通信的?常见的有socket，管道，消息队列，共享内存等。以后会专门写一个总结一下，这次研究一下管道是什么? &amp;nbsp;&amp;nbsp;一般遇到这种名词的话一般都会想这个是用来解决什么问题了，又是怎么解决的。    解决了">
+<meta name="description" content="&amp;nbsp;&amp;nbsp;经常被问到进程间是怎么通信的?常见的有socket，管道，消息队列，共享内存等。以后会专门写一个总结一下，这次研究一下管道是什么? &amp;nbsp;&amp;nbsp;一般遇到这种名词的话一般都会想这个是用来解决什么问题了，又是怎么解决的。    解决了什么问题?&amp;nbsp;&amp;nbsp;* 前面提到了解决了进程间通信的问题,比如一个很简单的例子，想要在nohup.out中搜索某个关键字">
+<meta name="keywords" content="linux">
 <meta property="og:type" content="article">
-<meta property="og:title" content="lovexl">
-<meta property="og:url" content="http://kerui.tk/2019/08/10/每天一个linux命令-管道的原理/index.html">
+<meta property="og:title" content="每天一个linux命令-管道">
+<meta property="og:url" content="http://kerui.tk/2019/08/11/每天一个linux命令-管道/index.html">
 <meta property="og:site_name" content="lovexl">
-<meta property="og:description" content="title: 每天一个linux命令-管道的原理date: 2019-08-10 22:11:55   tags: linux   &amp;nbsp;&amp;nbsp;经常被问到进程间是怎么通信的?常见的有socket，管道，消息队列，共享内存等。以后会专门写一个总结一下，这次研究一下管道是什么? &amp;nbsp;&amp;nbsp;一般遇到这种名词的话一般都会想这个是用来解决什么问题了，又是怎么解决的。    解决了">
+<meta property="og:description" content="&amp;nbsp;&amp;nbsp;经常被问到进程间是怎么通信的?常见的有socket，管道，消息队列，共享内存等。以后会专门写一个总结一下，这次研究一下管道是什么? &amp;nbsp;&amp;nbsp;一般遇到这种名词的话一般都会想这个是用来解决什么问题了，又是怎么解决的。    解决了什么问题?&amp;nbsp;&amp;nbsp;* 前面提到了解决了进程间通信的问题,比如一个很简单的例子，想要在nohup.out中搜索某个关键字">
 <meta property="og:locale" content="zh">
 <meta property="og:image" content="https://lovexl-1254108494.cos.ap-chengdu.myqcloud.com/%E5%86%85%E6%A0%B8%E7%AE%A1%E9%81%931.jpg">
-<meta property="og:updated_time" content="2019-08-11T04:33:50.694Z">
+<meta property="og:updated_time" content="2019-08-11T04:36:24.609Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="lovexl">
-<meta name="twitter:description" content="title: 每天一个linux命令-管道的原理date: 2019-08-10 22:11:55   tags: linux   &amp;nbsp;&amp;nbsp;经常被问到进程间是怎么通信的?常见的有socket，管道，消息队列，共享内存等。以后会专门写一个总结一下，这次研究一下管道是什么? &amp;nbsp;&amp;nbsp;一般遇到这种名词的话一般都会想这个是用来解决什么问题了，又是怎么解决的。    解决了">
+<meta name="twitter:title" content="每天一个linux命令-管道">
+<meta name="twitter:description" content="&amp;nbsp;&amp;nbsp;经常被问到进程间是怎么通信的?常见的有socket，管道，消息队列，共享内存等。以后会专门写一个总结一下，这次研究一下管道是什么? &amp;nbsp;&amp;nbsp;一般遇到这种名词的话一般都会想这个是用来解决什么问题了，又是怎么解决的。    解决了什么问题?&amp;nbsp;&amp;nbsp;* 前面提到了解决了进程间通信的问题,比如一个很简单的例子，想要在nohup.out中搜索某个关键字">
 <meta name="twitter:image" content="https://lovexl-1254108494.cos.ap-chengdu.myqcloud.com/%E5%86%85%E6%A0%B8%E7%AE%A1%E9%81%931.jpg">
 
 
@@ -109,7 +110,7 @@
 
 
 <ul>
-    <li><div class="all active">全部文章<small>(5)</small></div></li>
+    <li><div class="all active">全部文章<small>(6)</small></div></li>
     
 </ul>
 <div class="left-bottom">
@@ -122,7 +123,7 @@
     </div>
     <div><a style="border-right: 1px solid #fff; width: 49%"  class="about site_url"  href="/about">关于</a><a style="width: 50%"  class="friends">友链</a></div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="5">
+<input type="hidden" id="yelog_site_posts_number" value="6">
 
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
@@ -158,11 +159,23 @@
         <a href="javascript:" class="color4">多线程</a>
     </li>
     
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color1">linux</a>
+    </li>
+    
     <div class="clearfix"></div>
 </div>
 
     
     <nav id="title-list-nav">
+        
+        <a  class=""
+           href="/2019/08/10/linux/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="linux">linux</span>
+            <span class="post-date" title="2019-08-10 22:09:34">2019/08/10</span>
+        </a>
         
         <a  class=""
            href="/2019/08/10/ThreadLocal-md/"
@@ -189,11 +202,11 @@
         </a>
         
         <a  class=""
-           href="/2019/08/10/linux/"
-           data-tag=""
+           href="/2019/08/11/每天一个linux命令-管道/"
+           data-tag="linux"
            data-author="" >
-            <span class="post-title" title="linux">linux</span>
-            <span class="post-date" title="2019-08-10 22:09:34">2019/08/10</span>
+            <span class="post-title" title="每天一个linux命令-管道">每天一个linux命令-管道</span>
+            <span class="post-date" title="2019-08-11 12:35:52">2019/08/11</span>
         </a>
         
         <a  class=""
@@ -322,7 +335,7 @@
     /*作者、标签的自动补全*/
     $(function () {
         $('.search').AutoComplete({
-            'data': ['#多线程',],
+            'data': ['#多线程','#linux',],
             'itemHeight': 20,
             'width': 418
         }).AutoComplete('show');
