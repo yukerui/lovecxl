@@ -6,18 +6,18 @@
   <meta name="keywords" content>
   <meta name="description" content="lovexl">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="##原理我们知道，linux中父进程通过fork和exec来创建并运行子线程，由于linux存在一个机制，就是父进程只要想要拿到子进程的结束时的信息就可以得到，因此每个子进程退出的时候，内核释放进程持有的所有资源，包括打开的文件，占用的内存等，但是仍然会保留一定的信息(包括进程号)供父进程调用，父进程通过调用wait或waitpid方法来释放这一部分资源，如果父进程迟迟不调用的话，这种子线程就叫僵">
+<meta name="description" content="原理我们知道，linux中父进程通过fork和exec来创建并运行子线程，由于linux存在一个机制，就是父进程只要想要拿到子进程的结束时的信息就可以得到，因此每个子进程退出的时候，内核释放进程持有的所有资源，包括打开的文件，占用的内存等，但是仍然会保留一定的信息(包括进程号)供父进程调用，父进程通过调用wait或waitpid方法来释放这一部分资源，如果父进程迟迟不调用的话，这种子线程就叫僵死线">
 <meta name="keywords" content="操作系统">
 <meta property="og:type" content="article">
 <meta property="og:title" content="每天一个操作系统知识-僵死和孤儿进程">
 <meta property="og:url" content="http://kerui.tk/2019/08/12/每天一个操作系统知识-僵死和孤儿进程/index.html">
 <meta property="og:site_name" content="lovexl">
-<meta property="og:description" content="##原理我们知道，linux中父进程通过fork和exec来创建并运行子线程，由于linux存在一个机制，就是父进程只要想要拿到子进程的结束时的信息就可以得到，因此每个子进程退出的时候，内核释放进程持有的所有资源，包括打开的文件，占用的内存等，但是仍然会保留一定的信息(包括进程号)供父进程调用，父进程通过调用wait或waitpid方法来释放这一部分资源，如果父进程迟迟不调用的话，这种子线程就叫僵">
+<meta property="og:description" content="原理我们知道，linux中父进程通过fork和exec来创建并运行子线程，由于linux存在一个机制，就是父进程只要想要拿到子进程的结束时的信息就可以得到，因此每个子进程退出的时候，内核释放进程持有的所有资源，包括打开的文件，占用的内存等，但是仍然会保留一定的信息(包括进程号)供父进程调用，父进程通过调用wait或waitpid方法来释放这一部分资源，如果父进程迟迟不调用的话，这种子线程就叫僵死线">
 <meta property="og:locale" content="zh">
-<meta property="og:updated_time" content="2019-08-12T14:07:33.978Z">
+<meta property="og:updated_time" content="2019-08-12T14:09:44.660Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="每天一个操作系统知识-僵死和孤儿进程">
-<meta name="twitter:description" content="##原理我们知道，linux中父进程通过fork和exec来创建并运行子线程，由于linux存在一个机制，就是父进程只要想要拿到子进程的结束时的信息就可以得到，因此每个子进程退出的时候，内核释放进程持有的所有资源，包括打开的文件，占用的内存等，但是仍然会保留一定的信息(包括进程号)供父进程调用，父进程通过调用wait或waitpid方法来释放这一部分资源，如果父进程迟迟不调用的话，这种子线程就叫僵">
+<meta name="twitter:description" content="原理我们知道，linux中父进程通过fork和exec来创建并运行子线程，由于linux存在一个机制，就是父进程只要想要拿到子进程的结束时的信息就可以得到，因此每个子进程退出的时候，内核释放进程持有的所有资源，包括打开的文件，占用的内存等，但是仍然会保留一定的信息(包括进程号)供父进程调用，父进程通过调用wait或waitpid方法来释放这一部分资源，如果父进程迟迟不调用的话，这种子线程就叫僵死线">
 
 
 <link rel="icon" href="/img/jerry.jpg">
@@ -158,11 +158,11 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color5">操作系统</a>
+        <a href="javascript:" class="color1">linux</a>
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color1">linux</a>
+        <a href="javascript:" class="color5">操作系统</a>
     </li>
     
     <div class="clearfix"></div>
@@ -170,14 +170,6 @@
 
     
     <nav id="title-list-nav">
-        
-        <a  class=""
-           href="/2019/08/10/Mysql/"
-           data-tag=""
-           data-author="" >
-            <span class="post-title" title=""></span>
-            <span class="post-date" title="2019-08-10 16:09:34">2019/08/10</span>
-        </a>
         
         <a  class=""
            href="/2019/08/10/ThreadLocal-md/"
@@ -188,11 +180,19 @@
         </a>
         
         <a  class=""
-           href="/2019/08/10/linux/"
+           href="/2019/08/10/Mysql/"
            data-tag=""
            data-author="" >
-            <span class="post-title" title="linux">linux</span>
-            <span class="post-date" title="2019-08-10 22:09:34">2019/08/10</span>
+            <span class="post-title" title=""></span>
+            <span class="post-date" title="2019-08-10 16:09:34">2019/08/10</span>
+        </a>
+        
+        <a  class=""
+           href="/2019/08/11/每天一个linux命令-管道/"
+           data-tag="linux"
+           data-author="" >
+            <span class="post-title" title="每天一个linux命令-管道">每天一个linux命令-管道</span>
+            <span class="post-date" title="2019-08-11 12:35:52">2019/08/11</span>
         </a>
         
         <a  class=""
@@ -204,11 +204,11 @@
         </a>
         
         <a  class=""
-           href="/2019/08/11/每天一个linux命令-管道/"
-           data-tag="linux"
+           href="/2019/08/10/linux/"
+           data-tag=""
            data-author="" >
-            <span class="post-title" title="每天一个linux命令-管道">每天一个linux命令-管道</span>
-            <span class="post-date" title="2019-08-11 12:35:52">2019/08/11</span>
+            <span class="post-title" title="linux">linux</span>
+            <span class="post-date" title="2019-08-10 22:09:34">2019/08/10</span>
         </a>
         
     </nav>
@@ -275,7 +275,7 @@
     /*作者、标签的自动补全*/
     $(function () {
         $('.search').AutoComplete({
-            'data': ['#多线程','#操作系统','#linux',],
+            'data': ['#多线程','#linux','#操作系统',],
             'itemHeight': 20,
             'width': 418
         }).AutoComplete('show');
