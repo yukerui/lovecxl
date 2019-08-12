@@ -14,7 +14,7 @@
 <meta property="og:site_name" content="lovexl">
 <meta property="og:description" content="原理我们知道，linux中父进程通过fork和exec来创建并运行子线程，由于linux存在一个机制，就是父进程只要想要拿到子进程的结束时的信息就可以得到，因此每个子进程退出的时候，内核释放进程持有的所有资源，包括打开的文件，占用的内存等，但是仍然会保留一定的信息(包括进程号)供父进程调用，父进程通过调用wait或waitpid方法来释放这一部分资源，如果父进程迟迟不调用的话，这种子线程就叫僵死线">
 <meta property="og:locale" content="zh">
-<meta property="og:updated_time" content="2019-08-12T14:09:44.660Z">
+<meta property="og:updated_time" content="2019-08-12T14:11:28.761Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="每天一个操作系统知识-僵死和孤儿进程">
 <meta name="twitter:description" content="原理我们知道，linux中父进程通过fork和exec来创建并运行子线程，由于linux存在一个机制，就是父进程只要想要拿到子进程的结束时的信息就可以得到，因此每个子进程退出的时候，内核释放进程持有的所有资源，包括打开的文件，占用的内存等，但是仍然会保留一定的信息(包括进程号)供父进程调用，父进程通过调用wait或waitpid方法来释放这一部分资源，如果父进程迟迟不调用的话，这种子线程就叫僵死线">
@@ -172,6 +172,14 @@
     <nav id="title-list-nav">
         
         <a  class=""
+           href="/2019/08/10/Mysql/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title=""></span>
+            <span class="post-date" title="2019-08-10 16:09:34">2019/08/10</span>
+        </a>
+        
+        <a  class=""
            href="/2019/08/10/ThreadLocal-md/"
            data-tag="多线程"
            data-author="" >
@@ -180,11 +188,11 @@
         </a>
         
         <a  class=""
-           href="/2019/08/10/Mysql/"
+           href="/2019/08/10/linux/"
            data-tag=""
            data-author="" >
-            <span class="post-title" title=""></span>
-            <span class="post-date" title="2019-08-10 16:09:34">2019/08/10</span>
+            <span class="post-title" title="linux">linux</span>
+            <span class="post-date" title="2019-08-10 22:09:34">2019/08/10</span>
         </a>
         
         <a  class=""
@@ -201,14 +209,6 @@
            data-author="" >
             <span class="post-title" title="每天一个操作系统知识-僵死和孤儿进程">每天一个操作系统知识-僵死和孤儿进程</span>
             <span class="post-date" title="2019-08-12 22:06:52">2019/08/12</span>
-        </a>
-        
-        <a  class=""
-           href="/2019/08/10/linux/"
-           data-tag=""
-           data-author="" >
-            <span class="post-title" title="linux">linux</span>
-            <span class="post-date" title="2019-08-10 22:09:34">2019/08/10</span>
         </a>
         
     </nav>
@@ -241,7 +241,7 @@
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2019-08-12 22:09:44'>2019-08-12 22:06</time>
+        创建时间:<time class="date" title='更新时间: 2019-08-12 22:11:28'>2019-08-12 22:06</time>
         
     </div>
     <div class="article-meta">
@@ -283,7 +283,7 @@
 <li>僵死线程:由以上分析可知，僵死线程为父进程没有调用wait或waitpid方法导致的。</li>
 <li>孤儿线程: 孤儿线程就是子进程还在，父进程没了就成孤儿进程了，孤儿进程会被init进程托管，并由init进程对它门完成状态收集工作，问题不大。</li>
 </ul>
-<h2 id="僵死线程很容易造成进程号的大量占用，那么该如何处理这种问题呢"><a href="#僵死线程很容易造成进程号的大量占用，那么该如何处理这种问题呢" class="headerlink" title="僵死线程很容易造成进程号的大量占用，那么该如何处理这种问题呢?"></a>僵死线程很容易造成进程号的大量占用，那么该如何处理这种问题呢?</h2><p>产生这种线程的原因一般都是父线程只管创建子线程，但是不调用wait或waitpid方法来处理，一般情况下是找到这个父线程，然后kill掉，这样这些僵死线程就变成孤儿线程了，这样的话init线程仅能回收。</p>
+<h2 id="僵死线程很容易造成进程号的大量占用，那么该如何处理这种问题呢"><a href="#僵死线程很容易造成进程号的大量占用，那么该如何处理这种问题呢" class="headerlink" title="僵死线程很容易造成进程号的大量占用，那么该如何处理这种问题呢?"></a>僵死线程很容易造成进程号的大量占用，那么该如何处理这种问题呢?</h2><p>产生这种线程的原因一般都是父线程只管创建子线程，但是不调用wait或waitpid方法来处理，一般情况下是找到这个父线程，然后kill掉，这样这些僵死线程就变成孤儿线程了，这样的话init线程就能回收。</p>
 
       
        
@@ -297,7 +297,7 @@
     
     <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="yu kerui">yu kerui</a></p>
     <p><span class="copy-title">发布时间:</span>2019-08-12, 22:06:52</p>
-    <p><span class="copy-title">最后更新:</span>2019-08-12, 22:09:44</p>
+    <p><span class="copy-title">最后更新:</span>2019-08-12, 22:11:28</p>
     <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/08/12/每天一个操作系统知识-僵死和孤儿进程/" title="每天一个操作系统知识-僵死和孤儿进程">http://kerui.tk/2019/08/12/每天一个操作系统知识-僵死和孤儿进程/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。

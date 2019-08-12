@@ -14,7 +14,7 @@
 <meta property="og:site_name" content="lovexl">
 <meta property="og:description" content="原理我们知道，linux中父进程通过fork和exec来创建并运行子线程，由于linux存在一个机制，就是父进程只要想要拿到子进程的结束时的信息就可以得到，因此每个子进程退出的时候，内核释放进程持有的所有资源，包括打开的文件，占用的内存等，但是仍然会保留一定的信息(包括进程号)供父进程调用，父进程通过调用wait或waitpid方法来释放这一部分资源，如果父进程迟迟不调用的话，这种子线程就叫僵死线">
 <meta property="og:locale" content="zh">
-<meta property="og:updated_time" content="2019-08-12T14:09:44.660Z">
+<meta property="og:updated_time" content="2019-08-12T14:11:28.761Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="每天一个操作系统知识-僵死和孤儿进程">
 <meta name="twitter:description" content="原理我们知道，linux中父进程通过fork和exec来创建并运行子线程，由于linux存在一个机制，就是父进程只要想要拿到子进程的结束时的信息就可以得到，因此每个子进程退出的时候，内核释放进程持有的所有资源，包括打开的文件，占用的内存等，但是仍然会保留一定的信息(包括进程号)供父进程调用，父进程通过调用wait或waitpid方法来释放这一部分资源，如果父进程迟迟不调用的话，这种子线程就叫僵死线">
@@ -172,6 +172,14 @@
     <nav id="title-list-nav">
         
         <a  class=""
+           href="/2019/08/10/Mysql/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title=""></span>
+            <span class="post-date" title="2019-08-10 16:09:34">2019/08/10</span>
+        </a>
+        
+        <a  class=""
            href="/2019/08/10/ThreadLocal-md/"
            data-tag="多线程"
            data-author="" >
@@ -180,11 +188,11 @@
         </a>
         
         <a  class=""
-           href="/2019/08/10/Mysql/"
+           href="/2019/08/10/linux/"
            data-tag=""
            data-author="" >
-            <span class="post-title" title=""></span>
-            <span class="post-date" title="2019-08-10 16:09:34">2019/08/10</span>
+            <span class="post-title" title="linux">linux</span>
+            <span class="post-date" title="2019-08-10 22:09:34">2019/08/10</span>
         </a>
         
         <a  class=""
@@ -201,14 +209,6 @@
            data-author="" >
             <span class="post-title" title="每天一个操作系统知识-僵死和孤儿进程">每天一个操作系统知识-僵死和孤儿进程</span>
             <span class="post-date" title="2019-08-12 22:06:52">2019/08/12</span>
-        </a>
-        
-        <a  class=""
-           href="/2019/08/10/linux/"
-           data-tag=""
-           data-author="" >
-            <span class="post-title" title="linux">linux</span>
-            <span class="post-date" title="2019-08-10 22:09:34">2019/08/10</span>
         </a>
         
     </nav>
