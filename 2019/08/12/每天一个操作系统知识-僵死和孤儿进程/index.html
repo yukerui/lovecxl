@@ -6,18 +6,18 @@
   <meta name="keywords" content=" 操作系统 ">
   <meta name="description" content="每天一个操作系统知识-僵死和孤儿进程 | lovexl">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="原理我们知道，linux中父进程通过fork和exec来创建并运行子线程，由于linux存在一个机制，就是父进程只要想要拿到子进程的结束时的信息就可以得到，因此每个子进程退出的时候，内核释放进程持有的所有资源，包括打开的文件，占用的内存等，但是仍然会保留一定的信息(包括进程号)供父进程调用，父进程通过调用wait或waitpid方法来释放这一部分资源，如果父进程迟迟不调用的话，这种子线程就叫僵死线">
+<meta name="description" content="cpu总线类型cpu中按照总线(传输信息)的功能分类,可以分为传递数据信息的数据总线,传递控制信息的控制总线和传递地址信息的地址总线  数据总线: 数据总线是CPU与存储器,cpu与IO接口设备传送信息的总线,这些总线往返于CPU与存储器,cpu与io接口之间,因此数据总线的数据是双向的 地址总线:cpu向存储器,io设备传送地址信息,寻址能力是cpu特有的功能,地址总线上的地址信息只能由CPU发">
 <meta name="keywords" content="操作系统">
 <meta property="og:type" content="article">
-<meta property="og:title" content="每天一个操作系统知识-僵死和孤儿进程">
-<meta property="og:url" content="http://kerui.tk/2019/08/12/每天一个操作系统知识-僵死和孤儿进程/index.html">
+<meta property="og:title" content="每天一个操作系统-总线">
+<meta property="og:url" content="http://kerui.tk/2019/08/14/每天一个操作系统-总线/index.html">
 <meta property="og:site_name" content="lovexl">
-<meta property="og:description" content="原理我们知道，linux中父进程通过fork和exec来创建并运行子线程，由于linux存在一个机制，就是父进程只要想要拿到子进程的结束时的信息就可以得到，因此每个子进程退出的时候，内核释放进程持有的所有资源，包括打开的文件，占用的内存等，但是仍然会保留一定的信息(包括进程号)供父进程调用，父进程通过调用wait或waitpid方法来释放这一部分资源，如果父进程迟迟不调用的话，这种子线程就叫僵死线">
+<meta property="og:description" content="cpu总线类型cpu中按照总线(传输信息)的功能分类,可以分为传递数据信息的数据总线,传递控制信息的控制总线和传递地址信息的地址总线  数据总线: 数据总线是CPU与存储器,cpu与IO接口设备传送信息的总线,这些总线往返于CPU与存储器,cpu与io接口之间,因此数据总线的数据是双向的 地址总线:cpu向存储器,io设备传送地址信息,寻址能力是cpu特有的功能,地址总线上的地址信息只能由CPU发">
 <meta property="og:locale" content="zh">
-<meta property="og:updated_time" content="2019-08-12T14:11:28.761Z">
+<meta property="og:updated_time" content="2019-08-14T15:18:32.141Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="每天一个操作系统知识-僵死和孤儿进程">
-<meta name="twitter:description" content="原理我们知道，linux中父进程通过fork和exec来创建并运行子线程，由于linux存在一个机制，就是父进程只要想要拿到子进程的结束时的信息就可以得到，因此每个子进程退出的时候，内核释放进程持有的所有资源，包括打开的文件，占用的内存等，但是仍然会保留一定的信息(包括进程号)供父进程调用，父进程通过调用wait或waitpid方法来释放这一部分资源，如果父进程迟迟不调用的话，这种子线程就叫僵死线">
+<meta name="twitter:title" content="每天一个操作系统-总线">
+<meta name="twitter:description" content="cpu总线类型cpu中按照总线(传输信息)的功能分类,可以分为传递数据信息的数据总线,传递控制信息的控制总线和传递地址信息的地址总线  数据总线: 数据总线是CPU与存储器,cpu与IO接口设备传送信息的总线,这些总线往返于CPU与存储器,cpu与io接口之间,因此数据总线的数据是双向的 地址总线:cpu向存储器,io设备传送地址信息,寻址能力是cpu特有的功能,地址总线上的地址信息只能由CPU发">
 
 
 <link rel="icon" href="/img/jerry.jpg">
@@ -108,7 +108,7 @@
 
 
 <ul>
-    <li><div class="all active">全部文章<small>(5)</small></div></li>
+    <li><div class="all active">全部文章<small>(6)</small></div></li>
     
 </ul>
 <div class="left-bottom">
@@ -121,7 +121,7 @@
     </div>
     <div><a style="border-right: 1px solid #fff; width: 49%"  class="about site_url"  href="/about">关于</a><a style="width: 50%"  class="friends">友链</a></div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="5">
+<input type="hidden" id="yelog_site_posts_number" value="6">
 
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
@@ -172,19 +172,19 @@
     <nav id="title-list-nav">
         
         <a  class=""
-           href="/2019/08/10/Mysql/"
-           data-tag=""
-           data-author="" >
-            <span class="post-title" title=""></span>
-            <span class="post-date" title="2019-08-10 16:09:34">2019/08/10</span>
-        </a>
-        
-        <a  class=""
            href="/2019/08/10/ThreadLocal-md/"
            data-tag="多线程"
            data-author="" >
             <span class="post-title" title="ThreadLocal">ThreadLocal</span>
             <span class="post-date" title="2019-08-10 08:54:33">2019/08/10</span>
+        </a>
+        
+        <a  class=""
+           href="/2019/08/10/Mysql/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title=""></span>
+            <span class="post-date" title="2019-08-10 16:09:34">2019/08/10</span>
         </a>
         
         <a  class=""
@@ -209,6 +209,14 @@
            data-author="" >
             <span class="post-title" title="每天一个操作系统知识-僵死和孤儿进程">每天一个操作系统知识-僵死和孤儿进程</span>
             <span class="post-date" title="2019-08-12 22:06:52">2019/08/12</span>
+        </a>
+        
+        <a  class=""
+           href="/2019/08/14/每天一个操作系统-总线/"
+           data-tag="操作系统"
+           data-author="" >
+            <span class="post-title" title="每天一个操作系统-总线">每天一个操作系统-总线</span>
+            <span class="post-date" title="2019-08-14 23:17:04">2019/08/14</span>
         </a>
         
     </nav>
