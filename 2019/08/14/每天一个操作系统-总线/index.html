@@ -6,17 +6,18 @@
   <meta name="keywords" content=" 操作系统 ">
   <meta name="description" content="每天一个操作系统-总线 | lovexl">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="欢迎来到decrease的小站,主要分享java的一些知识">
+<meta name="description" content="#Mysql Mysql并发控制 &amp;nbsp; &amp;nbsp;假设表中的一行记录，在高并发的情况下，一个在读，另一个试图修改，有可能读的会报错退出，也有可能读到错误的数据，因此需要加锁，解决此问题的经典方法就是读写锁。 &amp;nbsp;&amp;nbsp;读写锁就是含有两把锁，通常被称为共享锁和排他锁,也叫读锁和写锁。读锁是共享的，读的过程互相不阻塞，而写锁是排他的，在写的过程中会阻塞其他写锁和读锁。 ##锁粒">
+<meta name="keywords" content="数据库">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Mysql">
-<meta property="og:url" content="http://kerui.tk/2019/08/14/Mysql-1/index.html">
+<meta property="og:url" content="http://kerui.tk/2019/08/14/Mysql/index.html">
 <meta property="og:site_name" content="lovexl">
-<meta property="og:description" content="欢迎来到decrease的小站,主要分享java的一些知识">
+<meta property="og:description" content="#Mysql Mysql并发控制 &amp;nbsp; &amp;nbsp;假设表中的一行记录，在高并发的情况下，一个在读，另一个试图修改，有可能读的会报错退出，也有可能读到错误的数据，因此需要加锁，解决此问题的经典方法就是读写锁。 &amp;nbsp;&amp;nbsp;读写锁就是含有两把锁，通常被称为共享锁和排他锁,也叫读锁和写锁。读锁是共享的，读的过程互相不阻塞，而写锁是排他的，在写的过程中会阻塞其他写锁和读锁。 ##锁粒">
 <meta property="og:locale" content="zh">
-<meta property="og:updated_time" content="2019-08-14T15:27:06.423Z">
+<meta property="og:updated_time" content="2019-08-14T15:28:47.729Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Mysql">
-<meta name="twitter:description" content="欢迎来到decrease的小站,主要分享java的一些知识">
+<meta name="twitter:description" content="#Mysql Mysql并发控制 &amp;nbsp; &amp;nbsp;假设表中的一行记录，在高并发的情况下，一个在读，另一个试图修改，有可能读的会报错退出，也有可能读到错误的数据，因此需要加锁，解决此问题的经典方法就是读写锁。 &amp;nbsp;&amp;nbsp;读写锁就是含有两把锁，通常被称为共享锁和排他锁,也叫读锁和写锁。读锁是共享的，读的过程互相不阻塞，而写锁是排他的，在写的过程中会阻塞其他写锁和读锁。 ##锁粒">
 
 
 <link rel="icon" href="/img/jerry.jpg">
@@ -107,7 +108,7 @@
 
 
 <ul>
-    <li><div class="all active">全部文章<small>(7)</small></div></li>
+    <li><div class="all active">全部文章<small>(6)</small></div></li>
     
 </ul>
 <div class="left-bottom">
@@ -120,7 +121,7 @@
     </div>
     <div><a style="border-right: 1px solid #fff; width: 49%"  class="about site_url"  href="/about">关于</a><a style="width: 50%"  class="friends">友链</a></div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="7">
+<input type="hidden" id="yelog_site_posts_number" value="6">
 
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
@@ -175,14 +176,6 @@
     <nav id="title-list-nav">
         
         <a  class=""
-           href="/2019/08/14/Mysql-1/"
-           data-tag=""
-           data-author="" >
-            <span class="post-title" title="Mysql">Mysql</span>
-            <span class="post-date" title="2019-08-14 23:27:06">2019/08/14</span>
-        </a>
-        
-        <a  class=""
            href="/2019/08/14/Mysql/"
            data-tag="数据库"
            data-author="" >
@@ -215,19 +208,19 @@
         </a>
         
         <a  class=""
-           href="/2019/08/12/每天一个操作系统知识-僵死和孤儿进程/"
-           data-tag="操作系统"
-           data-author="" >
-            <span class="post-title" title="每天一个操作系统知识-僵死和孤儿进程">每天一个操作系统知识-僵死和孤儿进程</span>
-            <span class="post-date" title="2019-08-12 22:06:52">2019/08/12</span>
-        </a>
-        
-        <a  class=""
            href="/2019/08/14/每天一个操作系统-总线/"
            data-tag="操作系统"
            data-author="" >
             <span class="post-title" title="每天一个操作系统-总线">每天一个操作系统-总线</span>
             <span class="post-date" title="2019-08-14 23:17:04">2019/08/14</span>
+        </a>
+        
+        <a  class=""
+           href="/2019/08/12/每天一个操作系统知识-僵死和孤儿进程/"
+           data-tag="操作系统"
+           data-author="" >
+            <span class="post-title" title="每天一个操作系统知识-僵死和孤儿进程">每天一个操作系统知识-僵死和孤儿进程</span>
+            <span class="post-date" title="2019-08-12 22:06:52">2019/08/12</span>
         </a>
         
     </nav>
