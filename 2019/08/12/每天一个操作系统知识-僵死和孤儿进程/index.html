@@ -6,18 +6,17 @@
   <meta name="keywords" content=" 操作系统 ">
   <meta name="description" content="每天一个操作系统知识-僵死和孤儿进程 | lovexl">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="cpu总线类型cpu中按照总线(传输信息)的功能分类,可以分为传递数据信息的数据总线,传递控制信息的控制总线和传递地址信息的地址总线  数据总线: 数据总线是CPU与存储器,cpu与IO接口设备传送信息的总线,这些总线往返于CPU与存储器,cpu与io接口之间,因此数据总线的数据是双向的 地址总线:cpu向存储器,io设备传送地址信息,寻址能力是cpu特有的功能,地址总线上的地址信息只能由CPU发">
-<meta name="keywords" content="操作系统">
+<meta name="description" content="title: Mysqldate: 2019-08-10 08:54:33 tags: 多线程#Mysql Mysql并发控制 &amp;nbsp; &amp;nbsp;假设表中的一行记录，在高并发的情况下，一个在读，另一个试图修改，有可能读的会报错退出，也有可能读到错误的数据，因此需要加锁，解决此问题的经典方法就是读写锁。 &amp;nbsp;&amp;nbsp;读写锁就是含有两把锁，通常被称为共享锁和排他锁,也叫读锁和写锁">
 <meta property="og:type" content="article">
-<meta property="og:title" content="每天一个操作系统-总线">
-<meta property="og:url" content="http://kerui.tk/2019/08/14/每天一个操作系统-总线/index.html">
+<meta property="og:title" content="lovexl">
+<meta property="og:url" content="http://kerui.tk/2019/08/14/Mysql/index.html">
 <meta property="og:site_name" content="lovexl">
-<meta property="og:description" content="cpu总线类型cpu中按照总线(传输信息)的功能分类,可以分为传递数据信息的数据总线,传递控制信息的控制总线和传递地址信息的地址总线  数据总线: 数据总线是CPU与存储器,cpu与IO接口设备传送信息的总线,这些总线往返于CPU与存储器,cpu与io接口之间,因此数据总线的数据是双向的 地址总线:cpu向存储器,io设备传送地址信息,寻址能力是cpu特有的功能,地址总线上的地址信息只能由CPU发">
+<meta property="og:description" content="title: Mysqldate: 2019-08-10 08:54:33 tags: 多线程#Mysql Mysql并发控制 &amp;nbsp; &amp;nbsp;假设表中的一行记录，在高并发的情况下，一个在读，另一个试图修改，有可能读的会报错退出，也有可能读到错误的数据，因此需要加锁，解决此问题的经典方法就是读写锁。 &amp;nbsp;&amp;nbsp;读写锁就是含有两把锁，通常被称为共享锁和排他锁,也叫读锁和写锁">
 <meta property="og:locale" content="zh">
-<meta property="og:updated_time" content="2019-08-14T15:18:32.141Z">
+<meta property="og:updated_time" content="2019-08-14T15:22:04.504Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="每天一个操作系统-总线">
-<meta name="twitter:description" content="cpu总线类型cpu中按照总线(传输信息)的功能分类,可以分为传递数据信息的数据总线,传递控制信息的控制总线和传递地址信息的地址总线  数据总线: 数据总线是CPU与存储器,cpu与IO接口设备传送信息的总线,这些总线往返于CPU与存储器,cpu与io接口之间,因此数据总线的数据是双向的 地址总线:cpu向存储器,io设备传送地址信息,寻址能力是cpu特有的功能,地址总线上的地址信息只能由CPU发">
+<meta name="twitter:title" content="lovexl">
+<meta name="twitter:description" content="title: Mysqldate: 2019-08-10 08:54:33 tags: 多线程#Mysql Mysql并发控制 &amp;nbsp; &amp;nbsp;假设表中的一行记录，在高并发的情况下，一个在读，另一个试图修改，有可能读的会报错退出，也有可能读到错误的数据，因此需要加锁，解决此问题的经典方法就是读写锁。 &amp;nbsp;&amp;nbsp;读写锁就是含有两把锁，通常被称为共享锁和排他锁,也叫读锁和写锁">
 
 
 <link rel="icon" href="/img/jerry.jpg">
@@ -158,11 +157,11 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color1">linux</a>
+        <a href="javascript:" class="color5">操作系统</a>
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color5">操作系统</a>
+        <a href="javascript:" class="color1">linux</a>
     </li>
     
     <div class="clearfix"></div>
@@ -180,19 +179,27 @@
         </a>
         
         <a  class=""
-           href="/2019/08/10/Mysql/"
-           data-tag=""
-           data-author="" >
-            <span class="post-title" title=""></span>
-            <span class="post-date" title="2019-08-10 16:09:34">2019/08/10</span>
-        </a>
-        
-        <a  class=""
            href="/2019/08/10/linux/"
            data-tag=""
            data-author="" >
             <span class="post-title" title="linux">linux</span>
             <span class="post-date" title="2019-08-10 22:09:34">2019/08/10</span>
+        </a>
+        
+        <a  class=""
+           href="/2019/08/14/Mysql/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title=""></span>
+            <span class="post-date" title="2019-08-14 23:22:04">2019/08/14</span>
+        </a>
+        
+        <a  class=""
+           href="/2019/08/14/每天一个操作系统-总线/"
+           data-tag="操作系统"
+           data-author="" >
+            <span class="post-title" title="每天一个操作系统-总线">每天一个操作系统-总线</span>
+            <span class="post-date" title="2019-08-14 23:17:04">2019/08/14</span>
         </a>
         
         <a  class=""
@@ -209,14 +216,6 @@
            data-author="" >
             <span class="post-title" title="每天一个操作系统知识-僵死和孤儿进程">每天一个操作系统知识-僵死和孤儿进程</span>
             <span class="post-date" title="2019-08-12 22:06:52">2019/08/12</span>
-        </a>
-        
-        <a  class=""
-           href="/2019/08/14/每天一个操作系统-总线/"
-           data-tag="操作系统"
-           data-author="" >
-            <span class="post-title" title="每天一个操作系统-总线">每天一个操作系统-总线</span>
-            <span class="post-date" title="2019-08-14 23:17:04">2019/08/14</span>
         </a>
         
     </nav>
@@ -349,7 +348,7 @@
     /*作者、标签的自动补全*/
     $(function () {
         $('.search').AutoComplete({
-            'data': ['#多线程','#linux','#操作系统',],
+            'data': ['#多线程','#操作系统','#linux',],
             'itemHeight': 20,
             'width': 418
         }).AutoComplete('show');
