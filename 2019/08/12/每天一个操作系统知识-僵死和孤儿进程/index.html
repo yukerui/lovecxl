@@ -14,7 +14,7 @@
 <meta property="og:site_name" content="lovexl">
 <meta property="og:description" content="#Mysql Mysql并发控制 &amp;nbsp; &amp;nbsp;假设表中的一行记录，在高并发的情况下，一个在读，另一个试图修改，有可能读的会报错退出，也有可能读到错误的数据，因此需要加锁，解决此问题的经典方法就是读写锁。 &amp;nbsp;&amp;nbsp;读写锁就是含有两把锁，通常被称为共享锁和排他锁,也叫读锁和写锁。读锁是共享的，读的过程互相不阻塞，而写锁是排他的，在写的过程中会阻塞其他写锁和读锁。 ##锁粒">
 <meta property="og:locale" content="zh">
-<meta property="og:updated_time" content="2019-08-14T15:28:47.729Z">
+<meta property="og:updated_time" content="2019-08-15T13:48:09.864Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Mysql">
 <meta name="twitter:description" content="#Mysql Mysql并发控制 &amp;nbsp; &amp;nbsp;假设表中的一行记录，在高并发的情况下，一个在读，另一个试图修改，有可能读的会报错退出，也有可能读到错误的数据，因此需要加锁，解决此问题的经典方法就是读写锁。 &amp;nbsp;&amp;nbsp;读写锁就是含有两把锁，通常被称为共享锁和排他锁,也叫读锁和写锁。读锁是共享的，读的过程互相不阻塞，而写锁是排他的，在写的过程中会阻塞其他写锁和读锁。 ##锁粒">
@@ -130,7 +130,7 @@
     <div><a style="border-right: 1px solid #fff; width: 49%"  class="about site_url"  href="/about">关于</a><a style="width: 50%"  class="friends">友链</a></div>
 </div>
 <input type="hidden" id="yelog_site_posts_number" value="6">
-
+<input type="hidden" id="yelog_site_word_count" value="1.8k">
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
     <span id="busuanzi_value_site_pv"></span>
@@ -151,7 +151,7 @@
 </div>
         <div class="title-list">
     <form onkeydown="if(event.keyCode==13){return false;}">
-        <input class="search" type="text" placeholder="Search..." autocomplete="off"id="local-search-input" >
+        <input class="search" type="text" placeholder="以 in: 开头进行全文搜索" autocomplete="off"id="local-search-input" >
         <i class="cross"></i>
         <span>
             <label for="tagswitch">Tags:</label>
@@ -162,26 +162,46 @@
     <div class="tags-list">
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color4">多线程</a>
-    </li>
-    
-    <li class="article-tag-list-item">
         <a href="javascript:" class="color1">linux</a>
-    </li>
-    
-    <li class="article-tag-list-item">
-        <a href="javascript:" class="color4">数据库</a>
     </li>
     
     <li class="article-tag-list-item">
         <a href="javascript:" class="color5">操作系统</a>
     </li>
     
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color4">多线程</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color4">数据库</a>
+    </li>
+    
     <div class="clearfix"></div>
 </div>
 
     
+    <div id="local-search-result">
+
+    </div>
+    
     <nav id="title-list-nav">
+        
+        <a  class=""
+           href="/2019/08/11/每天一个linux命令-管道/"
+           data-tag="linux"
+           data-author="" >
+            <span class="post-title" title="每天一个linux命令-管道">每天一个linux命令-管道</span>
+            <span class="post-date" title="2019-08-11 12:35:52">2019/08/11</span>
+        </a>
+        
+        <a  class=""
+           href="/2019/08/14/每天一个操作系统-总线/"
+           data-tag="操作系统"
+           data-author="" >
+            <span class="post-title" title="每天一个操作系统-总线">每天一个操作系统-总线</span>
+            <span class="post-date" title="2019-08-14 23:17:04">2019/08/14</span>
+        </a>
         
         <a  class=""
            href="/2019/08/10/ThreadLocal-md/"
@@ -205,22 +225,6 @@
            data-author="" >
             <span class="post-title" title="Mysql">Mysql</span>
             <span class="post-date" title="2019-08-14 23:27:06">2019/08/14</span>
-        </a>
-        
-        <a  class=""
-           href="/2019/08/14/每天一个操作系统-总线/"
-           data-tag="操作系统"
-           data-author="" >
-            <span class="post-title" title="每天一个操作系统-总线">每天一个操作系统-总线</span>
-            <span class="post-date" title="2019-08-14 23:17:04">2019/08/14</span>
-        </a>
-        
-        <a  class=""
-           href="/2019/08/11/每天一个linux命令-管道/"
-           data-tag="linux"
-           data-author="" >
-            <span class="post-title" title="每天一个linux命令-管道">每天一个linux命令-管道</span>
-            <span class="post-date" title="2019-08-11 12:35:52">2019/08/11</span>
         </a>
         
         <a  class=""
@@ -265,6 +269,8 @@
         
     </div>
     <div class="article-meta">
+        
+        <span>字数:403</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -325,7 +331,7 @@
 
 <div class="article_copyright">
     <p><span class="copy-title">文章标题:</span>每天一个操作系统知识-僵死和孤儿进程</p>
-    
+    <p><span class="copy-title">文章字数:</span><span class="post-count">403</span></p>
     <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="yu kerui">yu kerui</a></p>
     <p><span class="copy-title">发布时间:</span>2019-08-12, 22:06:52</p>
     <p><span class="copy-title">最后更新:</span>2019-08-12, 22:11:28</p>
@@ -343,8 +349,8 @@
 <script type="text/javascript">
     $.getScript('/js/gitalk.js', function () {
         var gitalk = new Gitalk({
-            clientID: '',
-            clientSecret: '',
+            clientID: '704315d1e535036fa462',
+            clientSecret: 'd5fc691bc9f449f3793b545aed930309f211fb71',
             repo: 'yukerui.github.io',
             owner: 'yukerui',
             admin: ['yukerui'],
@@ -393,7 +399,7 @@
     /*作者、标签的自动补全*/
     $(function () {
         $('.search').AutoComplete({
-            'data': ['#多线程','#linux','#数据库','#操作系统',],
+            'data': ['#linux','#操作系统','#多线程','#数据库',],
             'itemHeight': 20,
             'width': 418
         }).AutoComplete('show');
