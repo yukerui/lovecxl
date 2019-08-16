@@ -6,18 +6,18 @@
   <meta name="keywords" content=" 操作系统 ">
   <meta name="description" content="每天一个操作系统知识-僵死和孤儿进程 | lovexl">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="#Mysql Mysql并发控制 &amp;nbsp; &amp;nbsp;假设表中的一行记录，在高并发的情况下，一个在读，另一个试图修改，有可能读的会报错退出，也有可能读到错误的数据，因此需要加锁，解决此问题的经典方法就是读写锁。 &amp;nbsp;&amp;nbsp;读写锁就是含有两把锁，通常被称为共享锁和排他锁,也叫读锁和写锁。读锁是共享的，读的过程互相不阻塞，而写锁是排他的，在写的过程中会阻塞其他写锁和读锁。 ##锁粒">
-<meta name="keywords" content="数据库">
+<meta name="description" content="ArrayList中的modCount参数有什么用?  This field is used by the iterator and list iterator implementation returned by the iterator and listIterator methods. If the value of this field changes unexpectedly, the">
+<meta name="keywords" content="总结">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Mysql">
-<meta property="og:url" content="http://kerui.tk/2019/08/14/Mysql/index.html">
+<meta property="og:title" content="ArrayList需要注意的地方">
+<meta property="og:url" content="http://kerui.tk/2019/08/16/ArrayList需要注意的地方/index.html">
 <meta property="og:site_name" content="lovexl">
-<meta property="og:description" content="#Mysql Mysql并发控制 &amp;nbsp; &amp;nbsp;假设表中的一行记录，在高并发的情况下，一个在读，另一个试图修改，有可能读的会报错退出，也有可能读到错误的数据，因此需要加锁，解决此问题的经典方法就是读写锁。 &amp;nbsp;&amp;nbsp;读写锁就是含有两把锁，通常被称为共享锁和排他锁,也叫读锁和写锁。读锁是共享的，读的过程互相不阻塞，而写锁是排他的，在写的过程中会阻塞其他写锁和读锁。 ##锁粒">
+<meta property="og:description" content="ArrayList中的modCount参数有什么用?  This field is used by the iterator and list iterator implementation returned by the iterator and listIterator methods. If the value of this field changes unexpectedly, the">
 <meta property="og:locale" content="zh">
-<meta property="og:updated_time" content="2019-08-15T13:48:09.864Z">
+<meta property="og:updated_time" content="2019-08-16T13:50:46.670Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Mysql">
-<meta name="twitter:description" content="#Mysql Mysql并发控制 &amp;nbsp; &amp;nbsp;假设表中的一行记录，在高并发的情况下，一个在读，另一个试图修改，有可能读的会报错退出，也有可能读到错误的数据，因此需要加锁，解决此问题的经典方法就是读写锁。 &amp;nbsp;&amp;nbsp;读写锁就是含有两把锁，通常被称为共享锁和排他锁,也叫读锁和写锁。读锁是共享的，读的过程互相不阻塞，而写锁是排他的，在写的过程中会阻塞其他写锁和读锁。 ##锁粒">
+<meta name="twitter:title" content="ArrayList需要注意的地方">
+<meta name="twitter:description" content="ArrayList中的modCount参数有什么用?  This field is used by the iterator and list iterator implementation returned by the iterator and listIterator methods. If the value of this field changes unexpectedly, the">
 
 
 <link rel="icon" href="/img/jerry.jpg">
@@ -108,7 +108,23 @@
 
 
 <ul>
-    <li><div class="all active">全部文章<small>(6)</small></div></li>
+    <li><div class="all active">全部文章<small>(8)</small></div></li>
+    
+        
+            
+            <li><div data-rel="总结">总结<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="源码">源码<small>(1)</small></div>
+                
+            </li>
+            
+        
     
         
             
@@ -129,7 +145,7 @@
     </div>
     <div><a style="border-right: 1px solid #fff; width: 49%"  class="about site_url"  href="/about">关于</a><a style="width: 50%"  class="friends">友链</a></div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="6">
+<input type="hidden" id="yelog_site_posts_number" value="8">
 
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
@@ -162,11 +178,19 @@
     <div class="tags-list">
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color4">数据库</a>
+        <a href="javascript:" class="color3">总结</a>
     </li>
     
     <li class="article-tag-list-item">
         <a href="javascript:" class="color4">多线程</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color3">源码</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color4">数据库</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -183,12 +207,12 @@
     
     <nav id="title-list-nav">
         
-        <a  class=""
-           href="/2019/08/14/Mysql/"
-           data-tag="数据库"
+        <a  class="总结 "
+           href="/2019/08/16/ArrayList需要注意的地方/"
+           data-tag="总结"
            data-author="" >
-            <span class="post-title" title="Mysql">Mysql</span>
-            <span class="post-date" title="2019-08-14 23:27:06">2019/08/14</span>
+            <span class="post-title" title="ArrayList需要注意的地方">ArrayList需要注意的地方</span>
+            <span class="post-date" title="2019-08-16 21:49:54">2019/08/16</span>
         </a>
         
         <a  class=""
@@ -199,20 +223,20 @@
             <span class="post-date" title="2019-08-10 08:54:33">2019/08/10</span>
         </a>
         
-        <a  class=""
-           href="/2019/08/12/每天一个操作系统知识-僵死和孤儿进程/"
-           data-tag="操作系统"
+        <a  class="源码 "
+           href="/2019/08/16/ArrayList源码/"
+           data-tag="源码"
            data-author="" >
-            <span class="post-title" title="每天一个操作系统知识-僵死和孤儿进程">每天一个操作系统知识-僵死和孤儿进程</span>
-            <span class="post-date" title="2019-08-12 22:06:52">2019/08/12</span>
+            <span class="post-title" title="ArrayList源码">ArrayList源码</span>
+            <span class="post-date" title="2019-08-16 21:46:47">2019/08/16</span>
         </a>
         
         <a  class=""
-           href="/2019/08/11/每天一个linux命令-管道/"
-           data-tag="linux"
+           href="/2019/08/14/Mysql/"
+           data-tag="数据库"
            data-author="" >
-            <span class="post-title" title="每天一个linux命令-管道">每天一个linux命令-管道</span>
-            <span class="post-date" title="2019-08-11 12:35:52">2019/08/11</span>
+            <span class="post-title" title="Mysql">Mysql</span>
+            <span class="post-date" title="2019-08-14 23:27:06">2019/08/14</span>
         </a>
         
         <a  class=""
@@ -229,6 +253,22 @@
            data-author="" >
             <span class="post-title" title="linux">linux</span>
             <span class="post-date" title="2019-08-10 22:09:34">2019/08/10</span>
+        </a>
+        
+        <a  class=""
+           href="/2019/08/12/每天一个操作系统知识-僵死和孤儿进程/"
+           data-tag="操作系统"
+           data-author="" >
+            <span class="post-title" title="每天一个操作系统知识-僵死和孤儿进程">每天一个操作系统知识-僵死和孤儿进程</span>
+            <span class="post-date" title="2019-08-12 22:06:52">2019/08/12</span>
+        </a>
+        
+        <a  class=""
+           href="/2019/08/11/每天一个linux命令-管道/"
+           data-tag="linux"
+           data-author="" >
+            <span class="post-title" title="每天一个linux命令-管道">每天一个linux命令-管道</span>
+            <span class="post-date" title="2019-08-11 12:35:52">2019/08/11</span>
         </a>
         
     </nav>
@@ -334,7 +374,7 @@
         var gitalk = new Gitalk({
             clientID: '704315d1e535036fa462',
             clientSecret: 'd5fc691bc9f449f3793b545aed930309f211fb71',
-            repo: 'lovexl',
+            repo: 'lovecxl',
             owner: 'yukerui',
             admin: ['yukerui'],
             id: decodeURI(location.pathname),
@@ -382,7 +422,7 @@
     /*作者、标签的自动补全*/
     $(function () {
         $('.search').AutoComplete({
-            'data': ['#数据库','#多线程','#操作系统','#linux',],
+            'data': ['#总结','#多线程','#源码','#数据库','#操作系统','#linux',],
             'itemHeight': 20,
             'width': 418
         }).AutoComplete('show');
