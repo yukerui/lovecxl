@@ -80,6 +80,12 @@
         <content type="html"><![CDATA[<h1 id="cpu总线类型"><a href="#cpu总线类型" class="headerlink" title="cpu总线类型"></a>cpu总线类型</h1><p>cpu中按照总线(传输信息)的功能分类,可以分为传递数据信息的数据总线,传递控制信息的控制总线和传递地址信息的地址总线</p><ul><li>数据总线: 数据总线是CPU与存储器,cpu与IO接口设备传送信息的总线,这些总线往返于CPU与存储器,cpu与io接口之间,因此数据总线的数据是双向的</li><li>地址总线:cpu向存储器,io设备传送地址信息,寻址能力是cpu特有的功能,地址总线上的地址信息只能由CPU发送,因此地址总线上的数据是单向的.</li><li>控制总线:控制总线上传递的是各种传递信号,由CPU至存储器,I/O接口向CPU的应答信号,请求信号,因此控制总线是双向的.</li></ul><p>例如向内存中写数据是通过内存总线进行的,数据信息通过数据总线传递至内存中,通过地址总线写到内存的某个单元,什么时候开始写由控制总线获得的控制信号决定.</p>]]></content>
       
       
+      <categories>
+          
+          <category> 操作系统 </category>
+          
+      </categories>
+      
       
         <tags>
             
@@ -99,6 +105,12 @@
         <content type="html"><![CDATA[<h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><p>我们知道，linux中父进程通过fork和exec来创建并运行子线程，由于linux存在一个机制，就是父进程只要想要拿到子进程的结束时的信息就可以得到，因此每个子进程退出的时候，内核释放进程持有的所有资源，包括打开的文件，占用的内存等，但是仍然会保留一定的信息(包括进程号)供父进程调用，父进程通过调用wait或waitpid方法来释放这一部分资源，如果父进程迟迟不调用的话，这种子线程就叫僵死线程，当有大量的僵死线程的话会占用大量的进程号，由于进程号是有限的很可能会造成其他的进程不能被创建。</p><ul><li>僵死线程:由以上分析可知，僵死线程为父进程没有调用wait或waitpid方法导致的。</li><li>孤儿线程: 孤儿线程就是子进程还在，父进程没了就成孤儿进程了，孤儿进程会被init进程托管，并由init进程对它门完成状态收集工作，问题不大。</li></ul><h2 id="僵死线程很容易造成进程号的大量占用，那么该如何处理这种问题呢"><a href="#僵死线程很容易造成进程号的大量占用，那么该如何处理这种问题呢" class="headerlink" title="僵死线程很容易造成进程号的大量占用，那么该如何处理这种问题呢?"></a>僵死线程很容易造成进程号的大量占用，那么该如何处理这种问题呢?</h2><p>产生这种线程的原因一般都是父线程只管创建子线程，但是不调用wait或waitpid方法来处理，一般情况下是找到这个父线程，然后kill掉，这样这些僵死线程就变成孤儿线程了，这样的话init线程就能回收。</p>]]></content>
       
       
+      <categories>
+          
+          <category> 操作系统 </category>
+          
+      </categories>
+      
       
         <tags>
             
@@ -115,8 +127,14 @@
       <link href="/2019/08/11/%E6%AF%8F%E5%A4%A9%E4%B8%80%E4%B8%AAlinux%E5%91%BD%E4%BB%A4-%E7%AE%A1%E9%81%93/"/>
       <url>/2019/08/11/%E6%AF%8F%E5%A4%A9%E4%B8%80%E4%B8%AAlinux%E5%91%BD%E4%BB%A4-%E7%AE%A1%E9%81%93/</url>
       
-        <content type="html"><![CDATA[<p>&nbsp;&nbsp;经常被问到进程间是怎么通信的?常见的有socket，管道，消息队列，共享内存等。以后会专门写一个总结一下，这次研究一下管道是什么?<br> &nbsp;&nbsp;一般遇到这种名词的话一般都会想这个是用来解决什么问题了，又是怎么解决的。  </p><ul><li><p>解决了什么问题?<br>&nbsp;&nbsp;* 前面提到了解决了进程间通信的问题,比如一个很简单的例子，想要在nohup.out中搜索某个关键字，cat nohup.out | grep “key” cat是一个进程，grep也是一个进程，它们是怎么通信的。<br>&nbsp;* 怎么解决的?<br>&nbsp;&nbsp;&nbsp;* 上面命令中的 | 就相当于在两个进程之间建立了一个管道(是一个虚拟的文件，是由内存管理的一个缓冲区)，一头对应着一个进程的输出端，一头对应着另一个进程的输入端，上面的例子就是将cat命令的输出作为grep的输入。  </p><p>&nbsp;&nbsp;linux的进程都有独立的地址，因此在用户态进程之间是没法访问的。而内核是进程共享的，因此线程想要通信就要内核做个中间人。<br><img src="https://lovexl-1254108494.cos.ap-chengdu.myqcloud.com/%E5%86%85%E6%A0%B8%E7%AE%A1%E9%81%931.jpg" alt="avatar"><br>&nbsp;&nbsp;pipe的实现和图示一样，在pipefs文件中有一个属性  </p><blockquote><p>struct pipe_inode_info    *i_pipe; <br></p></blockquote><p>&nbsp;&nbsp;pipe_inode_info定义如下:<br></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"> pipe_fs_i.h</span><br><span class="line"> struct pipe_inode_info &#123;</span><br><span class="line">struct mutex mutex;</span><br><span class="line">wait_queue_head_t wait;</span><br><span class="line">unsigned int nrbufs, curbuf, buffers;</span><br><span class="line">unsigned int readers;</span><br><span class="line">unsigned int writers;</span><br><span class="line">unsigned int files;</span><br><span class="line">unsigned int waiting_writers;</span><br><span class="line">unsigned int r_counter;</span><br><span class="line">unsigned int w_counter;</span><br><span class="line">struct page *tmp_page;</span><br><span class="line">struct fasync_struct *fasync_readers;</span><br><span class="line">struct fasync_struct *fasync_writers;</span><br><span class="line">struct pipe_buffer *bufs;</span><br><span class="line">struct user_struct *user;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></li></ul>]]></content>
+        <content type="html"><![CDATA[<p>&nbsp;&nbsp;经常被问到进程间是怎么通信的?常见的有socket，管道，消息队列，共享内存等。以后会专门写一个总结一下，这次研究一下管道是什么?<br> &nbsp;&nbsp;一般遇到这种名词的话一般都会想这个是用来解决什么问题了，又是怎么解决的。</p><ul><li><p>解决了什么问题?<br>&nbsp;&nbsp;* 前面提到了解决了进程间通信的问题,比如一个很简单的例子，想要在nohup.out中搜索某个关键字，cat nohup.out | grep “key” cat是一个进程，grep也是一个进程，它们是怎么通信的。<br>&nbsp;* 怎么解决的?<br>&nbsp;&nbsp;&nbsp;* 上面命令中的 | 就相当于在两个进程之间建立了一个管道(是一个虚拟的文件，是由内存管理的一个缓冲区)，一头对应着一个进程的输出端，一头对应着另一个进程的输入端，上面的例子就是将cat命令的输出作为grep的输入。</p><p>&nbsp;&nbsp;linux的进程都有独立的地址，因此在用户态进程之间是没法访问的。而内核是进程共享的，因此线程想要通信就要内核做个中间人。<br><img src="https://lovexl-1254108494.cos.ap-chengdu.myqcloud.com/%E5%86%85%E6%A0%B8%E7%AE%A1%E9%81%931.jpg" alt="avatar"><br>&nbsp;&nbsp;pipe的实现和图示一样，在pipefs文件中有一个属性</p><blockquote><p>struct pipe_inode_info    *i_pipe; <br></p></blockquote><p>&nbsp;&nbsp;pipe_inode_info定义如下:<br></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"> pipe_fs_i.h</span><br><span class="line"> struct pipe_inode_info &#123;</span><br><span class="line">struct mutex mutex;</span><br><span class="line">wait_queue_head_t wait;</span><br><span class="line">unsigned int nrbufs, curbuf, buffers;</span><br><span class="line">unsigned int readers;</span><br><span class="line">unsigned int writers;</span><br><span class="line">unsigned int files;</span><br><span class="line">unsigned int waiting_writers;</span><br><span class="line">unsigned int r_counter;</span><br><span class="line">unsigned int w_counter;</span><br><span class="line">struct page *tmp_page;</span><br><span class="line">struct fasync_struct *fasync_readers;</span><br><span class="line">struct fasync_struct *fasync_writers;</span><br><span class="line">struct pipe_buffer *bufs;</span><br><span class="line">struct user_struct *user;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></li></ul>]]></content>
       
+      
+      <categories>
+          
+          <category> linux </category>
+          
+      </categories>
       
       
         <tags>
