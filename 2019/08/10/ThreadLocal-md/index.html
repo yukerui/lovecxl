@@ -6,20 +6,22 @@
   <meta name="keywords" content=" 多线程 ">
   <meta name="description" content="ThreadLocal | lovexl">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="数组的优缺点和创建数组的优点: 在java中，一切都是对象，数组也不例外，new一个数组时会在堆上创建一块内存空间，数组的优点就在于其地址是连续的，因此随机读取的时候特别快。  数组可以持有基本数据类型，在没有泛型之前容器是不能存放基本数据类型，现在有了泛型和自动包装，容器也可以持有了。   缺点:  数组的长度是固定的，在new数组的时候就得给定并且不能修改，如果扩容的得需要借助System.a">
-<meta name="keywords" content="java">
+<meta name="description" content="前几天面试被问到给定一个日志，里面存放一些与电话相关的内同，想要把以86开头的中国号码查找出来然后把86给去掉。  一开始想直接直接grep 86然后通过tr来替换，然后结果是这样的。发现明显不对，原来tr只能匹配或删除单个字符，向86这种就不行，它会匹配8 || 6.    那就用sed命令，sed的文本替换和vim的很相似。   成功的把86给替换成了空格，但是还有一个问题就是有可能有的86是">
+<meta name="keywords" content="linux">
 <meta property="og:type" content="article">
-<meta property="og:title" content="数组小知识">
-<meta property="og:url" content="http://kerui.tk/2019/08/27/数组小知识/index.html">
+<meta property="og:title" content="每天一个linux命令-文本替换">
+<meta property="og:url" content="http://kerui.tk/2019/08/19/每天一个linux命令-文本替换/index.html">
 <meta property="og:site_name" content="lovexl">
-<meta property="og:description" content="数组的优缺点和创建数组的优点: 在java中，一切都是对象，数组也不例外，new一个数组时会在堆上创建一块内存空间，数组的优点就在于其地址是连续的，因此随机读取的时候特别快。  数组可以持有基本数据类型，在没有泛型之前容器是不能存放基本数据类型，现在有了泛型和自动包装，容器也可以持有了。   缺点:  数组的长度是固定的，在new数组的时候就得给定并且不能修改，如果扩容的得需要借助System.a">
+<meta property="og:description" content="前几天面试被问到给定一个日志，里面存放一些与电话相关的内同，想要把以86开头的中国号码查找出来然后把86给去掉。  一开始想直接直接grep 86然后通过tr来替换，然后结果是这样的。发现明显不对，原来tr只能匹配或删除单个字符，向86这种就不行，它会匹配8 || 6.    那就用sed命令，sed的文本替换和vim的很相似。   成功的把86给替换成了空格，但是还有一个问题就是有可能有的86是">
 <meta property="og:locale" content="zh">
-<meta property="og:image" content="https://i.postimg.cc/pTJgrBN5/screenshot-1.png,%22%E5%A4%9A%E7%BB%B4%E6%95%B0%E7%BB%84%22">
-<meta property="og:updated_time" content="2019-08-27T14:02:46.020Z">
+<meta property="og:image" content="https://i.postimg.cc/3x2vYhDk/screenshot-1.png">
+<meta property="og:image" content="https://i.postimg.cc/gjRZjbBt/screenshot-1.png">
+<meta property="og:image" content="https://i.postimg.cc/bwYZcn8B/screenshot-1.png">
+<meta property="og:updated_time" content="2019-08-20T03:40:22.337Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="数组小知识">
-<meta name="twitter:description" content="数组的优缺点和创建数组的优点: 在java中，一切都是对象，数组也不例外，new一个数组时会在堆上创建一块内存空间，数组的优点就在于其地址是连续的，因此随机读取的时候特别快。  数组可以持有基本数据类型，在没有泛型之前容器是不能存放基本数据类型，现在有了泛型和自动包装，容器也可以持有了。   缺点:  数组的长度是固定的，在new数组的时候就得给定并且不能修改，如果扩容的得需要借助System.a">
-<meta name="twitter:image" content="https://i.postimg.cc/pTJgrBN5/screenshot-1.png,%22%E5%A4%9A%E7%BB%B4%E6%95%B0%E7%BB%84%22">
+<meta name="twitter:title" content="每天一个linux命令-文本替换">
+<meta name="twitter:description" content="前几天面试被问到给定一个日志，里面存放一些与电话相关的内同，想要把以86开头的中国号码查找出来然后把86给去掉。  一开始想直接直接grep 86然后通过tr来替换，然后结果是这样的。发现明显不对，原来tr只能匹配或删除单个字符，向86这种就不行，它会匹配8 || 6.    那就用sed命令，sed的文本替换和vim的很相似。   成功的把86给替换成了空格，但是还有一个问题就是有可能有的86是">
+<meta name="twitter:image" content="https://i.postimg.cc/3x2vYhDk/screenshot-1.png">
 
 
 <link rel="icon" href="/img/jerry.jpg">
@@ -34,7 +36,7 @@
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="/js/jquery.autocomplete.min.js?v=1.0.1"></script>
 
-<script src></script>
+<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.10/build/highlight.min.js"></script>
 <script>
     hljs.initHighlightingOnLoad();
 </script>
@@ -138,7 +140,7 @@
     
         
             
-            <li><div data-rel="java">java<small>(1)</small></div>
+            <li><div data-rel="操作系统">操作系统<small>(2)</small></div>
                 
             </li>
             
@@ -146,7 +148,7 @@
     
         
             
-            <li><div data-rel="操作系统">操作系统<small>(2)</small></div>
+            <li><div data-rel="java">java<small>(1)</small></div>
                 
             </li>
             
@@ -200,6 +202,10 @@
     </li>
     
     <li class="article-tag-list-item">
+        <a href="javascript:" class="color4">数据库</a>
+    </li>
+    
+    <li class="article-tag-list-item">
         <a href="javascript:" class="color3">总结</a>
     </li>
     
@@ -208,19 +214,15 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color4">数据库</a>
-    </li>
-    
-    <li class="article-tag-list-item">
         <a href="javascript:" class="color4">多线程</a>
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color5">java</a>
+        <a href="javascript:" class="color5">操作系统</a>
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color5">操作系统</a>
+        <a href="javascript:" class="color5">java</a>
     </li>
     
     <div class="clearfix"></div>
@@ -235,6 +237,14 @@
            data-author="" >
             <span class="post-title" title="ArrayList源码">ArrayList源码</span>
             <span class="post-date" title="2019-08-16 21:46:47">2019/08/16</span>
+        </a>
+        
+        <a  class=""
+           href="/2019/08/14/Mysql/"
+           data-tag="数据库"
+           data-author="" >
+            <span class="post-title" title="Mysql">Mysql</span>
+            <span class="post-date" title="2019-08-14 23:27:06">2019/08/14</span>
         </a>
         
         <a  class="总结 "
@@ -254,14 +264,6 @@
         </a>
         
         <a  class=""
-           href="/2019/08/14/Mysql/"
-           data-tag="数据库"
-           data-author="" >
-            <span class="post-title" title="Mysql">Mysql</span>
-            <span class="post-date" title="2019-08-14 23:27:06">2019/08/14</span>
-        </a>
-        
-        <a  class=""
            href="/2019/08/10/ThreadLocal-md/"
            data-tag="多线程"
            data-author="" >
@@ -275,6 +277,22 @@
            data-author="" >
             <span class="post-title" title="每天一个linux命令-管道">每天一个linux命令-管道</span>
             <span class="post-date" title="2019-08-11 12:35:52">2019/08/11</span>
+        </a>
+        
+        <a  class="linux "
+           href="/2019/08/19/每天一个linux命令-文本替换/"
+           data-tag="linux"
+           data-author="" >
+            <span class="post-title" title="每天一个linux命令-文本替换">每天一个linux命令-文本替换</span>
+            <span class="post-date" title="2019-08-19 22:10:32">2019/08/19</span>
+        </a>
+        
+        <a  class="操作系统 "
+           href="/2019/08/12/每天一个操作系统知识-僵死和孤儿进程/"
+           data-tag="操作系统"
+           data-author="" >
+            <span class="post-title" title="每天一个操作系统知识-僵死和孤儿进程">每天一个操作系统知识-僵死和孤儿进程</span>
+            <span class="post-date" title="2019-08-12 22:06:52">2019/08/12</span>
         </a>
         
         <a  class="java "
@@ -291,22 +309,6 @@
            data-author="" >
             <span class="post-title" title="每天一个操作系统-总线">每天一个操作系统-总线</span>
             <span class="post-date" title="2019-08-14 23:17:04">2019/08/14</span>
-        </a>
-        
-        <a  class="操作系统 "
-           href="/2019/08/12/每天一个操作系统知识-僵死和孤儿进程/"
-           data-tag="操作系统"
-           data-author="" >
-            <span class="post-title" title="每天一个操作系统知识-僵死和孤儿进程">每天一个操作系统知识-僵死和孤儿进程</span>
-            <span class="post-date" title="2019-08-12 22:06:52">2019/08/12</span>
-        </a>
-        
-        <a  class="linux "
-           href="/2019/08/19/每天一个linux命令-文本替换/"
-           data-tag="linux"
-           data-author="" >
-            <span class="post-title" title="每天一个linux命令-文本替换">每天一个linux命令-文本替换</span>
-            <span class="post-date" title="2019-08-19 22:10:32">2019/08/19</span>
         </a>
         
     </nav>
@@ -464,7 +466,7 @@
     /*作者、标签的自动补全*/
     $(function () {
         $('.search').AutoComplete({
-            'data': ['#源码','#总结','#linux','#数据库','#多线程','#java','#操作系统',],
+            'data': ['#源码','#数据库','#总结','#linux','#多线程','#操作系统','#java',],
             'itemHeight': 20,
             'width': 418
         }).AutoComplete('show');
