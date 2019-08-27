@@ -6,18 +6,22 @@
   <meta name="keywords" content=" 操作系统 ">
   <meta name="description" content="每天一个操作系统知识-僵死和孤儿进程 | lovexl">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="ArrayList中的modCount参数有什么用?  This field is used by the iterator and list iterator implementation returned by the iterator and listIterator methods. If the value of this field changes unexpectedly, the">
-<meta name="keywords" content="总结">
+<meta name="description" content="前几天面试被问到给定一个日志，里面存放一些与电话相关的内同，想要把以86开头的中国号码查找出来然后把86给去掉。  一开始想直接直接grep 86然后通过tr来替换，然后结果是这样的。发现明显不对，原来tr只能匹配或删除单个字符，向86这种就不行，它会匹配8 || 6.    那就用sed命令，sed的文本替换和vim的很相似。   成功的把86给替换成了空格，但是还有一个问题就是有可能有的86是">
+<meta name="keywords" content="linux">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ArrayList需要注意的地方">
-<meta property="og:url" content="http://kerui.tk/2019/08/16/ArrayList需要注意的地方/index.html">
+<meta property="og:title" content="每天一个linux命令-文本替换">
+<meta property="og:url" content="http://kerui.tk/2019/08/19/每天一个linux命令-文本替换/index.html">
 <meta property="og:site_name" content="lovexl">
-<meta property="og:description" content="ArrayList中的modCount参数有什么用?  This field is used by the iterator and list iterator implementation returned by the iterator and listIterator methods. If the value of this field changes unexpectedly, the">
+<meta property="og:description" content="前几天面试被问到给定一个日志，里面存放一些与电话相关的内同，想要把以86开头的中国号码查找出来然后把86给去掉。  一开始想直接直接grep 86然后通过tr来替换，然后结果是这样的。发现明显不对，原来tr只能匹配或删除单个字符，向86这种就不行，它会匹配8 || 6.    那就用sed命令，sed的文本替换和vim的很相似。   成功的把86给替换成了空格，但是还有一个问题就是有可能有的86是">
 <meta property="og:locale" content="zh">
-<meta property="og:updated_time" content="2019-08-16T13:50:46.670Z">
+<meta property="og:image" content="https://i.postimg.cc/3x2vYhDk/screenshot-1.png">
+<meta property="og:image" content="https://i.postimg.cc/gjRZjbBt/screenshot-1.png">
+<meta property="og:image" content="https://i.postimg.cc/bwYZcn8B/screenshot-1.png">
+<meta property="og:updated_time" content="2019-08-20T03:40:22.337Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ArrayList需要注意的地方">
-<meta name="twitter:description" content="ArrayList中的modCount参数有什么用?  This field is used by the iterator and list iterator implementation returned by the iterator and listIterator methods. If the value of this field changes unexpectedly, the">
+<meta name="twitter:title" content="每天一个linux命令-文本替换">
+<meta name="twitter:description" content="前几天面试被问到给定一个日志，里面存放一些与电话相关的内同，想要把以86开头的中国号码查找出来然后把86给去掉。  一开始想直接直接grep 86然后通过tr来替换，然后结果是这样的。发现明显不对，原来tr只能匹配或删除单个字符，向86这种就不行，它会匹配8 || 6.    那就用sed命令，sed的文本替换和vim的很相似。   成功的把86给替换成了空格，但是还有一个问题就是有可能有的86是">
+<meta name="twitter:image" content="https://i.postimg.cc/3x2vYhDk/screenshot-1.png">
 
 
 <link rel="icon" href="/img/jerry.jpg">
@@ -108,19 +112,11 @@
 
 
 <ul>
-    <li><div class="all active">全部文章<small>(8)</small></div></li>
+    <li><div class="all active">全部文章<small>(10)</small></div></li>
     
         
             
             <li><div data-rel="源码">源码<small>(1)</small></div>
-                
-            </li>
-            
-        
-    
-        
-            
-            <li><div data-rel="linux">linux<small>(2)</small></div>
                 
             </li>
             
@@ -136,7 +132,23 @@
     
         
             
+            <li><div data-rel="linux">linux<small>(3)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
             <li><div data-rel="操作系统">操作系统<small>(2)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="java">java<small>(1)</small></div>
                 
             </li>
             
@@ -153,7 +165,7 @@
     </div>
     <div><a style="border-right: 1px solid #fff; width: 49%"  class="about site_url"  href="/about">关于</a><a style="width: 50%"  class="friends">友链</a></div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="8">
+<input type="hidden" id="yelog_site_posts_number" value="10">
 
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
@@ -190,15 +202,11 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color1">linux</a>
-    </li>
-    
-    <li class="article-tag-list-item">
         <a href="javascript:" class="color3">总结</a>
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color5">操作系统</a>
+        <a href="javascript:" class="color1">linux</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -207,6 +215,14 @@
     
     <li class="article-tag-list-item">
         <a href="javascript:" class="color4">数据库</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color5">操作系统</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color5">java</a>
     </li>
     
     <div class="clearfix"></div>
@@ -223,14 +239,6 @@
             <span class="post-date" title="2019-08-16 21:46:47">2019/08/16</span>
         </a>
         
-        <a  class="linux "
-           href="/2019/08/10/linux/"
-           data-tag="linux"
-           data-author="" >
-            <span class="post-title" title="linux">linux</span>
-            <span class="post-date" title="2019-08-10 22:09:34">2019/08/10</span>
-        </a>
-        
         <a  class="总结 "
            href="/2019/08/16/ArrayList需要注意的地方/"
            data-tag="总结"
@@ -240,27 +248,11 @@
         </a>
         
         <a  class="linux "
-           href="/2019/08/11/每天一个linux命令-管道/"
+           href="/2019/08/19/每天一个linux命令-文本替换/"
            data-tag="linux"
            data-author="" >
-            <span class="post-title" title="每天一个linux命令-管道">每天一个linux命令-管道</span>
-            <span class="post-date" title="2019-08-11 12:35:52">2019/08/11</span>
-        </a>
-        
-        <a  class="操作系统 "
-           href="/2019/08/14/每天一个操作系统-总线/"
-           data-tag="操作系统"
-           data-author="" >
-            <span class="post-title" title="每天一个操作系统-总线">每天一个操作系统-总线</span>
-            <span class="post-date" title="2019-08-14 23:17:04">2019/08/14</span>
-        </a>
-        
-        <a  class="操作系统 "
-           href="/2019/08/12/每天一个操作系统知识-僵死和孤儿进程/"
-           data-tag="操作系统"
-           data-author="" >
-            <span class="post-title" title="每天一个操作系统知识-僵死和孤儿进程">每天一个操作系统知识-僵死和孤儿进程</span>
-            <span class="post-date" title="2019-08-12 22:06:52">2019/08/12</span>
+            <span class="post-title" title="每天一个linux命令-文本替换">每天一个linux命令-文本替换</span>
+            <span class="post-date" title="2019-08-19 22:10:32">2019/08/19</span>
         </a>
         
         <a  class=""
@@ -277,6 +269,46 @@
            data-author="" >
             <span class="post-title" title="Mysql">Mysql</span>
             <span class="post-date" title="2019-08-14 23:27:06">2019/08/14</span>
+        </a>
+        
+        <a  class="linux "
+           href="/2019/08/10/linux/"
+           data-tag="linux"
+           data-author="" >
+            <span class="post-title" title="linux">linux</span>
+            <span class="post-date" title="2019-08-10 22:09:34">2019/08/10</span>
+        </a>
+        
+        <a  class="操作系统 "
+           href="/2019/08/14/每天一个操作系统-总线/"
+           data-tag="操作系统"
+           data-author="" >
+            <span class="post-title" title="每天一个操作系统-总线">每天一个操作系统-总线</span>
+            <span class="post-date" title="2019-08-14 23:17:04">2019/08/14</span>
+        </a>
+        
+        <a  class="linux "
+           href="/2019/08/11/每天一个linux命令-管道/"
+           data-tag="linux"
+           data-author="" >
+            <span class="post-title" title="每天一个linux命令-管道">每天一个linux命令-管道</span>
+            <span class="post-date" title="2019-08-11 12:35:52">2019/08/11</span>
+        </a>
+        
+        <a  class="java "
+           href="/2019/08/27/数组小知识/"
+           data-tag="java"
+           data-author="" >
+            <span class="post-title" title="数组小知识">数组小知识</span>
+            <span class="post-date" title="2019-08-27 11:39:16">2019/08/27</span>
+        </a>
+        
+        <a  class="操作系统 "
+           href="/2019/08/12/每天一个操作系统知识-僵死和孤儿进程/"
+           data-tag="操作系统"
+           data-author="" >
+            <span class="post-title" title="每天一个操作系统知识-僵死和孤儿进程">每天一个操作系统知识-僵死和孤儿进程</span>
+            <span class="post-date" title="2019-08-12 22:06:52">2019/08/12</span>
         </a>
         
     </nav>
@@ -436,7 +468,7 @@
     /*作者、标签的自动补全*/
     $(function () {
         $('.search').AutoComplete({
-            'data': ['#源码','#linux','#总结','#操作系统','#多线程','#数据库',],
+            'data': ['#源码','#总结','#linux','#多线程','#数据库','#操作系统','#java',],
             'itemHeight': 20,
             'width': 418
         }).AutoComplete('show');

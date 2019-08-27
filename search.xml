@@ -4,23 +4,23 @@
   
     
     <entry>
-      <title>ArrayList需要注意的地方</title>
-      <link href="/2019/08/16/ArrayList%E9%9C%80%E8%A6%81%E6%B3%A8%E6%84%8F%E7%9A%84%E5%9C%B0%E6%96%B9/"/>
-      <url>/2019/08/16/ArrayList%E9%9C%80%E8%A6%81%E6%B3%A8%E6%84%8F%E7%9A%84%E5%9C%B0%E6%96%B9/</url>
+      <title>{{ post.title }}</title>
+      <link href="{{ (url + post.path) | uriencode }}"/>
+      <url>{{ (url + post.path) | uriencode }}</url>
       
-        <content type="html"><![CDATA[<ol><li><p>ArrayList中的modCount参数有什么用?</p><blockquote><p>This field is used by the iterator and list iterator implementation returned by the iterator and listIterator methods. If the value of this field changes unexpectedly, the iterator (or list iterator) will throw a ConcurrentModificationException in response to the {@code next}, {@code remove}, {@code previous} {@code set} or {@code add} operations. This provides fail-fast behavior, rather than non-deterministic behavior in the face of concurrent modification during iteration.</p></blockquote><ul><li><p>翻译过来就是说如果在遍历期间,数组被更改的话会直接返回一个ConcurrentModificationException异常,看名称就知道是并发操作时导致的一个错误 ,它提供了一个快速失败的功能,而不是迭代期间面对并发修改时的不确定性.</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">public class TestList &#123;</span><br><span class="line">public static void main(String[] args) &#123;</span><br><span class="line">ArrayList&lt;Integer&gt; list=new ArrayList&lt;&gt;();</span><br><span class="line">list.add(10);</span><br><span class="line">list.add(5);</span><br><span class="line">Iterator&lt;Integer&gt; iterator=list.iterator();</span><br><span class="line">while(iterator.hasNext())&#123;</span><br><span class="line">Integer i=iterator.next();</span><br><span class="line">if(i==5)&#123;</span><br><span class="line">list.remove(i);  //注意这里</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>会报ConcurrentModificationException异常. Exception in thread “main” java.util.ConcurrentModificationException at java.util.ArrayList$Itr.checkForComodification(ArrayList.java:909) at java.util.ArrayList$Itr.next(ArrayList.java:859) at TestList.main(TestList.java:13)</p><p>之前分析源码时说过,在调用remove中的fastRemove方法时会让modCount++,迭代器发现modCount发生变化时会直接抛出异常. 事实上当我们remove掉5时,此时size=1,而此时的iterator的游标cursor为2,hasNext为true,while循环继续跑了,此时运行iterator.next()肯定会报ArrayIndexOutOfBoundsException,这种异常属于不受检查异常,因此为了避免这样,jdk做了一些检查.</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public boolean hasNext() &#123;</span><br><span class="line">return cursor != size;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li></ul></li></ol><p>这段代码能执行成功吗?</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">public class TestList &#123;</span><br><span class="line">  public static void main(String[] args) &#123;</span><br><span class="line">    ArrayList&lt;String&gt; list = new ArrayList&lt;&gt;();</span><br><span class="line">    for (int i = 0; i &lt; 100; i++) &#123;</span><br><span class="line">      list.add(&quot;lovexl&quot; + i);</span><br><span class="line">    &#125;</span><br><span class="line">    for (int i = 0; list.iterator().hasNext(); i++) &#123;</span><br><span class="line">      list.remove(i);</span><br><span class="line">      System.out.println(list.size());</span><br><span class="line">      System.out.println(list.get(i));</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>会报IndexOutOfBoundsException错误. hasNext的判断条件就是游标是否到达数组的尾端,当游标已经到达数组尾端了,你删了一个数,size–了,那游标就永远不可能等于size了,往后遍历就只能报IndexOutOfBoundsException错误</p>]]></content>
+        <content type="html"><![CDATA[{{ post.content | noControlChars | safe }}]]></content>
       
       
       <categories>
           
-          <category> 总结 </category>
+          <category> {{ cate.name }} </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> 总结 </tag>
+            <tag> {{ tag.name }} </tag>
             
         </tags>
       
@@ -29,23 +29,23 @@
     
     
     <entry>
-      <title>ArrayList源码</title>
-      <link href="/2019/08/16/ArrayList%E6%BA%90%E7%A0%81/"/>
-      <url>/2019/08/16/ArrayList%E6%BA%90%E7%A0%81/</url>
+      <title>{{ post.title }}</title>
+      <link href="{{ (url + post.path) | uriencode }}"/>
+      <url>{{ (url + post.path) | uriencode }}</url>
       
-        <content type="html"><![CDATA[<p>我们知道ArrayList是List接口的实现类,List又是继承Collection接口的,因此,先看下这两个接口里面有哪些方法.</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">//没写完</span><br><span class="line">public interface Collection&lt;E&gt;&#123;</span><br><span class="line"></span><br><span class="line">        int size();</span><br><span class="line"></span><br><span class="line">        boolean isEmpty();</span><br><span class="line"></span><br><span class="line">        boolean contains(Object o);</span><br><span class="line"></span><br><span class="line">        Object[] toArray();</span><br><span class="line"></span><br><span class="line">        boolean add(E e);</span><br><span class="line"></span><br><span class="line">        boolean remove(Object o);</span><br><span class="line"></span><br><span class="line">        boolean containsAll(Collection&lt;?&gt; c);</span><br><span class="line"></span><br><span class="line">        boolean addAll(Collection&lt;? extends E&gt; c);</span><br><span class="line"></span><br><span class="line">        boolean removeAll(Collection&lt;?&gt; c);</span><br><span class="line"></span><br><span class="line">        void clear();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>List接口在Collection的基础上新加的方法有:</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">E get(int index);</span><br><span class="line">//set一个element到index位置上</span><br><span class="line">E set(int index,E element);</span><br><span class="line">//找到o第一次出现的位置,不存在的话返回-1</span><br><span class="line">int indexOf(Object o)</span><br><span class="line">//最后一次出现的位置</span><br><span class="line">int lastIdexOf(Object o);</span><br><span class="line">//子list</span><br><span class="line">List&lt;E&gt; subList(int fromIndex, int toIndex);</span><br></pre></td></tr></table></figure><p>可以看出来不管是ArrayList还是LinkedList都可以通过get(index)方法来遍历,LInkedList的get实现还是通过next来做的.并且都可以通过add来添加,remove来移除.</p><p>再来看一下ArrayList的实现方式:</p><blockquote><p>public class ArrayList extends AbstractList implements List RandomAccess, Cloneable, java.io.Serializable</p></blockquote><p>AbstractList是一个实现了List接口的抽象类实现一些基本的功能,具体参见抽象类的功能,实现了RandomAccess(随机访问),Cloneable,Serializable(序列化)的接口,序列化是网络传输或者保存到本地的需要,对于不想序列化的参数可以用transient或者readObject,writeObject来实现,后面会讲到.</p><p>ArrayList底层是通过数组来实现的,默认的数组大小为10.</p><blockquote><p>private static final int DEFAULT_CAPACITY = 10;</p></blockquote><p>通过elementData数组来存放数据,因为elementData在超过threshold时会扩容,因此不需要将所有的都序列化,因此加了个transient关键字.</p><blockquote><p>transient Object[] elementData;</p></blockquote><p>get方法:</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">public E get(int index) &#123;</span><br><span class="line">    //先判断输入index是否有效</span><br><span class="line">      rangeCheck(index);</span><br><span class="line">      //直接返回对应下标的值</span><br><span class="line">      return elementData(index);</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure><p>add方法:</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">public boolean add(E e) &#123;</span><br><span class="line">         //保证容量</span><br><span class="line">        ensureCapacityInternal(size + 1);</span><br><span class="line">        elementData[size++] = e;</span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure><p>remove 某个index的方法:</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">public E remove(int index) &#123;</span><br><span class="line">        //</span><br><span class="line">        rangeCheck(index);</span><br><span class="line">        //记录数组被修改的次数, 修改数组可能会对正在进行的迭代造成不正确的结果</span><br><span class="line">        modCount++;</span><br><span class="line">        E oldValue = elementData(index);</span><br><span class="line">        //需要移动的数据的总数</span><br><span class="line">        int numMoved = size - index - 1;</span><br><span class="line">        if (numMoved &gt; 0)</span><br><span class="line">            /**arrayCopy方法:</span><br><span class="line">            **第一个elementData:源数组</span><br><span class="line">            **index+1:开始的位置</span><br><span class="line">            **第二个elementData:目标数组</span><br><span class="line">            **index:开始的位置</span><br><span class="line">            **numMoved:总共需要复制多少个</span><br><span class="line">            System.arraycopy(elementData, index+1, elementData, index,</span><br><span class="line">                             numMoved);</span><br><span class="line">          //将最后一个设置为nul,让GC回收</span><br><span class="line">        elementData[--size] = null; // clear to let GC do its work</span><br><span class="line"></span><br><span class="line">        return oldValue;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure><p>remove某个Object的方法:逻辑很简单,遍历数组找到与o相同的,然后调用fastRemove方法</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">public boolean remove(Object o) &#123;</span><br><span class="line">        if (o == null) &#123;</span><br><span class="line">            for (int index = 0; index &lt; size; index++)</span><br><span class="line">                if (elementData[index] == null) &#123;</span><br><span class="line">                    fastRemove(index);</span><br><span class="line">                    return true;</span><br><span class="line">                &#125;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            for (int index = 0; index &lt; size; index++)</span><br><span class="line">                if (o.equals(elementData[index])) &#123;</span><br><span class="line">                    fastRemove(index);</span><br><span class="line">                    return true;</span><br><span class="line">                &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure><p>clear方法:</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"> public void clear() &#123; modCount++;</span><br><span class="line">    // clear to let GC do its work</span><br><span class="line">    for (int i = 0; i &lt; size; i++)</span><br><span class="line">        elementData[i] = null;</span><br><span class="line"></span><br><span class="line">    size = 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>readObject方法:</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">private void readObject(java.io.ObjectInputStream s)</span><br><span class="line">        throws java.io.IOException, ClassNotFoundException &#123;</span><br><span class="line">        elementData = EMPTY_ELEMENTDATA;</span><br><span class="line"></span><br><span class="line">        // Read in size, and any hidden stuff</span><br><span class="line">        s.defaultReadObject();</span><br><span class="line"></span><br><span class="line">        // Read in capacity</span><br><span class="line">        s.readInt(); // ignored</span><br><span class="line"></span><br><span class="line">        if (size &gt; 0) &#123;</span><br><span class="line">            // be like clone(), allocate array based upon size not capacity</span><br><span class="line">            int capacity = calculateCapacity(elementData, size);</span><br><span class="line">            SharedSecrets.getJavaOISAccess().checkArray(s, Object[].class, capacity);</span><br><span class="line">            ensureCapacityInternal(size);</span><br><span class="line"></span><br><span class="line">            Object[] a = elementData;</span><br><span class="line">            // Read in all elements in the proper order.</span><br><span class="line">            for (int i=0; i&lt;size; i++) &#123;</span><br><span class="line">                a[i] = s.readObject();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure><p>ArrayList的扩容机制: 在add操作时,有个判断当前容量的ensureCapacityInternal方法,首先会把modCount++,然后判断 minCapcity(传过来的是size+1)比数组的长度大时扩容</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">private void ensureExplicitCapacity(int minCapacity) &#123;</span><br><span class="line">        modCount++;</span><br><span class="line"></span><br><span class="line">        // overflow-conscious code</span><br><span class="line">        if (minCapacity - elementData.length &gt; 0)</span><br><span class="line">            grow(minCapacity);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure><p>很明显可以看出,扩容是按照1.5倍进行扩容.</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">private void grow(int minCapacity) &#123;</span><br><span class="line">        // overflow-conscious code</span><br><span class="line">        int oldCapacity = elementData.length;</span><br><span class="line">        int newCapacity = oldCapacity + (oldCapacity &gt;&gt; 1);</span><br><span class="line">        if (newCapacity - minCapacity &lt; 0)</span><br><span class="line">            newCapacity = minCapacity;</span><br><span class="line">        if (newCapacity - MAX_ARRAY_SIZE &gt; 0)</span><br><span class="line">            newCapacity = hugeCapacity(minCapacity);</span><br><span class="line">        // minCapacity is usually close to size, so this is a win:</span><br><span class="line">        elementData = Arrays.copyOf(elementData, newCapacity);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>]]></content>
+        <content type="html"><![CDATA[{{ post.content | noControlChars | safe }}]]></content>
       
       
       <categories>
           
-          <category> 源码 </category>
+          <category> {{ cate.name }} </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> 源码 </tag>
+            <tag> {{ tag.name }} </tag>
             
         </tags>
       
@@ -54,42 +54,23 @@
     
     
     <entry>
-      <title>Mysql</title>
-      <link href="/2019/08/14/Mysql/"/>
-      <url>/2019/08/14/Mysql/</url>
+      <title>{{ post.title }}</title>
+      <link href="{{ (url + post.path) | uriencode }}"/>
+      <url>{{ (url + post.path) | uriencode }}</url>
       
-        <content type="html"><![CDATA[<p>#Mysql</p><h2 id="Mysql并发控制"><a href="#Mysql并发控制" class="headerlink" title="Mysql并发控制"></a>Mysql并发控制</h2><p> &nbsp; &nbsp;假设表中的一行记录，在高并发的情况下，一个在读，另一个试图修改，有可能读的会报错退出，也有可能读到错误的数据，因此需要加锁，解决此问题的经典方法就是读写锁。<br> &nbsp;&nbsp;读写锁就是含有两把锁，通常被称为共享锁和排他锁,也叫读锁和写锁。读锁是共享的，读的过程互相不阻塞，而写锁是排他的，在写的过程中会阻塞其他写锁和读锁。</p><p>##锁粒度<br> &nbsp;&nbsp;加锁的范围尽量只锁定想要锁定的部分数据。因为加锁的数据越小，争锁的几率就越小，系统的并发性就越高。<br> &nbsp;&nbsp;加锁本身就是一个耗费资源的操作，包括获得锁，检查锁，释放锁都会增加系统开销，因此说策略，无非就是在资源开销和数据安全性中寻找一个tradeoff。Mysql提供以下两种锁。</p><ul><li>表锁<br>它会锁定整张表，当在对表进行写操作前，需要先拿到写锁然后阻塞其他用户对该表的所有读写操作，只有没有写锁时，其他读取的用户才能拿到读锁。</li><li>行级锁<br>行级锁可以最大程度的支持并发处理，在InnoDB和XtrDB中实现了行级锁。</li></ul>]]></content>
-      
-      
-      
-        <tags>
-            
-            <tag> 数据库 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>每天一个操作系统-总线</title>
-      <link href="/2019/08/14/%E6%AF%8F%E5%A4%A9%E4%B8%80%E4%B8%AA%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E6%80%BB%E7%BA%BF/"/>
-      <url>/2019/08/14/%E6%AF%8F%E5%A4%A9%E4%B8%80%E4%B8%AA%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E6%80%BB%E7%BA%BF/</url>
-      
-        <content type="html"><![CDATA[<h1 id="cpu总线类型"><a href="#cpu总线类型" class="headerlink" title="cpu总线类型"></a>cpu总线类型</h1><p>cpu中按照总线(传输信息)的功能分类,可以分为传递数据信息的数据总线,传递控制信息的控制总线和传递地址信息的地址总线</p><ul><li>数据总线: 数据总线是CPU与存储器,cpu与IO接口设备传送信息的总线,这些总线往返于CPU与存储器,cpu与io接口之间,因此数据总线的数据是双向的</li><li>地址总线:cpu向存储器,io设备传送地址信息,寻址能力是cpu特有的功能,地址总线上的地址信息只能由CPU发送,因此地址总线上的数据是单向的.</li><li>控制总线:控制总线上传递的是各种传递信号,由CPU至存储器,I/O接口向CPU的应答信号,请求信号,因此控制总线是双向的.</li></ul><p>例如向内存中写数据是通过内存总线进行的,数据信息通过数据总线传递至内存中,通过地址总线写到内存的某个单元,什么时候开始写由控制总线获得的控制信号决定.</p>]]></content>
+        <content type="html"><![CDATA[{{ post.content | noControlChars | safe }}]]></content>
       
       
       <categories>
           
-          <category> 操作系统 </category>
+          <category> {{ cate.name }} </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> 操作系统 </tag>
+            <tag> {{ tag.name }} </tag>
             
         </tags>
       
@@ -98,23 +79,23 @@
     
     
     <entry>
-      <title>每天一个操作系统知识-僵死和孤儿进程</title>
-      <link href="/2019/08/12/%E6%AF%8F%E5%A4%A9%E4%B8%80%E4%B8%AA%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9F%A5%E8%AF%86-%E5%83%B5%E6%AD%BB%E5%92%8C%E5%AD%A4%E5%84%BF%E8%BF%9B%E7%A8%8B/"/>
-      <url>/2019/08/12/%E6%AF%8F%E5%A4%A9%E4%B8%80%E4%B8%AA%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9F%A5%E8%AF%86-%E5%83%B5%E6%AD%BB%E5%92%8C%E5%AD%A4%E5%84%BF%E8%BF%9B%E7%A8%8B/</url>
+      <title>{{ post.title }}</title>
+      <link href="{{ (url + post.path) | uriencode }}"/>
+      <url>{{ (url + post.path) | uriencode }}</url>
       
-        <content type="html"><![CDATA[<h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><p>我们知道，linux中父进程通过fork和exec来创建并运行子线程，由于linux存在一个机制，就是父进程只要想要拿到子进程的结束时的信息就可以得到，因此每个子进程退出的时候，内核释放进程持有的所有资源，包括打开的文件，占用的内存等，但是仍然会保留一定的信息(包括进程号)供父进程调用，父进程通过调用wait或waitpid方法来释放这一部分资源，如果父进程迟迟不调用的话，这种子线程就叫僵死线程，当有大量的僵死线程的话会占用大量的进程号，由于进程号是有限的很可能会造成其他的进程不能被创建。</p><ul><li>僵死线程:由以上分析可知，僵死线程为父进程没有调用wait或waitpid方法导致的。</li><li>孤儿线程: 孤儿线程就是子进程还在，父进程没了就成孤儿进程了，孤儿进程会被init进程托管，并由init进程对它门完成状态收集工作，问题不大。</li></ul><h2 id="僵死线程很容易造成进程号的大量占用，那么该如何处理这种问题呢"><a href="#僵死线程很容易造成进程号的大量占用，那么该如何处理这种问题呢" class="headerlink" title="僵死线程很容易造成进程号的大量占用，那么该如何处理这种问题呢?"></a>僵死线程很容易造成进程号的大量占用，那么该如何处理这种问题呢?</h2><p>产生这种线程的原因一般都是父线程只管创建子线程，但是不调用wait或waitpid方法来处理，一般情况下是找到这个父线程，然后kill掉，这样这些僵死线程就变成孤儿线程了，这样的话init线程就能回收。</p>]]></content>
+        <content type="html"><![CDATA[{{ post.content | noControlChars | safe }}]]></content>
       
       
       <categories>
           
-          <category> 操作系统 </category>
+          <category> {{ cate.name }} </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> 操作系统 </tag>
+            <tag> {{ tag.name }} </tag>
             
         </tags>
       
@@ -123,23 +104,42 @@
     
     
     <entry>
-      <title>每天一个linux命令-管道</title>
-      <link href="/2019/08/11/%E6%AF%8F%E5%A4%A9%E4%B8%80%E4%B8%AAlinux%E5%91%BD%E4%BB%A4-%E7%AE%A1%E9%81%93/"/>
-      <url>/2019/08/11/%E6%AF%8F%E5%A4%A9%E4%B8%80%E4%B8%AAlinux%E5%91%BD%E4%BB%A4-%E7%AE%A1%E9%81%93/</url>
+      <title>{{ post.title }}</title>
+      <link href="{{ (url + post.path) | uriencode }}"/>
+      <url>{{ (url + post.path) | uriencode }}</url>
       
-        <content type="html"><![CDATA[<p>&nbsp;&nbsp;经常被问到进程间是怎么通信的?常见的有socket，管道，消息队列，共享内存等。以后会专门写一个总结一下，这次研究一下管道是什么?<br> &nbsp;&nbsp;一般遇到这种名词的话一般都会想这个是用来解决什么问题了，又是怎么解决的。</p><ul><li><p>解决了什么问题?<br>&nbsp;&nbsp;* 前面提到了解决了进程间通信的问题,比如一个很简单的例子，想要在nohup.out中搜索某个关键字，cat nohup.out | grep “key” cat是一个进程，grep也是一个进程，它们是怎么通信的。<br>&nbsp;* 怎么解决的?<br>&nbsp;&nbsp;&nbsp;* 上面命令中的 | 就相当于在两个进程之间建立了一个管道(是一个虚拟的文件，是由内存管理的一个缓冲区)，一头对应着一个进程的输出端，一头对应着另一个进程的输入端，上面的例子就是将cat命令的输出作为grep的输入。</p><p>&nbsp;&nbsp;linux的进程都有独立的地址，因此在用户态进程之间是没法访问的。而内核是进程共享的，因此线程想要通信就要内核做个中间人。<br><img src="https://lovexl-1254108494.cos.ap-chengdu.myqcloud.com/%E5%86%85%E6%A0%B8%E7%AE%A1%E9%81%931.jpg" alt="avatar"><br>&nbsp;&nbsp;pipe的实现和图示一样，在pipefs文件中有一个属性</p><blockquote><p>struct pipe_inode_info    *i_pipe; <br></p></blockquote><p>&nbsp;&nbsp;pipe_inode_info定义如下:<br></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"> pipe_fs_i.h</span><br><span class="line"> struct pipe_inode_info &#123;</span><br><span class="line">struct mutex mutex;</span><br><span class="line">wait_queue_head_t wait;</span><br><span class="line">unsigned int nrbufs, curbuf, buffers;</span><br><span class="line">unsigned int readers;</span><br><span class="line">unsigned int writers;</span><br><span class="line">unsigned int files;</span><br><span class="line">unsigned int waiting_writers;</span><br><span class="line">unsigned int r_counter;</span><br><span class="line">unsigned int w_counter;</span><br><span class="line">struct page *tmp_page;</span><br><span class="line">struct fasync_struct *fasync_readers;</span><br><span class="line">struct fasync_struct *fasync_writers;</span><br><span class="line">struct pipe_buffer *bufs;</span><br><span class="line">struct user_struct *user;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></li></ul>]]></content>
+        <content type="html"><![CDATA[{{ post.content | noControlChars | safe }}]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> {{ tag.name }} </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>{{ post.title }}</title>
+      <link href="{{ (url + post.path) | uriencode }}"/>
+      <url>{{ (url + post.path) | uriencode }}</url>
+      
+        <content type="html"><![CDATA[{{ post.content | noControlChars | safe }}]]></content>
       
       
       <categories>
           
-          <category> linux </category>
+          <category> {{ cate.name }} </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> linux </tag>
+            <tag> {{ tag.name }} </tag>
             
         </tags>
       
@@ -148,23 +148,23 @@
     
     
     <entry>
-      <title>linux</title>
-      <link href="/2019/08/10/linux/"/>
-      <url>/2019/08/10/linux/</url>
+      <title>{{ post.title }}</title>
+      <link href="{{ (url + post.path) | uriencode }}"/>
+      <url>{{ (url + post.path) | uriencode }}</url>
       
-        <content type="html"><![CDATA[]]></content>
+        <content type="html"><![CDATA[{{ post.content | noControlChars | safe }}]]></content>
       
       
       <categories>
           
-          <category> linux </category>
+          <category> {{ cate.name }} </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> linux </tag>
+            <tag> {{ tag.name }} </tag>
             
         </tags>
       
@@ -173,17 +173,67 @@
     
     
     <entry>
-      <title>ThreadLocal</title>
-      <link href="/2019/08/10/ThreadLocal-md/"/>
-      <url>/2019/08/10/ThreadLocal-md/</url>
+      <title>{{ post.title }}</title>
+      <link href="{{ (url + post.path) | uriencode }}"/>
+      <url>{{ (url + post.path) | uriencode }}</url>
       
-        <content type="html"><![CDATA[<h1 id="ThreadLocal源码分析"><a href="#ThreadLocal源码分析" class="headerlink" title="ThreadLocal源码分析"></a>ThreadLocal源码分析</h1><h2 id="定义"><a href="#定义" class="headerlink" title="定义:"></a>定义:</h2><p>该类提供了线程局部变量。这些变量不同于它们的普通对应物，因为访问某个变量(通过get或者set)的每个线程都有自己的局部变量，它独立于变量的初始化副本。ThreadLocal实例通常是类中的private static字段，它们希望将状态与某一个线程相关联。</p><h2 id="与线程同步机制的区别"><a href="#与线程同步机制的区别" class="headerlink" title="与线程同步机制的区别"></a>与线程同步机制的区别</h2><p>线程同步机制是多个线程共享一个变量，而ThreadLocal是为每一个线程创建一个单独的变量副本。每个线程都可以独立的改变自己的副本而不影响别人。为多线程环境下变量问题提供了另外一种解决思路。</p><p>ThreadLocal定义了四个方法:</p><ul><li>get(): 返回此线程局部变量的当前线程副本中的值</li><li>initialValue(): 返回此线程局部变量的当前线程的“初始值”</li><li>remove(): 删除当前线程局部变量当前线程的值</li><li>set(T value): 将此线程局部变量的当前线程副本中的值设置为指定值</li></ul><p>除了以上的，ThreadLocal内部还有一个静态内部类ThreadLocalMap，get(),set(),remove()都是基于该内部操作。ThreadLocalMap提供了一种键值对方式存储每一个线程的变量副本的方法，key为当前ThreadLocal对象，value则是对应线程的变量副本。</p>]]></content>
+        <content type="html"><![CDATA[{{ post.content | noControlChars | safe }}]]></content>
+      
+      
+      <categories>
+          
+          <category> {{ cate.name }} </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> {{ tag.name }} </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>{{ post.title }}</title>
+      <link href="{{ (url + post.path) | uriencode }}"/>
+      <url>{{ (url + post.path) | uriencode }}</url>
+      
+        <content type="html"><![CDATA[{{ post.content | noControlChars | safe }}]]></content>
+      
+      
+      <categories>
+          
+          <category> {{ cate.name }} </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> {{ tag.name }} </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>{{ post.title }}</title>
+      <link href="{{ (url + post.path) | uriencode }}"/>
+      <url>{{ (url + post.path) | uriencode }}</url>
+      
+        <content type="html"><![CDATA[{{ post.content | noControlChars | safe }}]]></content>
       
       
       
         <tags>
             
-            <tag> 多线程 </tag>
+            <tag> {{ tag.name }} </tag>
             
         </tags>
       

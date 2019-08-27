@@ -2,9 +2,9 @@
 <html>
 <head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
-  <title>ArrayList需要注意的地方 | lovexl</title>
-  <meta name="keywords" content=" 总结 ">
-  <meta name="description" content="ArrayList需要注意的地方 | lovexl">
+  <title>每天一个linux命令-文本替换 | lovexl</title>
+  <meta name="keywords" content=" linux ">
+  <meta name="description" content="每天一个linux命令-文本替换 | lovexl">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="前几天面试被问到给定一个日志，里面存放一些与电话相关的内同，想要把以86开头的中国号码查找出来然后把86给去掉。  一开始想直接直接grep 86然后通过tr来替换，然后结果是这样的。发现明显不对，原来tr只能匹配或删除单个字符，向86这种就不行，它会匹配8 || 6.    那就用sed命令，sed的文本替换和vim的很相似。   成功的把86给替换成了空格，但是还有一个问题就是有可能有的86是">
 <meta name="keywords" content="linux">
@@ -323,9 +323,9 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="post-ArrayList需要注意的地方" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-每天一个linux命令-文本替换" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">ArrayList需要注意的地方</h1>
+        <h1 class="article-title">每天一个linux命令-文本替换</h1>
     
     <div class="article-meta">
         
@@ -333,21 +333,21 @@
         
         <span class="book">
             
-                <a href="javascript:" data-rel="总结">总结</a>
+                <a href="javascript:" data-rel="linux">linux</a>
             
         </span>
         
         
         <span class="tag">
             
-            <a href="javascript:" class="color3">总结</a>
+            <a href="javascript:" class="color1">linux</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2019-08-16 21:50:46'>2019-08-16 21:49</time>
+        创建时间:<time class="date" title='更新时间: 2019-08-20 11:40:22'>2019-08-19 22:10</time>
         
     </div>
     <div class="article-meta">
@@ -384,27 +384,17 @@
 </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <ol>
-<li><p>ArrayList中的modCount参数有什么用?</p>
-<blockquote>
-<p>This field is used by the iterator and list iterator implementation returned by the iterator and listIterator methods. If the value of this field changes unexpectedly, the iterator (or list iterator) will throw a ConcurrentModificationException in response to the {@code next}, {@code remove}, {@code previous} {@code set} or {@code add} operations. This provides fail-fast behavior, rather than non-deterministic behavior in the face of concurrent modification during iteration.</p>
-</blockquote>
+        <p>前几天面试被问到给定一个日志，里面存放一些与电话相关的内同，想要把以86开头的中国号码查找出来然后把86给去掉。</p>
 <ul>
-<li><p>翻译过来就是说如果在遍历期间,数组被更改的话会直接返回一个ConcurrentModificationException异常,看名称就知道是并发操作时导致的一个错误 ,它提供了一个快速失败的功能,而不是迭代期间面对并发修改时的不确定性.</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public class TestList &#123;</span><br><span class="line">public static void main(String[] args) &#123;</span><br><span class="line">ArrayList&lt;Integer&gt; list=new ArrayList&lt;&gt;();</span><br><span class="line">list.add(10);</span><br><span class="line">list.add(5);</span><br><span class="line">Iterator&lt;Integer&gt; iterator=list.iterator();</span><br><span class="line">while(iterator.hasNext())&#123;</span><br><span class="line">Integer i=iterator.next();</span><br><span class="line">if(i==5)&#123;</span><br><span class="line">list.remove(i);  //注意这里</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>会报ConcurrentModificationException异常. Exception in thread “main” java.util.ConcurrentModificationException at java.util.ArrayList$Itr.checkForComodification(ArrayList.java:909) at java.util.ArrayList$Itr.next(ArrayList.java:859) at TestList.main(TestList.java:13)</p>
-<p>之前分析源码时说过,在调用remove中的fastRemove方法时会让modCount++,迭代器发现modCount发生变化时会直接抛出异常. 事实上当我们remove掉5时,此时size=1,而此时的iterator的游标cursor为2,hasNext为true,while循环继续跑了,此时运行iterator.next()肯定会报ArrayIndexOutOfBoundsException,这种异常属于不受检查异常,因此为了避免这样,jdk做了一些检查.</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public boolean hasNext() &#123;</span><br><span class="line">return cursor != size;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-</li>
+<li>一开始想直接直接grep 86然后通过tr来替换，然后结果是这样的。发现明显不对，原来tr只能匹配或删除单个字符，向86这种就不行，它会匹配8 || 6.</li>
 </ul>
-</li>
-</ol>
-<p>这段代码能执行成功吗?</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public class TestList &#123;</span><br><span class="line">  public static void main(String[] args) &#123;</span><br><span class="line">    ArrayList&lt;String&gt; list = new ArrayList&lt;&gt;();</span><br><span class="line">    for (int i = 0; i &lt; 100; i++) &#123;</span><br><span class="line">      list.add(&quot;lovexl&quot; + i);</span><br><span class="line">    &#125;</span><br><span class="line">    for (int i = 0; list.iterator().hasNext(); i++) &#123;</span><br><span class="line">      list.remove(i);</span><br><span class="line">      System.out.println(list.size());</span><br><span class="line">      System.out.println(list.get(i));</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>会报IndexOutOfBoundsException错误. hasNext的判断条件就是游标是否到达数组的尾端,当游标已经到达数组尾端了,你删了一个数,size–了,那游标就永远不可能等于size了,往后遍历就只能报IndexOutOfBoundsException错误</p>
+<p><img src="https://i.postimg.cc/3x2vYhDk/screenshot-1.png" alt="img"></p>
+<ul>
+<li>那就用sed命令，sed的文本替换和vim的很相似。</li>
+</ul>
+<p><img src="https://i.postimg.cc/gjRZjbBt/screenshot-1.png" alt="postimg"></p>
+<p>成功的把86给替换成了空格，但是还有一个问题就是有可能有的86是出现在中间的，并且开头并 不是以86开头的。这种明显不是我们想要的。这种情况下该怎么办呢?</p>
+<p><img src="https://i.postimg.cc/bwYZcn8B/screenshot-1.png" alt="imag"></p>
 
       
        
@@ -414,12 +404,12 @@
 
 
 <div class="article_copyright">
-    <p><span class="copy-title">文章标题:</span>ArrayList需要注意的地方</p>
+    <p><span class="copy-title">文章标题:</span>每天一个linux命令-文本替换</p>
     
     <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="yu kerui">yu kerui</a></p>
-    <p><span class="copy-title">发布时间:</span>2019-08-16, 21:49:54</p>
-    <p><span class="copy-title">最后更新:</span>2019-08-16, 21:50:46</p>
-    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/08/16/ArrayList需要注意的地方/" title="ArrayList需要注意的地方">http://kerui.tk/2019/08/16/ArrayList需要注意的地方/</a>
+    <p><span class="copy-title">发布时间:</span>2019-08-19, 22:10:32</p>
+    <p><span class="copy-title">最后更新:</span>2019-08-20, 11:40:22</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/08/19/每天一个linux命令-文本替换/" title="每天一个linux命令-文本替换">http://kerui.tk/2019/08/19/每天一个linux命令-文本替换/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
     </p>
