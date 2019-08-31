@@ -119,7 +119,7 @@
     
         
             
-            <li><div data-rel="总结">总结<small>(1)</small></div>
+            <li><div data-rel="linux">linux<small>(3)</small></div>
                 
             </li>
             
@@ -127,7 +127,7 @@
     
         
             
-            <li><div data-rel="linux">linux<small>(3)</small></div>
+            <li><div data-rel="总结">总结<small>(1)</small></div>
                 
             </li>
             
@@ -193,11 +193,15 @@
     <div class="tags-list">
     
     <li class="article-tag-list-item">
+        <a href="javascript:" class="color4">数据库</a>
+    </li>
+    
+    <li class="article-tag-list-item">
         <a href="javascript:" class="color3">源码</a>
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color4">多线程</a>
+        <a href="javascript:" class="color1">linux</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -205,11 +209,7 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color4">数据库</a>
-    </li>
-    
-    <li class="article-tag-list-item">
-        <a href="javascript:" class="color1">linux</a>
+        <a href="javascript:" class="color4">多线程</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -358,7 +358,7 @@
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2019-08-31 18:40:36'>2019-08-31 18:36</time>
+        创建时间:<time class="date" title='更新时间: 2019-08-31 18:41:35'>2019-08-31 18:36</time>
         
     </div>
     <div class="article-meta">
@@ -380,7 +380,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#删除指定元素"><span class="toc-text">删除指定元素</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#删除指定元素"><span class="toc-text">删除指定元素</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -395,7 +395,7 @@
 </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="删除指定元素"><a href="#删除指定元素" class="headerlink" title="删除指定元素"></a>删除指定元素</h1><p>​        之前说过在通过iterator遍历的时候不能删除元素，会报ConcurrentModificationException，因为在iterator中一般会设置一个标识来判断循环时是原数据结构是否被更改了。</p>
+        <h2 id="删除指定元素"><a href="#删除指定元素" class="headerlink" title="删除指定元素"></a>删除指定元素</h2><p>​        之前说过在通过iterator遍历的时候不能删除元素，会报ConcurrentModificationException，因为在iterator中一般会设置一个标识来判断循环时是原数据结构是否被更改了。</p>
 <p>​        比如想把map中value为1的全部删除掉，如果用下面这种的话，直接remove掉可行不？？？？？？</p>
 <pre><code class="java">for (Map.Entry&lt;Integer,Integer&gt; entry:map.entrySet()){
             if (entry.getValue()==1){
@@ -447,7 +447,7 @@ while (iterator.hasNext()){
     
     <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="yu kerui">yu kerui</a></p>
     <p><span class="copy-title">发布时间:</span>2019-08-31, 18:36:28</p>
-    <p><span class="copy-title">最后更新:</span>2019-08-31, 18:40:36</p>
+    <p><span class="copy-title">最后更新:</span>2019-08-31, 18:41:35</p>
     <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/08/31/删除map或list中的指定元素/" title="删除map获list中的指定元素">http://kerui.tk/2019/08/31/删除map或list中的指定元素/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
@@ -512,7 +512,7 @@ while (iterator.hasNext()){
     /*作者、标签的自动补全*/
     $(function () {
         $('.search').AutoComplete({
-            'data': ['#源码','#多线程','#总结','#数据库','#linux','#java','#操作系统',],
+            'data': ['#数据库','#源码','#linux','#总结','#多线程','#java','#操作系统',],
             'itemHeight': 20,
             'width': 418
         }).AutoComplete('show');
