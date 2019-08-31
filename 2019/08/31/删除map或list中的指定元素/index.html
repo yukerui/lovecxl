@@ -2,9 +2,9 @@
 <html>
 <head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
-  <title>lovexl</title>
-  <meta name="keywords" content>
-  <meta name="description" content="lovexl">
+  <title>[object Object] | lovexl</title>
+  <meta name="keywords" content=" java ">
+  <meta name="description" content="[object Object] | lovexl">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="欢迎来到decrease的小站,主要分享java的一些知识">
 <meta property="og:type" content="article">
@@ -52,7 +52,7 @@
 </div>
 
 <body>
-<aside class="nav mobile">
+<aside class="nav">
     <div class="nav-left">
         <a href="/" class="avatar_target">
     <img class="avatar" src="/img/jerry.jpg" />
@@ -332,12 +332,55 @@
         </div>
     </div>
 </aside>
-<div class="post index">
+<div class="post">
     <div class="pjax">
-        <article class="index">
-            <div class="toc-ref">
+        <article id="post-删除map或list中的指定元素" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#blog的用途"><span class="toc-text">blog的用途</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#关于本人"><span class="toc-text">关于本人</span></a></li></ol></li></ol>
+        <h1 class="article-title">[object Object]</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            
+                <a href="javascript:" data-rel="java">java</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            
+            <a href="javascript:" class="color5">java</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+        创建时间:<time class="date" title='更新时间: 2019-08-31 18:38:21'>2019-08-31 18:36</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        
+        <span id="busuanzi_container_page_pv">
+            阅读:<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#删除指定元素"><span class="toc-text">删除指定元素</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -350,12 +393,69 @@
     }
 </style>
 </div>
-            <h1 id="blog的用途"><a href="#blog的用途" class="headerlink" title="blog的用途"></a>blog的用途</h1><p>主要用来记录一下学习中遇到的问题</p>
-<h2 id="关于本人"><a href="#关于本人" class="headerlink" title="关于本人"></a>关于本人</h2><p>普通211渣硕一枚,目前在秋招找工作</p>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="删除指定元素"><a href="#删除指定元素" class="headerlink" title="删除指定元素"></a>删除指定元素</h1><p>​        之前说过在通过iterator遍历的时候不能删除元素，会报ConcurrentModificationException，因为在iterator中一般会设置一个标识来判断循环时是原数据结构是否被更改了。</p>
+<p>​        比如想把map中value为1的全部删除掉，如果用下面这种的话，直接remove掉可行不？？？？？？</p>
+<pre><code class="java">for (Map.Entry&lt;Integer,Integer&gt; entry:map.entrySet()){
+            if (entry.getValue()==1){
+                map.remove(entry.getKey());
+            }
+        }
+---------------------------------------------------------------------------------
+Exception in thread &quot;main&quot; java.util.ConcurrentModificationException
+    at java.util.HashMap$HashIterator.nextNode(HashMap.java:1442)
+    at java.util.HashMap$EntryIterator.next(HashMap.java:1476)
+    at java.util.HashMap$EntryIterator.next(HashMap.java:1474)</code></pre>
+<p>​        很明显不行，for each语句其实就是通过iterator来做的，Iterator 被创建之后会建立一个指向原来对象的单链索引表，当原来的对象数量发生变化时，这个索引表的内容不会同步改变，所以当索引指针往后移动的时候就找不到要迭代的对象，所以按照 fail-fast 原则，Iterator 会马上抛出 java.util.ConcurrentModificationException 异常。所以 Iterator 在工作的时候是不允许被迭代的对象被改变的。那怎么样才能删除呢?</p>
+<p>​        其实直接用iterator的remove函数就可以了， Iterator.remove() 方法会在删除当前迭代对象的同时维护索引的一致性。</p>
+<pre><code class="java">Iterator&lt;Map.Entry&lt;Integer,Integer&gt;&gt; iterator=map.entrySet().iterator();         
+while (iterator.hasNext()){             
+         Map.Entry&lt;Integer, Integer&gt; entry= iterator.next();
+         int value=entry.getValue();             
+         if (value==1){                 
+              iterator.remove();             
+         } 
+}
+-----------------------------------------------------------------------------</code></pre>
+<p>​        同理，list删除元素也是一样的道理。</p>
+<p>​        发现了一个宝藏，Collection里实现了一个方法，removeIf(),原理一样的，只要实现Collection接口的可以直接用这个函数，比如List，Queue和Set。</p>
+<pre><code class="java">default boolean removeIf(Predicate&lt;? super E&gt; filter) {
+        Objects.requireNonNull(filter);
+        boolean removed = false;
+        final Iterator&lt;E&gt; each = iterator();
+        while (each.hasNext()) {
+            if (filter.test(each.next())) {
+                each.remove();
+                removed = true;
+            }
+        }
+        return removed;
+    }</code></pre>
+<p>​        Predicate是在package java.util.function包中，注解是@FunctionalInterface，是个函数式编程的接口。</p>
+<p>​        像上面的就可以用<code>list.removeIf(integer -&gt; integer == 1);</code></p>
 
-        </article>
-        
-        
+      
+       
+    </div>
+</article>
+
+
+
+<div class="article_copyright">
+    <p><span class="copy-title">文章标题:</span>[object Object]</p>
+    
+    <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="yu kerui">yu kerui</a></p>
+    <p><span class="copy-title">发布时间:</span>2019-08-31, 18:36:28</p>
+    <p><span class="copy-title">最后更新:</span>2019-08-31, 18:38:21</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/08/31/删除map或list中的指定元素/" title="[object Object]">http://kerui.tk/2019/08/31/删除map或list中的指定元素/</a>
+    <p>
+        <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+    </p>
+</div>
+
+
+
     <div id="comments"></div>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
 
@@ -375,6 +475,13 @@
         gitalk.render('comments')
     })
 </script>
+
+
+
+
+    
+
+
 
 
     </div>
