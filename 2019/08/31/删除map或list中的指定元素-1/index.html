@@ -2,9 +2,9 @@
 <html>
 <head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
-  <title>每天一个linux命令-管道 | lovexl</title>
-  <meta name="keywords" content=" linux ">
-  <meta name="description" content="每天一个linux命令-管道 | lovexl">
+  <title>[object Object] | lovexl</title>
+  <meta name="keywords" content>
+  <meta name="description" content="[object Object] | lovexl">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="欢迎来到decrease的小站,主要分享java的一些知识">
 <meta property="og:type" content="article">
@@ -342,31 +342,19 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="post-每天一个linux命令-管道" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-删除map或list中的指定元素-1" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">每天一个linux命令-管道</h1>
+        <h1 class="article-title">[object Object]</h1>
     
     <div class="article-meta">
         
         
         
-        <span class="book">
-            
-                <a href="javascript:" data-rel="linux">linux</a>
-            
-        </span>
-        
-        
-        <span class="tag">
-            
-            <a href="javascript:" class="color1">linux</a>
-            
-        </span>
         
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2019-08-19 22:09:11'>2019-08-11 12:35</time>
+        创建时间:<time class="date" title='更新时间: 2019-08-31 18:46:52'>2019-08-31 18:46</time>
         
     </div>
     <div class="article-meta">
@@ -403,33 +391,7 @@
 </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <p>&nbsp;&nbsp;经常被问到进程间是怎么通信的?常见的有socket，管道，消息队列，共享内存等。以后会专门写一个总结一下，这次研究一下管道是什么?<br> &nbsp;&nbsp;一般遇到这种名词的话一般都会想这个是用来解决什么问题了，又是怎么解决的。</p>
-<ul>
-<li><p>解决了什么问题?<br>&nbsp;&nbsp;* 前面提到了解决了进程间通信的问题,比如一个很简单的例子，想要在nohup.out中搜索某个关键字，cat nohup.out | grep “key” cat是一个进程，grep也是一个进程，它们是怎么通信的。<br>&nbsp;* 怎么解决的?<br>&nbsp;&nbsp;&nbsp;* 上面命令中的 | 就相当于在两个进程之间建立了一个管道(是一个虚拟的文件，是由内存管理的一个缓冲区)，一头对应着一个进程的输出端，一头对应着另一个进程的输入端，上面的例子就是将cat命令的输出作为grep的输入。</p>
-<p>&nbsp;&nbsp;linux的进程都有独立的地址，因此在用户态进程之间是没法访问的。而内核是进程共享的，因此线程想要通信就要内核做个中间人。<br><img src="https://lovexl-1254108494.cos.ap-chengdu.myqcloud.com/%E5%86%85%E6%A0%B8%E7%AE%A1%E9%81%931.jpg" alt="avatar"><br>&nbsp;&nbsp;pipe的实现和图示一样，在pipefs文件中有一个属性</p>
-<blockquote>
-<p>struct pipe_inode_info    *i_pipe; <br></p>
-</blockquote>
-<p>&nbsp;&nbsp;pipe_inode_info定义如下:<br></p>
-<pre><code>pipe_fs_i.h
-struct pipe_inode_info {
- struct mutex mutex;
- wait_queue_head_t wait;
- unsigned int nrbufs, curbuf, buffers;
- unsigned int readers;
- unsigned int writers;
- unsigned int files;
- unsigned int waiting_writers;
- unsigned int r_counter;
- unsigned int w_counter;
- struct page *tmp_page;
- struct fasync_struct *fasync_readers;
- struct fasync_struct *fasync_writers;
- struct pipe_buffer *bufs;
- struct user_struct *user;
- };</code></pre></li>
-</ul>
-
+        
       
        
     </div>
@@ -438,12 +400,12 @@ struct pipe_inode_info {
 
 
 <div class="article_copyright">
-    <p><span class="copy-title">文章标题:</span>每天一个linux命令-管道</p>
+    <p><span class="copy-title">文章标题:</span>[object Object]</p>
     
     <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="yu kerui">yu kerui</a></p>
-    <p><span class="copy-title">发布时间:</span>2019-08-11, 12:35:52</p>
-    <p><span class="copy-title">最后更新:</span>2019-08-19, 22:09:11</p>
-    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/08/11/每天一个linux命令-管道/" title="每天一个linux命令-管道">http://kerui.tk/2019/08/11/每天一个linux命令-管道/</a>
+    <p><span class="copy-title">发布时间:</span>2019-08-31, 18:46:52</p>
+    <p><span class="copy-title">最后更新:</span>2019-08-31, 18:46:52</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/08/31/删除map或list中的指定元素-1/" title="[object Object]">http://kerui.tk/2019/08/31/删除map或list中的指定元素-1/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
     </p>
