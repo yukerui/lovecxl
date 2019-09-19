@@ -2,9 +2,9 @@
 <html>
 <head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
-  <title>删除map或list中的指定元素 | lovexl</title>
+  <title>static final abstract | lovexl</title>
   <meta name="keywords" content=" java ">
-  <meta name="description" content="删除map或list中的指定元素 | lovexl">
+  <meta name="description" content="static final abstract | lovexl">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="static字面上是表示静态的意思，可以修饰类方法，变量，对象。一般当需要某个类的时候需要实例化这个类，通过类的实例去得到类的属性或方法。 首先java中类就是对现实的抽象，类中的字段表示一些属性，而通过方法来操作这些属性。但是有一种情况是类中所有的对象都具有同样的一个属性。打个比方，人是一个类，脑子是每个人都有的，因此每一个人要获取脑子这个字段就不需要实例化。 而身高则每个人都不同，因此需要具体">
 <meta name="keywords" content="java">
@@ -343,9 +343,9 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="post-删除map或list中的指定元素" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-static-final-abstract" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">删除map或list中的指定元素</h1>
+        <h1 class="article-title">static final abstract</h1>
     
     <div class="article-meta">
         
@@ -367,7 +367,7 @@
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2019-08-31 18:50:54'>2019-08-31 18:36</time>
+        创建时间:<time class="date" title='更新时间: 2019-09-19 20:44:36'>2019-09-19 20:41</time>
         
     </div>
     <div class="article-meta">
@@ -389,7 +389,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#删除指定元素"><span class="toc-text">删除指定元素</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#static修饰方法"><span class="toc-text">static修饰方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#static修饰变量或属性"><span class="toc-text">static修饰变量或属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#static修饰类"><span class="toc-text">static修饰类</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#final"><span class="toc-text">final</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#final修饰数据"><span class="toc-text">final修饰数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#final修饰方法"><span class="toc-text">final修饰方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#final修饰类"><span class="toc-text">final修饰类</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#abstract"><span class="toc-text">abstract</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#abstract类"><span class="toc-text">abstract类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#abstract类和接口的区别"><span class="toc-text">abstract类和接口的区别:</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -404,45 +404,116 @@
 </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="删除指定元素"><a href="#删除指定元素" class="headerlink" title="删除指定元素"></a>删除指定元素</h2><p>​        之前说过在通过iterator遍历的时候不能删除元素，会报ConcurrentModificationException，因为在iterator中一般会设置一个标识来判断循环时是原数据结构是否被更改了。</p>
-<p>​        比如想把map中value为1的全部删除掉，如果用下面这种的话，直接remove掉可行不？？？？？？</p>
-<pre><code class="java">for (Map.Entry&lt;Integer,Integer&gt; entry:map.entrySet()){
-            if (entry.getValue()==1){
-                map.remove(entry.getKey());
-            }
+        <p>static字面上是表示静态的意思，可以修饰类方法，变量，对象。一般当需要某个类的时候需要实例化这个类，通过类的实例去得到类的属性或方法。</p>
+<p>首先java中类就是对现实的抽象，类中的字段表示一些属性，而通过方法来操作这些属性。但是有一种情况是类中所有的对象都具有同样的一个属性。打个比方，人是一个类，脑子是每个人都有的，因此每一个人要获取脑子这个字段就不需要实例化。 而身高则每个人都不同，因此需要具体的调用对象具体对待需要实例化。</p>
+<h3 id="static修饰方法"><a href="#static修饰方法" class="headerlink" title="static修饰方法"></a>static修饰方法</h3><pre><code>public int add(int n,int m){
+        return 0;
+    }
+
+public static void main(String[] args) {
+        getNum(5);
+        Solution solution = new Soltion();
+        solution.add(1,2);   
+     }
+
+    private static void getNum(int n) {
+        int res=0,temp=1;
+        for (int i=1;i&lt;=n;i++ ){
+            temp= i * temp;
+            res += temp;
         }
----------------------------------------------------------------------------------
-Exception in thread &quot;main&quot; java.util.ConcurrentModificationException
-    at java.util.HashMap$HashIterator.nextNode(HashMap.java:1442)
-    at java.util.HashMap$EntryIterator.next(HashMap.java:1476)
-    at java.util.HashMap$EntryIterator.next(HashMap.java:1474)</code></pre>
-<p>​        很明显不行，for each语句其实就是通过iterator来做的，Iterator 被创建之后会建立一个指向原来对象的单链索引表，当原来的对象数量发生变化时，这个索引表的内容不会同步改变，所以当索引指针往后移动的时候就找不到要迭代的对象，所以按照 fail-fast 原则，Iterator 会马上抛出 java.util.ConcurrentModificationException 异常。所以 Iterator 在工作的时候是不允许被迭代的对象被改变的。那怎么样才能删除呢?</p>
-<p>​        其实直接用iterator的remove函数就可以了， Iterator.remove() 方法会在删除当前迭代对象的同时维护索引的一致性。</p>
-<pre><code class="java">Iterator&lt;Map.Entry&lt;Integer,Integer&gt;&gt; iterator=map.entrySet().iterator();         
-while (iterator.hasNext()){             
-         Map.Entry&lt;Integer, Integer&gt; entry= iterator.next();
-         int value=entry.getValue();             
-         if (value==1){                 
-              iterator.remove();             
-         } 
+        System.out.println(res);
+    }</code></pre><p>对应方法为静态方法时，如果在一个类中可以直接调用，不在的话通过类名.方法名调用,而对于非静态方法则只能先实例化然后再调用。因为静态方法在类加载的过程中就已经被分配了空间，而这个时候非静态字段或非静态方法还没分配空间(只有实例化类才会创建)，因此根本访问不到，所以不能调用非静态方法，但是你可以实例化一个对象再调用。</p>
+<h3 id="static修饰变量或属性"><a href="#static修饰变量或属性" class="headerlink" title="static修饰变量或属性"></a>static修饰变量或属性</h3><p>static修饰变量或属性时同方法类似，静态方法或非静态方法均可以直接调用。</p>
+<h3 id="static修饰类"><a href="#static修饰类" class="headerlink" title="static修饰类"></a>static修饰类</h3><p>修饰类时，这个类不能实例化，类中只能有静态方法，一般是用来用作静态内部类，静态内部类就是与外部类没有关系，但是想隐藏一下自己。 具体参见官方文档。</p>
+<blockquote>
+<p><a href="https://docs.oracle.com/javase/tutorial/java/javaOO/nested.html" target="_blank" rel="noopener">https://docs.oracle.com/javase/tutorial/java/javaOO/nested.html</a></p>
+</blockquote>
+<p>总结一下:</p>
+<p>static可以修饰类，方法，字段，静态方法和静态变量在类初始化就存放在方法区中，只会被加载一次，修饰类时一般用在内部类中。</p>
+<p>优缺点:</p>
+<p>优点: 对于频繁使用的方法或变量，只初始化一次。</p>
+<p>缺点:</p>
+<ol>
+<li><p>直接加载到方法区内，不管使用与否都会存在，可能会存在内存浪费的情况。</p>
+</li>
+<li><p>静态变量属于共享变量，容易造成并发的问题，可以按照需求加上final或vilatile</p>
+</li>
+</ol>
+<h2 id="final"><a href="#final" class="headerlink" title="final"></a>final</h2><p>final可以修饰数据，方法和类，字面意思是不可变，下面分别对修饰的三种类型进行说明</p>
+<h3 id="final修饰数据"><a href="#final修饰数据" class="headerlink" title="final修饰数据"></a>final修饰数据</h3><p>final修饰数据时表示数据是不可变的，只能修饰基本类型的数据。</p>
+<pre><code>private final int i=1;
+
+    public int add(int n,int m){
+        this.i=3;
+    }</code></pre><p>使用上面的语句时会报错误，final类型的变量不能被修改。</p>
+<p>关于final和static final的区别:</p>
+<pre><code>public class Test2 {
+
+    private final int i=1;                              //编译时常量
+    private static Random random=new Random(20);   
+    private final int a = random.nextInt(10);           //运行时常量
+    private static final int b= random.nextInt(10);     //编译时常量
+
+    public static void main(String[] args) {
+        Test2 test1=new Test2();
+        System.out.println(&quot;test1:a=&quot;+test1.a);
+        System.out.println(&quot;test1:b=&quot;+b);
+        Test2 test2=new Test2();
+        System.out.println(&quot;test1:a=&quot;+test2.a);
+        System.out.println(&quot;test1:b=&quot;+b);
+    }
 }
------------------------------------------------------------------------------</code></pre>
-<p>​        同理，list删除元素也是一样的道理。</p>
-<p>​        发现了一个宝藏，Collection里实现了一个方法，removeIf(),原理一样的，只要实现Collection接口的可以直接用这个函数，比如List，Queue和Set。</p>
-<pre><code class="java">default boolean removeIf(Predicate&lt;? super E&gt; filter) {
-        Objects.requireNonNull(filter);
-        boolean removed = false;
-        final Iterator&lt;E&gt; each = iterator();
-        while (each.hasNext()) {
-            if (filter.test(each.next())) {
-                each.remove();
-                removed = true;
-            }
-        }
-        return removed;
-    }</code></pre>
-<p>​        Predicate是在package java.util.function包中，注解是@FunctionalInterface，是个函数式编程的接口。</p>
-<p>​        像上面的就可以用<code>list.removeIf(integer -&gt; integer == 1);</code></p>
+-------------------------------------------------------
+test1:a=6
+test1:b=3
+test2:a=1
+test2:b=3</code></pre><p>可以看出来: a是变化的，b是不变的，用static修饰的只会初始化一次，这就是区别。</p>
+<p>final修饰对象时表示对象的引用不可变，但是对象的值可变。</p>
+<pre><code>  public class Test2 {
+    private int i;
+    public void set(int i){
+        this.i=i;
+    }
+
+    public static void main(String[] args) {
+        final Test2 test = new Test2();
+        System.out.println(test.i);
+        test.set(1);
+        System.out.println(test.i);
+        test=new Test2();                 //错误，不能更改final定义的对象的引用
+    }
+
+}
+--------------------------------------------------
+0
+1</code></pre><h3 id="final修饰方法"><a href="#final修饰方法" class="headerlink" title="final修饰方法"></a>final修饰方法</h3><p>修饰方法时表示该方法不能被重写，用final修饰可以确保该方法不会被任何继承类修改。</p>
+<p>所有的private方法默认都是final的，因为private的方法无法被覆盖</p>
+<h3 id="final修饰类"><a href="#final修饰类" class="headerlink" title="final修饰类"></a>final修饰类</h3><p>final类表示该类无法被继承，类中的方法默认都是final的。</p>
+<h2 id="abstract"><a href="#abstract" class="headerlink" title="abstract"></a>abstract</h2><p>abstract可以修饰类，方法。java中将不同类的相同的方法提取出来放到interface中来定义，但是接口中定义了很多种方法，有一些是通用的并不需要每个实现接口的类来实现，但是又有一些需要，抽象类就是在类和接口之间的一个中庸之道。</p>
+<h3 id="abstract类"><a href="#abstract类" class="headerlink" title="abstract类"></a>abstract类</h3><p>类中含有抽象方法时必须将类定义为抽象的。其他类可以继承抽象类，抽象类中的抽象方法必须重写。</p>
+<pre><code>abstract class A{
+    public abstract void add(int a,int b);
+
+    public int minus(int a,int b){
+        return a-b;
+    }
+
+}</code></pre><p>对于抽象方法只提供一个方法体，不提供实现。抽象类不能被实例化，只能被子类继承。</p>
+<h3 id="abstract类和接口的区别"><a href="#abstract类和接口的区别" class="headerlink" title="abstract类和接口的区别:"></a>abstract类和接口的区别:</h3><ul>
+<li><p>abstract类中既可以有抽象方法也可以有非抽象方法，接口中只含有抽象方法(现在不是了)</p>
+</li>
+<li><p>接口可以解决多继承的问题，抽象类不行</p>
+</li>
+<li><p>一般来说抽象类的效率比接口的效率高一些，抽象子类可以直接调用类的方法；而接口还要去找具体的实现类。</p>
+</li>
+<li><p>抽象层次不同:抽象类是对类抽象，而方法是对行为的抽象。抽象类是对整个类整体进行抽象，包括属性、行为，但是接口却是对类局部（行为）进行抽象。</p>
+</li>
+<li><p>抽象类所抽象的是具有某些相似特点的类，而接口则可以是完全不同的类。抽象类是从子类中发现公共部分，然后泛化成抽象类，子类继承该父类即可。但是接口不同。实现它的子类可以不存在任何关系。例如猫、狗可以抽象成一个动物类抽象类，具备叫的方法。鸟、飞机可以实现飞Fly接口，具备飞的行为，这里我们总不能将鸟、飞机共用一个父类吧！所以说抽象类所体现的是一种继承关系，要想使得继承关系合理，父类和派生类之间必须存在”is-a” 关系，即父类和派生类在概念本质上应该是相同的。对于接口则不然，并不要求接口的实现者和接口定义在概念本质上是一致的， 仅仅是实现了接口定义的契约而已</p>
+</li>
+<li><p>对于抽象类，是知道子类才能抽象出父类，而接口不同，接口不需要知道子类的存在。比如接口定义一个fly的方法，它并不需要知道什么东西实现了这个接口，怎么实现也不管。</p>
+</li>
+</ul>
 
       
        
