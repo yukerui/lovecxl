@@ -2,9 +2,9 @@
 <html>
 <head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
-  <title>每天一个linux命令-文本替换 | lovexl</title>
-  <meta name="keywords" content=" linux ">
-  <meta name="description" content="每天一个linux命令-文本替换 | lovexl">
+  <title>dubbo负载均衡 | lovexl</title>
+  <meta name="keywords" content=" 负载均衡 ">
+  <meta name="description" content="dubbo负载均衡 | lovexl">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="dubbo的负载均衡主要是在服务发现时按照某种策略选择一个Provider给Consumer。一切都源于LoadBalance这个接口。 @SPI(RandomLoadBalance.NAME) public interface LoadBalance  {           @Adaptive(&amp;quot;loadbalance&amp;quot;)         &amp;lt;T&amp;gt; Invoker">
 <meta name="keywords" content="负载均衡">
@@ -363,9 +363,9 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="post-每天一个linux命令-文本替换" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-dubbo负载均衡" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">每天一个linux命令-文本替换</h1>
+        <h1 class="article-title">dubbo负载均衡</h1>
     
     <div class="article-meta">
         
@@ -373,21 +373,21 @@
         
         <span class="book">
             
-                <a href="javascript:" data-rel="linux">linux</a>
+                <a href="javascript:" data-rel="负载均衡">负载均衡</a>
             
         </span>
         
         
         <span class="tag">
             
-            <a href="javascript:" class="color1">linux</a>
+            <a href="javascript:" class="color5">负载均衡</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2019-08-20 11:40:22'>2019-08-19 22:10</time>
+        创建时间:<time class="date" title='更新时间: 2019-11-06 15:27:08'>2019-11-06 15:22</time>
         
     </div>
     <div class="article-meta">
@@ -424,17 +424,117 @@
 </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <p>前几天面试被问到给定一个日志，里面存放一些与电话相关的内同，想要把以86开头的中国号码查找出来然后把86给去掉。</p>
+        <p>dubbo的负载均衡主要是在服务发现时按照某种策略选择一个Provider给Consumer。一切都源于LoadBalance这个接口。</p>
+<pre><code class="java">@SPI(RandomLoadBalance.NAME)
+public interface LoadBalance 
+{      
+    @Adaptive(&quot;loadbalance&quot;)    
+    &lt;T&gt; Invoker&lt;T&gt; select(List&lt;Invoker&lt;T&gt;&gt; invokers, URL url, Invocation invocation) throws RpcException;
+}</code></pre>
+<p>通过AbstractLoadBalance静态类包含一些常用的方法和select函数的实现:</p>
+<pre><code class="java">public abstract class AbstractLoadBalance implements LoadBalance {
+
+   static int calculateWarmupWeight(int uptime, int warmup, int weight) {
+        int ww = (int) ((float) uptime / ((float) warmup / (float) weight));
+        return ww &lt; 1 ? 1 : (Math.min(ww, weight));
+    }
+
+    @Override
+    public &lt;T&gt; Invoker&lt;T&gt; select(List&lt;Invoker&lt;T&gt;&gt; invokers, URL url, Invocation invocation) {
+        if (CollectionUtils.isEmpty(invokers)) {
+            return null;
+        }
+        //如果invokers列表中只有一个Invoker，直接返回即可。
+        if (invokers.size() == 1) {
+            return invokers.get(0);
+        }
+        return doSelect(invokers, url, invocation);
+    }
+
+    protected abstract &lt;T&gt; Invoker&lt;T&gt; doSelect(List&lt;Invoker&lt;T&gt;&gt; invokers, URL url, Invocation invocation);
+
+    protected int getWeight(Invoker&lt;?&gt; invoker, Invocation invocation) {
+        int weight = invoker.getUrl().getMethodParameter(invocation.getMethodName(), WEIGHT_KEY, DEFAULT_WEIGHT);
+        if (weight &gt; 0) {
+            long timestamp = invoker.getUrl().getParameter(REMOTE_TIMESTAMP_KEY, 0L);
+            if (timestamp &gt; 0L) {
+                int uptime = (int) (System.currentTimeMillis() - timestamp);
+                int warmup = invoker.getUrl().getParameter(WARMUP_KEY, DEFAULT_WARMUP);
+                if (uptime &gt; 0 &amp;&amp; uptime &lt; warmup) {
+                    weight = calculateWarmupWeight(uptime, warmup, weight);
+                }
+            }
+        }
+        return Math.max(weight, 0);
+    }</code></pre>
+<p>其中实现的selcet方法做了一个简单的判断，如果包含invoker的list里面只有一个时就直接返回，否则调doSelect()方法。</p>
+<p>calculateWarmupWeight方法: 根据预热时间来计算weight，预热时间是指某个invoker提供服务的能力是随着时间慢慢增加的，在某个时间以后达到稳定值，计算的公式是（uptime/warmup)*weight。如果小于1的话就设置为1.</p>
+<p>getWeight方法：获得某个invoker的权重，首先从url里面获取权重的配置值。</p>
+<pre><code class="java">int weight = invoker.getUrl().getMethodParameter(invocation.getMethodName(), WEIGHT_KEY, DEFAULT_WEIGHT);</code></pre>
+<p>如果设置的weight大于0的话，获取到invoker的启动时间:</p>
+<pre><code class="java">long timestamp = invoker.getUrl().getParameter(REMOTE_TIMESTAMP_KEY, 0L);</code></pre>
+<p>如果启动的话，再计算启动时间是否达到warmup的水平,如果没有的话就调用calculateWarmupWeight方法来计算权重。</p>
+<pre><code class="java">int uptime = (int) (System.currentTimeMillis() - timestamp);
+int warmup = invoker.getUrl().getParameter(WARMUP_KEY, DEFAULT_WARMUP);
+if (uptime &gt; 0 &amp;&amp; uptime &lt; warmup)
+ {    weight = calculateWarmupWeight(uptime, warmup, weight);}</code></pre>
+<p>dubbo中实现的负载均衡算法有基于权重随机算法(RandomLoadBalance),基于最少活跃调用数算法的 LeastActiveLoadBalance、基于 hash 一致性的 ConsistentHashLoadBalance，以及基于加权轮询算法的 RoundRobinLoadBalance.</p>
 <ul>
-<li>一开始想直接直接grep 86然后通过tr来替换，然后结果是这样的。发现明显不对，原来tr只能匹配或删除单个字符，向86这种就不行，它会匹配8 || 6.</li>
+<li><strong>RandomLoadBalance</strong></li>
 </ul>
-<p><img src="https://i.postimg.cc/3x2vYhDk/screenshot-1.png" alt="img"></p>
+<p>假设有一组servers=[s0,s1,s2]，它们的权重为[5,4,3]，权重总和是12，[0,5]属于s0，[5,9]属于s1, [9,12]属于s2。然后通过产生随机数的方法就行，只要产生随机数的机制比较好，那么每次选择其中一个机器的概率等于其权重在权重总和的比率。</p>
+<pre><code class="java">@Override
+    protected &lt;T&gt; Invoker&lt;T&gt; doSelect(List&lt;Invoker&lt;T&gt;&gt; invokers, URL url, Invocation invocation) {
+        //invokers的数量
+        int length = invokers.size();
+        //设置一个标识符来判断是否所有的invoker都有相同的weight
+        boolean sameWeight = true;
+        //保存每一个invoker的权重
+        int[] weights = new int[length];
+        // 第一个invoker的权重
+        int firstWeight = getWeight(invokers.get(0), invocation);
+        weights[0] = firstWeight;
+        // 权重的总和
+        int totalWeight = firstWeight;
+        for (int i = 1; i &lt; length; i++) {
+           //通过调用getInvoler来获取invoker的weight 
+           int weight = getWeight(invokers.get(i), invocation);
+            // save for later use
+            weights[i] = weight;
+            // Sum
+            totalWeight += weight;
+            //权重不一样时将sameWeight设置为false
+            if (sameWeight &amp;&amp; weight != firstWeight) {
+                sameWeight = false;
+            }
+        }
+        if (totalWeight &gt; 0 &amp;&amp; !sameWeight) {
+            // If (not every invoker has the same weight &amp; at least one invoker&#39;s weight&gt;0), select randomly based on totalWeight.
+            //随机产生一个0-totalWeight的数
+            int offset = ThreadLocalRandom.current().nextInt(totalWeight);
+            // Return a invoker based on the random value.
+            for (int i = 0; i &lt; length; i++) {
+                offset -= weights[i];
+                if (offset &lt; 0) {
+                    return invokers.get(i);
+                }
+            }
+        }
+        // If all invokers have the same weight value or totalWeight=0, return evenly.
+        return invokers.get(ThreadLocalRandom.current().nextInt(length));
+    }</code></pre>
+<p>代码的基本逻辑是先看是否所有的invoker都有相同的权重，如果是的话随机返回一个就好。不是的话就先产生一个随机值，然后判断这个随机值所在的区间然后返回对用的invoker。</p>
+<pre><code class="java">for (int i = 0; i &lt; length; i++) {
+                offset -= weights[i];
+                if (offset &lt; 0) {
+                    return invokers.get(i);
+                }
+            }</code></pre>
+<p>比如权重[5,4,3]，然后随机的数为6，则首先6-5=1&gt;0,接着1-4&lt;0,因此返回s1.</p>
+<p>优点: 实现简单，当请求次数很多的情况下会表现的很高效。</p>
 <ul>
-<li>那就用sed命令，sed的文本替换和vim的很相似。</li>
+<li><strong>RoundRobinLoadBalance</strong></li>
 </ul>
-<p><img src="https://i.postimg.cc/gjRZjbBt/screenshot-1.png" alt="postimg"></p>
-<p>成功的把86给替换成了空格，但是还有一个问题就是有可能有的86是出现在中间的，并且开头并 不是以86开头的。这种明显不是我们想要的。这种情况下该怎么办呢?</p>
-<p><img src="https://i.postimg.cc/bwYZcn8B/screenshot-1.png" alt="imag"></p>
 
       
        
