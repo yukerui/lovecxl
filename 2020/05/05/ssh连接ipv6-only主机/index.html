@@ -2,9 +2,9 @@
 <html>
 <head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
-  <title>ArrayList需要注意的地方 | lovexl</title>
-  <meta name="keywords" content=" 总结 ">
-  <meta name="description" content="ArrayList需要注意的地方 | lovexl">
+  <title>ssh连接ipv6-only主机 | lovexl</title>
+  <meta name="keywords" content=" 主机 ">
+  <meta name="description" content="ssh连接ipv6-only主机 | lovexl">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="如果本地没有ipv6的情况下是连接不上ipv6主机的，现在电信的好像可以直接设置光猫来获得ipv6，下面介绍没有ipv6怎么连接  用手机数据开热点，电脑连接，4g的话已经能够获取到ipv6地址，不过缺点是访问比较慢。 windows用powershell，linux使用terminal连接即可，命令是ssh root@&amp;lt;ipv6地址&amp;gt;，将&amp;lt;ipv6地址&amp;gt;替换成自己主机的i">
 <meta name="keywords" content="主机">
@@ -383,9 +383,9 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="post-ArrayList需要注意的地方" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-ssh连接ipv6-only主机" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">ArrayList需要注意的地方</h1>
+        <h1 class="article-title">ssh连接ipv6-only主机</h1>
     
     <div class="article-meta">
         
@@ -393,21 +393,21 @@
         
         <span class="book">
             
-                <a href="javascript:" data-rel="总结">总结</a>
+                <a href="javascript:" data-rel="主机操作">主机操作</a>
             
         </span>
         
         
         <span class="tag">
             
-            <a href="javascript:" class="color3">总结</a>
+            <a href="javascript:" class="color3">主机</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2019-08-16 21:50:46'>2019-08-16 21:49</time>
+        创建时间:<time class="date" title='更新时间: 2020-05-05 15:06:53'>2020-05-05 15:05</time>
         
     </div>
     <div class="article-meta">
@@ -444,48 +444,58 @@
 </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <ol>
-<li><p>ArrayList中的modCount参数有什么用?</p>
-<blockquote>
-<p>This field is used by the iterator and list iterator implementation returned by the iterator and listIterator methods. If the value of this field changes unexpectedly, the iterator (or list iterator) will throw a ConcurrentModificationException in response to the {@code next}, {@code remove}, {@code previous} {@code set} or {@code add} operations. This provides fail-fast behavior, rather than non-deterministic behavior in the face of concurrent modification during iteration.</p>
-</blockquote>
+        <p>如果本地没有ipv6的情况下是连接不上ipv6主机的，现在电信的好像可以直接设置光猫来获得ipv6，下面介绍没有ipv6怎么连接</p>
 <ul>
-<li><p>翻译过来就是说如果在遍历期间,数组被更改的话会直接返回一个ConcurrentModificationException异常,看名称就知道是并发操作时导致的一个错误 ,它提供了一个快速失败的功能,而不是迭代期间面对并发修改时的不确定性.</p>
-<pre><code>public class TestList {
-public static void main(String[] args) {
-ArrayList&lt;Integer&gt; list=new ArrayList&lt;&gt;();
-list.add(10);
-list.add(5);
-Iterator&lt;Integer&gt; iterator=list.iterator();
-while(iterator.hasNext()){
-Integer i=iterator.next();
-if(i==5){
-list.remove(i);  //注意这里
-}
-}
-}
-}</code></pre><p>会报ConcurrentModificationException异常. Exception in thread “main” java.util.ConcurrentModificationException at java.util.ArrayList$Itr.checkForComodification(ArrayList.java:909) at java.util.ArrayList$Itr.next(ArrayList.java:859) at TestList.main(TestList.java:13)</p>
-<p>之前分析源码时说过,在调用remove中的fastRemove方法时会让modCount++,迭代器发现modCount发生变化时会直接抛出异常. 事实上当我们remove掉5时,此时size=1,而此时的iterator的游标cursor为2,hasNext为true,while循环继续跑了,此时运行iterator.next()肯定会报ArrayIndexOutOfBoundsException,这种异常属于不受检查异常,因此为了避免这样,jdk做了一些检查.</p>
-<pre><code>public boolean hasNext() {
-return cursor != size;
-}</code></pre></li>
-</ul>
+<li><p>用手机数据开热点，电脑连接，4g的话已经能够获取到ipv6地址，不过缺点是访问比较慢。</p>
+<p>windows用powershell，linux使用terminal连接即可，命令是ssh root@&lt;ipv6地址&gt;，将&lt;ipv6地址&gt;替换成自己主机的ipv6地址，另外需要确定主机允许通过root+密码的方式才行</p>
 </li>
-</ol>
-<p>这段代码能执行成功吗?</p>
-<pre><code>public class TestList {
-  public static void main(String[] args) {
-    ArrayList&lt;String&gt; list = new ArrayList&lt;&gt;();
-    for (int i = 0; i &lt; 100; i++) {
-      list.add(&quot;lovexl&quot; + i);
-    }
-    for (int i = 0; list.iterator().hasNext(); i++) {
-      list.remove(i);
-      System.out.println(list.size());
-      System.out.println(list.get(i));
-    }
-  }
-}</code></pre><p>会报IndexOutOfBoundsException错误. hasNext的判断条件就是游标是否到达数组的尾端,当游标已经到达数组尾端了,你删了一个数,size–了,那游标就永远不可能等于size了,往后遍历就只能报IndexOutOfBoundsException错误</p>
+<li><p>在heyterm.com注册一个账号即可，具体实现方法大概是它们的vps提供一个在线terminal，然后通过执行ssh命令连接，安全性未知。</p>
+</li>
+</ul>
+<ul>
+<li><p>找到一个同时支持v6+v4的主机作为中转，国外的主机一般都支持，没有的话可以使用免费的主机。在国外主机上运行frp服务端，自己的v6主机运行frp客户端即可。免费的frp服务端提供可以在<a href="https://www.waiwang.men/#home" target="_blank" rel="noopener">https://www.waiwang.men/#home</a>中找到。</p>
+<p>以免费的euserv v6主机作为示范:</p>
+<p>首先通过vps提供的webconsolve或者vnc进去，这种方法也能使用主机的terminal，只不过功能特别少，像复制粘贴大法就不太好用。</p>
+<p>修改/etc/resolv.conf, 加入以下两句，众所周知，github不支持ipv6，通过NAT64主机就能够访问ipv4网站了。</p>
+<pre><code>nameserver 2001:67c:2b0::4
+nameserver 2001:67c:2b0::6</code></pre><p>下载frp并解压，可以在<a href="https://github.com/fatedier/frp/releases" target="_blank" rel="noopener">https://github.com/fatedier/frp/releases</a>上下载对应版本的frp，以linux为例：</p>
+<pre><code>wget https://github.com/fatedier/frp/releases/download/v0.33.0/frp_0.33.0_linux_386.tar.gz
+tar -zxf frp_0.33.0_linux_386.tar.gz 
+cd frp_0.33.0_linux_386
+rm frp_0.33.0_linux_386.tar.gz</code></pre><p>其中frp_0.33.0_linux_386文件夹中包含frpc，frps，frpc.ini, frps.ini。 frpc表示客户端，通过它可以连接远程frp服务器。frps为服务端，执行它可以将本机设置为frp服务器。由于需要连接frp服务器，因此设置frpc.ini。</p>
+<pre><code>[common]
+
+server_addr = 127.0.0.1
+
+server_port = 7000
+
+[ssh]
+
+type = tcp
+
+local_ip = 127.0.0.1
+
+local_port = 22
+
+remote_port = 6000</code></pre><p>在[common]中设置远程服务地址和端口，打开上文提到的免费frp网址，以洛杉矶机房为例，可以看到地址和端口分别为usla.waiwang.men和6666，另外还存在特权密码，并且支持的端口为80,443和20000-50000，因此可将frpc.ini改为：</p>
+<pre><code>[common]
+server_addr = usla.waiwang.men
+server_port = 6666
+token=waiwang.men
+[REMOTE]
+type=tcp
+local_ip=127.0.0.1
+local_port=22
+remote_port=44234</code></pre><p>remote_port随意更改，只要在范围内即可。用以下命令连接远程服务端：</p>
+<pre><code>./frpc -c frpc.ini</code></pre><p>若出现以下消息则表明成功:</p>
+<pre><code>2020/05/05 14:44:46 [I] [service.go:282] [fe4ae70ac495d96a] login to server success, get run id [fe4ae70ac495d96a], server udp port [6667]
+2020/05/05 14:44:46 [I] [proxy_manager.go:144] [fe4ae70ac495d96a] proxy added: [REMOTE]
+2020/05/05 14:44:46 [I] [control.go:179] [fe4ae70ac495d96a] [REMOTE] start proxy success</code></pre><p>有可能会出现端口被占用的错误，这种情况下重新设置下remote_port即可。</p>
+<p>最后使用ssh客户端如xshell或mobaxterm连接，服务地址和端口输入frpc.ini中设置的即可。</p>
+<p>如果需要后台运行的话可以使用scrren命令。</p>
+</li>
+</ul>
+<p>第一种方法最为安全，剩下两种安全性未知，存在信息泄露的风险，免费的折腾折腾就好了，另外最后一种方法的原理是内网穿透，同样适用于内网的远程桌面，本教程主要为了提高效率，方便操作，可以用来学习linux命令和建站，切勿用于违法行为。</p>
 
       
        
