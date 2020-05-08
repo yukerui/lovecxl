@@ -2,9 +2,9 @@
 <html>
 <head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
-  <title>每天一个linux命令-管道 | lovexl</title>
-  <meta name="keywords" content=" linux ">
-  <meta name="description" content="每天一个linux命令-管道 | lovexl">
+  <title>Charles 断点、rewrite详细教程 | lovexl</title>
+  <meta name="keywords" content>
+  <meta name="description" content="Charles 断点、rewrite详细教程 | lovexl">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="Charles 抓包并修改包一.安装证书解密 https 包 想要解密 https 包需要安装证书并将证书加入到受信任根证书里面去。选择 help 下的 SSL Proxying。点击 Install Charles root certificate。 点击安装证书，选择本地计算机，点击下一步，选择第二项，点击浏览，选择受信任的根证书。 如果需要解密手机端的 https 包，选择第一章图中的第三项">
 <meta property="og:type" content="article">
@@ -399,31 +399,19 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="post-每天一个linux命令-管道" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-charles断点、rewrite详细教程" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">每天一个linux命令-管道</h1>
+        <h1 class="article-title">Charles 断点、rewrite详细教程</h1>
     
     <div class="article-meta">
         
         
         
-        <span class="book">
-            
-                <a href="javascript:" data-rel="linux">linux</a>
-            
-        </span>
-        
-        
-        <span class="tag">
-            
-            <a href="javascript:" class="color1">linux</a>
-            
-        </span>
         
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2019-08-19 22:09:11'>2019-08-11 12:35</time>
+        创建时间:<time class="date" title='更新时间: 2020-05-09 00:32:18'>2020-05-09 00:31</time>
         
     </div>
     <div class="article-meta">
@@ -445,7 +433,7 @@
     
     <div class="toc-ref">
     
-        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Charles-抓包并修改包"><span class="toc-text">Charles 抓包并修改包</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#一-安装证书解密-https-包"><span class="toc-text">一.安装证书解密 https 包</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二-charles-设置断点"><span class="toc-text">二 charles 设置断点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#三-charles-rewrite"><span class="toc-text">三 charles rewrite</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#四-可能出现的bug"><span class="toc-text">四 可能出现的bug</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#先就写这些吧，估计没人看，权当自己记录一下温习用吧。贾谊在评论秦朝灭亡时总结过一句话：仁义不施而攻守之势异也。虽然找到工作了但还是要继续学习，要不然怕是连之前学的老本都要忘光了。"><span class="toc-text">先就写这些吧，估计没人看，权当自己记录一下温习用吧。贾谊在评论秦朝灭亡时总结过一句话：仁义不施而攻守之势异也。虽然找到工作了但还是要继续学习，要不然怕是连之前学的老本都要忘光了。</span></a></li></ol></li></ol></li></ol></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -460,33 +448,54 @@
 </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <p>&nbsp;&nbsp;经常被问到进程间是怎么通信的?常见的有socket，管道，消息队列，共享内存等。以后会专门写一个总结一下，这次研究一下管道是什么?<br> &nbsp;&nbsp;一般遇到这种名词的话一般都会想这个是用来解决什么问题了，又是怎么解决的。</p>
-<ul>
-<li><p>解决了什么问题?<br>&nbsp;&nbsp;* 前面提到了解决了进程间通信的问题,比如一个很简单的例子，想要在nohup.out中搜索某个关键字，cat nohup.out | grep “key” cat是一个进程，grep也是一个进程，它们是怎么通信的。<br>&nbsp;* 怎么解决的?<br>&nbsp;&nbsp;&nbsp;* 上面命令中的 | 就相当于在两个进程之间建立了一个管道(是一个虚拟的文件，是由内存管理的一个缓冲区)，一头对应着一个进程的输出端，一头对应着另一个进程的输入端，上面的例子就是将cat命令的输出作为grep的输入。</p>
-<p>&nbsp;&nbsp;linux的进程都有独立的地址，因此在用户态进程之间是没法访问的。而内核是进程共享的，因此线程想要通信就要内核做个中间人。<br><img src="https://lovexl-1254108494.cos.ap-chengdu.myqcloud.com/%E5%86%85%E6%A0%B8%E7%AE%A1%E9%81%931.jpg" alt="avatar"><br>&nbsp;&nbsp;pipe的实现和图示一样，在pipefs文件中有一个属性</p>
-<blockquote>
-<p>struct pipe_inode_info    *i_pipe; <br></p>
-</blockquote>
-<p>&nbsp;&nbsp;pipe_inode_info定义如下:<br></p>
-<pre><code>pipe_fs_i.h
-struct pipe_inode_info {
- struct mutex mutex;
- wait_queue_head_t wait;
- unsigned int nrbufs, curbuf, buffers;
- unsigned int readers;
- unsigned int writers;
- unsigned int files;
- unsigned int waiting_writers;
- unsigned int r_counter;
- unsigned int w_counter;
- struct page *tmp_page;
- struct fasync_struct *fasync_readers;
- struct fasync_struct *fasync_writers;
- struct pipe_buffer *bufs;
- struct user_struct *user;
- };</code></pre></li>
-</ul>
-
+        <h2 id="Charles-抓包并修改包"><a href="#Charles-抓包并修改包" class="headerlink" title="Charles 抓包并修改包"></a>Charles 抓包并修改包</h2><h3 id="一-安装证书解密-https-包"><a href="#一-安装证书解密-https-包" class="headerlink" title="一.安装证书解密 https 包"></a>一.安装证书解密 https 包</h3><ol>
+<li>想要解密 https 包需要安装证书并将证书加入到受信任根证书里面去。选择 help 下的 SSL Proxying。点击 Install Charles root certificate。<br><a href="https://imgchr.com/i/YKqlpn" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/05/08/YKqlpn.md.png" alt="安装ssl"></a></li>
+<li>点击安装证书，选择本地计算机，点击下一步，选择第二项，点击浏览，选择受信任的根证书。<br><a href="https://imgchr.com/i/YKvnRH" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/05/08/YKvnRH.md.png" alt="安装根证书"></a></li>
+<li>如果需要解密手机端的 https 包，选择第一章图中的第三项即可。这种情况下点击 Help 下的 Local Ip Address 查看当前 ip，选择对应网卡的 ip 地址即可，一般情况是以 192.168 开头。假设为 192.168.0.102。最后手机与电脑连接上相同的网络，将无线的代理 ip 设置为 192.168.0.102，端口设置为 8888 即可。</li>
+</ol>
+<h3 id="二-charles-设置断点"><a href="#二-charles-设置断点" class="headerlink" title="二 charles 设置断点"></a>二 charles 设置断点</h3><p>charles 可以通过设置断点的方式来修改 response。以<a href="https://reqres.in/api/users/1" target="_blank" rel="noopener">reqres.in</a>这个网址为例：该接口返回的数据为：</p>
+<pre><code class="json">    &quot;data&quot;:{
+        &quot;id&quot;:1,
+        &quot;email&quot;:&quot;george.bluth@reqres.in&quot;,
+        &quot;first_name&quot;:&quot;George&quot;,
+        &quot;last_name&quot;:&quot;Bluth&quot;,
+        &quot;avatar&quot;:&quot;https://s3.amazonaws.com/uifaces/faces/twitter/calebogden/128.jpg&quot;
+    },
+    &quot;ad&quot;:{
+        &quot;company&quot;:&quot;StatusCode Weekly&quot;,
+        &quot;url&quot;:&quot;http://statuscode.org/&quot;,
+        &quot;text&quot;:&quot;A weekly newsletter focusing on software development, infrastructure, the server, performance, and the stack end of things.&quot;
+    }
+}</code></pre>
+<p>若需要将上述数据中的 “id”的value改为2，在charles中对应的url上右键选择breakpoints。然后选择菜单栏proxy下的Breakpoint settins，双击定影的url可进入到设置界面，由于我们只需要修改response，因此在下面只选中response即可。这样断点就设置完成了。<br><a href="https://imgchr.com/i/YMpB3F" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/05/08/YMpB3F.md.png" alt="设置断点"></a><br>再次请求该接口即可调到断点界面，点击上方的Edit Response就可以修改reponse啦，大功就要告成了。此时发现状态码是304，并没有response body，这是什么原因呢？为了节省带宽，对于静态文件服务器会自动完成 Last Modified 和 If Modified Since 的比较，如果发现内容与上次请求没有发生变化就不会返回网页内容。解决方法是ctrl+f5强制刷新。<br><a href="https://imgchr.com/i/YM9rPf" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/05/08/YM9rPf.md.png" alt="断点界面"></a><br>此时便可以修改response中的数据，如上文提到的将id修改为2.可以发现此时网页上的数据也修改成功了。<br><a href="https://imgchr.com/i/YMPEX4" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/05/08/YMPEX4.md.png" alt="修改response"></a></p>
+<pre><code class="json">{
+    &quot;data&quot;: {
+        &quot;id&quot;: 2,
+        &quot;email&quot;: &quot;george.bluth@reqres.in&quot;,
+        &quot;first_name&quot;: &quot;George&quot;,
+        &quot;last_name&quot;: &quot;Bluth&quot;,
+        &quot;avatar&quot;: &quot;https://s3.amazonaws.com/uifaces/faces/twitter/calebogden/128.jpg&quot;
+    },
+    &quot;ad&quot;: {
+        &quot;company&quot;: &quot;StatusCode Weekly&quot;,
+        &quot;url&quot;: &quot;http://statuscode.org/&quot;,
+        &quot;text&quot;: &quot;A weekly newsletter focusing on software development, infrastructure, the server, performance, and the stack end of things.&quot;
+    }
+}</code></pre>
+<p>掌握这种方法可以实现很多骚操作，比如将b站的关注改成999+，不过修改这些都是花里花哨的，只为了观赏性。真正有用的是可以通过修改参数来达到体验某些app vip的效果。<br>设置断点的方式可以很直观的帮助我们观察到是如何修改response数据的，但是这种方法的缺点是每次请求都需要手动操作，能不能解放双手达到自动修改的效果呢？下面就要请出rewrite功能了。</p>
+<h3 id="三-charles-rewrite"><a href="#三-charles-rewrite" class="headerlink" title="三 charles rewrite"></a>三 charles rewrite</h3><p>rewrite，顾名思义就是重写，下面就介绍通过rewrite功能来实现自动化的修改response或request数据包。还是以<a href="https://reqres.in/api/users/1" target="_blank" rel="noopener">reqres.in</a>为例。</p>
+<ol>
+<li>首先在charles中找到该url并点击Copy URL复制它的url</li>
+<li>点击菜单栏Tools选项下的Rewrite进入到rewrite界面，左上方第一项的enable就是开启rewrite，下面一项Debug in Error log则是在error.log中有输出日志。点击左边的add添加一项，再点击右上方的add添加url，在host里面粘贴之前复制的url然后在port，path，query框中随意点中一个即可自动填写，一个小技巧是query框中如果有值的话最好用<em>代替，</em>代表匹配全部，因为有些param可能会将时间作为参数传输，这样的话query会不同，如果用之前的就匹配不到了。<br><a href="https://imgchr.com/i/YMiXZj" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/05/08/YMiXZj.md.png" alt="rewrite界面"></a></li>
+<li>点击右下方的add添加rules，Type有很多选项，例如增加\修改\删除query param，修改request头，最下面的body正是我们想要的，选择body，勾选下面的response，Match中输入待匹配的文本，支持正则表达式。replace中输入替换文本即可。</li>
+<li>修改id的话，在Match中输入id”\s<em>:\s</em>\d,\s*表示匹配0个或多个空格，\d表示匹配数字，匹配多个数字的话用\d+。在Replace填写想要修改的数据，如id”: 2,重发请求即可。成功的话在Notes中有提示。<br><a href="https://imgchr.com/i/YMkZng" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/05/08/YMkZng.png" alt="rewrite_rule"></a><br><a href="https://imgchr.com/i/YMkRUA" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/05/08/YMkRUA.md.png" alt="notes"></a><br>这样就完成了response的自动修改了。</li>
+</ol>
+<p>了解ios抓包的可能知道thor或http cather等类似的功能，这些charles都可以做到并且可以做的更好，更快速有效的方法是用charles找到对应的api接口，利用断点测试参数再用手机修改。</p>
+<h3 id="四-可能出现的bug"><a href="#四-可能出现的bug" class="headerlink" title="四 可能出现的bug"></a>四 可能出现的bug</h3><ol>
+<li>对于某些网站出现unknown的错误<br>原因：无法解析https包。<br>解决方法：可以在菜单栏Proxy下SSL Proxy Setting中添加对应的url</li>
+<li>rewrite中没有效果<br>原因：这种情况下最大的原因就是正则表达式写的不对，推荐去一些正则表达式在线的匹配成功了再copy过来就好，推荐<!--StartFragment--><a href="https://regex101.com/" target="_blank" rel="noopener">https://regex101.com/</a><!--EndFragment--></li>
+</ol>
+<h6 id="先就写这些吧，估计没人看，权当自己记录一下温习用吧。贾谊在评论秦朝灭亡时总结过一句话：仁义不施而攻守之势异也。虽然找到工作了但还是要继续学习，要不然怕是连之前学的老本都要忘光了。"><a href="#先就写这些吧，估计没人看，权当自己记录一下温习用吧。贾谊在评论秦朝灭亡时总结过一句话：仁义不施而攻守之势异也。虽然找到工作了但还是要继续学习，要不然怕是连之前学的老本都要忘光了。" class="headerlink" title="先就写这些吧，估计没人看，权当自己记录一下温习用吧。贾谊在评论秦朝灭亡时总结过一句话：仁义不施而攻守之势异也。虽然找到工作了但还是要继续学习，要不然怕是连之前学的老本都要忘光了。"></a>先就写这些吧，估计没人看，权当自己记录一下温习用吧。贾谊在评论秦朝灭亡时总结过一句话：仁义不施而攻守之势异也。虽然找到工作了但还是要继续学习，要不然怕是连之前学的老本都要忘光了。</h6>
       
        
     </div>
