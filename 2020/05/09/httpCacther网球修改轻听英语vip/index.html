@@ -2,9 +2,9 @@
 <html>
 <head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
-  <title>ssh连接ipv6-only主机 | lovexl</title>
-  <meta name="keywords" content=" 主机 ">
-  <meta name="description" content="ssh连接ipv6-only主机 | lovexl">
+  <title>httpCacther网球修改轻听英语vip | lovexl</title>
+  <meta name="keywords" content=" 网球 ">
+  <meta name="description" content="httpCacther网球修改轻听英语vip | lovexl">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="写这篇文章的目的 &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;thor1.3.4之后可能加了黑白单了，导致好多规则都没用了，看到其他大佬说可以通过越狱打补丁修改，越狱对一些用户来说比较复杂也有些风险。 ​     看到网球的教程不是很多就分享一下自己的见解，班门弄斧一下，希望各位大佬多多包含。当然通过电脑端进行抓包的话就不限手机平台了，身边有电脑的可以先看看">
 <meta name="keywords" content="网球">
@@ -419,9 +419,9 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="post-ssh连接ipv6-only主机" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-httpCacther网球修改轻听英语vip" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">ssh连接ipv6-only主机</h1>
+        <h1 class="article-title">httpCacther网球修改轻听英语vip</h1>
     
     <div class="article-meta">
         
@@ -429,21 +429,21 @@
         
         <span class="book">
             
-                <a href="javascript:" data-rel="主机操作">主机操作</a>
+                <a href="javascript:" data-rel="网球">网球</a>
             
         </span>
         
         
         <span class="tag">
             
-            <a href="javascript:" class="color3">主机</a>
+            <a href="javascript:" class="color3">网球</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2020-05-05 15:06:53'>2020-05-05 15:05</time>
+        创建时间:<time class="date" title='更新时间: 2020-05-09 14:39:50'>2020-05-09 14:39</time>
         
     </div>
     <div class="article-meta">
@@ -465,7 +465,7 @@
     
     <div class="toc-ref">
     
-        
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#写这篇文章的目的"><span class="toc-text">写这篇文章的目的</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#测试app"><span class="toc-text">测试app</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#希望达到的目的"><span class="toc-text">希望达到的目的</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#开始"><span class="toc-text">开始</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#ios版修改"><span class="toc-text">ios版修改</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -480,58 +480,40 @@
 </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <p>如果本地没有ipv6的情况下是连接不上ipv6主机的，现在电信的好像可以直接设置光猫来获得ipv6，下面介绍没有ipv6怎么连接</p>
+        <h1 id="写这篇文章的目的"><a href="#写这篇文章的目的" class="headerlink" title="写这篇文章的目的"></a>写这篇文章的目的</h1><p> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;thor1.3.4之后可能加了黑白单了，导致好多规则都没用了，看到其他大佬说可以通过越狱打补丁修改，越狱对一些用户来说比较复杂也有些风险。</p>
+<p>​     看到网球的教程不是很多就分享一下自己的见解，班门弄斧一下，希望各位大佬多多包含。当然通过电脑端进行抓包的话就不限手机平台了，身边有电脑的可以先看看上一篇现将charles配置好。</p>
+<h1 id="测试app"><a href="#测试app" class="headerlink" title="测试app"></a>测试app</h1><p>轻听英语，蜗牛读书</p>
+<h1 id="希望达到的目的"><a href="#希望达到的目的" class="headerlink" title="希望达到的目的"></a>希望达到的目的</h1><ul>
+<li>通过修改体验vip</li>
+<li>满足折腾的需求，实现diy设置</li>
+</ul>
+<h1 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h1><h2 id="ios版修改"><a href="#ios版修改" class="headerlink" title="ios版修改"></a>ios版修改</h2><p>ios用的软件是http cacther(网球)，在@fengchuan的教程中都提到了，在我看来难点有两点。一是怎样找到对应的接口。二是怎样找到想要修改的参数。下面以轻听英语为例展示如何找到。</p>
+<ol>
+<li><p>怎样找到对应的接口？</p>
 <ul>
-<li><p>用手机数据开热点，电脑连接，4g的话已经能够获取到ipv6地址，不过缺点是访问比较慢。</p>
-<p>windows用powershell，linux使用terminal连接即可，命令是ssh root@&lt;ipv6地址&gt;，将&lt;ipv6地址&gt;替换成自己主机的ipv6地址，另外需要确定主机允许通过root+密码的方式才行</p>
-</li>
-<li><p>在heyterm.com注册一个账号即可，具体实现方法大概是它们的vps提供一个在线terminal，然后通过执行ssh命令连接，安全性未知。</p>
+<li>打开软件后，一般都是点击app中的“我的”或者“vip”进行测试。下图的位置在轻听英语首页左上角小人头像点开。<br>请注意下图中的出现的某些信息，例如“免费用户 下载限额 38”，这个信息可以用来验证后面找的接口的正确性。<br><a href="https://imgchr.com/i/YQ86mj" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/05/09/YQ86mj.md.png" alt="YQ86mj.md.png"></a><ul>
+<li>网球中最后请求的url会在最下面，一般都是从下往上找</li>
+<li>对应接口的命名规则一般都比较规范，比如“UserInfo”就是个人信息。可以在网球中搜索比如“user”，”User“，“vip”等相关内容。比如下图中第一项UserLuanchAppReport就是接口。<br><a href="https://imgchr.com/i/YQ8akt" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/05/09/YQ8akt.md.png" alt="YQ8akt.md.png"></a></li>
+</ul>
 </li>
 </ul>
-<ul>
-<li><p>找到一个同时支持v6+v4的主机作为中转，国外的主机一般都支持，没有的话可以使用免费的主机。在国外主机上运行frp服务端，自己的v6主机运行frp客户端即可。免费的frp服务端提供可以在<a href="https://www.waiwang.men/#home" target="_blank" rel="noopener">https://www.waiwang.men/#home</a>中找到。</p>
-<p>以免费的euserv v6主机作为示范:</p>
-<p>首先通过vps提供的webconsolve或者vnc进去，这种方法也能使用主机的terminal，只不过功能特别少，像复制粘贴大法就不太好用。</p>
-<p>修改/etc/resolv.conf, 加入以下两句，众所周知，github不支持ipv6，通过NAT64主机就能够访问ipv4网站了。</p>
-<pre><code>nameserver 2001:67c:2b0::4
-nameserver 2001:67c:2b0::6</code></pre><p>下载frp并解压，可以在<a href="https://github.com/fatedier/frp/releases" target="_blank" rel="noopener">https://github.com/fatedier/frp/releases</a>上下载对应版本的frp，以linux为例：</p>
-<pre><code>wget https://github.com/fatedier/frp/releases/download/v0.33.0/frp_0.33.0_linux_386.tar.gz
-tar -zxf frp_0.33.0_linux_386.tar.gz 
-cd frp_0.33.0_linux_386
-rm frp_0.33.0_linux_386.tar.gz</code></pre><p>其中frp_0.33.0_linux_386文件夹中包含frpc，frps，frpc.ini, frps.ini。 frpc表示客户端，通过它可以连接远程frp服务器。frps为服务端，执行它可以将本机设置为frp服务器。由于需要连接frp服务器，因此设置frpc.ini。</p>
-<pre><code>[common]
-
-server_addr = 127.0.0.1
-
-server_port = 7000
-
-[ssh]
-
-type = tcp
-
-local_ip = 127.0.0.1
-
-local_port = 22
-
-remote_port = 6000</code></pre><p>在[common]中设置远程服务地址和端口，打开上文提到的免费frp网址，以洛杉矶机房为例，可以看到地址和端口分别为usla.waiwang.men和6666，另外还存在特权密码，并且支持的端口为80,443和20000-50000，因此可将frpc.ini改为：</p>
-<pre><code>[common]
-server_addr = usla.waiwang.men
-server_port = 6666
-token=waiwang.men
-[REMOTE]
-type=tcp
-local_ip=127.0.0.1
-local_port=22
-remote_port=44234</code></pre><p>remote_port随意更改，只要在范围内即可。用以下命令连接远程服务端：</p>
-<pre><code>./frpc -c frpc.ini</code></pre><p>若出现以下消息则表明成功:</p>
-<pre><code>2020/05/05 14:44:46 [I] [service.go:282] [fe4ae70ac495d96a] login to server success, get run id [fe4ae70ac495d96a], server udp port [6667]
-2020/05/05 14:44:46 [I] [proxy_manager.go:144] [fe4ae70ac495d96a] proxy added: [REMOTE]
-2020/05/05 14:44:46 [I] [control.go:179] [fe4ae70ac495d96a] [REMOTE] start proxy success</code></pre><p>有可能会出现端口被占用的错误，这种情况下重新设置下remote_port即可。</p>
-<p>最后使用ssh客户端如xshell或mobaxterm连接，服务地址和端口输入frpc.ini中设置的即可。</p>
-<p>如果需要后台运行的话可以使用scrren命令。</p>
 </li>
+<li><p>怎么找到想要修改的参数？</p>
+<ul>
+<li>在找到对应接口后点进去选择响应查看对应接口返回的内容，有些可能是加密的，这种情况下就需要解密，如果碰到这种情况可以试着将request header中的Content-Type修改为application/json。这种情况不是很常见。</li>
+<li>常见到字段有grant，endtime，expiretime，user-type等字段。</li>
+<li>在上一步找到response，从第一张图中我们看到有“免费用户 下载额度 38”的字样，在下图中的”dl_quota”中也有38，表明接口是正确的。先尝试修改这个参数。<br><a href="https://imgchr.com/i/YQYifP" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/05/09/YQYifP.md.jpg" alt="YQYifP.md.jpg"></a></li>
 </ul>
-<p>第一种方法最为安全，剩下两种安全性未知，存在信息泄露的风险，免费的折腾折腾就好了，另外最后一种方法的原理是内网穿透，同样适用于内网的远程桌面，本教程主要为了提高效率，方便操作，可以用来学习linux命令和建站，切勿用于违法行为。</p>
+</li>
+<li><p>最后一刻，修改对应参数。</p>
+<ul>
+<li>在图2对应的url出左滑-更多-新建重写，名称随意，点击添加规则，目标为响应，行为为Body。我们先尝试修改”dl_quota“参数，在查找中输入”dl_quota”\s<em>:\s</em>\d+。解释以下\s*表示匹配零个或多个空格，\d+表示匹配多个数字。在替换中写”dl_quota”: 8888,点击完成即可。<br><a href="https://imgchr.com/i/YQdkqO" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/05/09/YQdkqO.md.png" alt="YQdkqO.md.png"></a><br>重新打开app查看效果。成功了！！！！<br><a href="https://imgchr.com/i/YQdFsK" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/05/09/YQdFsK.md.png" alt="YQdFsK.md.png"></a></li>
+</ul>
+</li>
+</ol>
+<ul>
+<li>尝试修改vip<br>根据上面的流程，我们尝试修改“expire_date”，“user_type”和“granted”参数，将 user_type和granted改为1，expire_date为unix时间戳，比如改为2020年8月8日，对应值为：1596845288000。<br><a href="https://imgchr.com/i/YQyvCD" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/05/09/YQyvCD.md.png" alt="YQyvCD.md.png"></a><br>重开打开后看下效果。<br><a href="https://imgchr.com/i/YQ6RsA" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/05/09/YQ6RsA.md.png" alt="YQ6RsA.md.png"></a></li>
+</ul>
 
       
        
