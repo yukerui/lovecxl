@@ -2,9 +2,9 @@
 <html>
 <head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
-  <title>每天一个linux命令-文本替换 | lovexl</title>
-  <meta name="keywords" content=" linux ">
-  <meta name="description" content="每天一个linux命令-文本替换 | lovexl">
+  <title>httpCacther网球体验小猿搜题 | lovexl</title>
+  <meta name="keywords" content=" 网球 ">
+  <meta name="description" content="httpCacther网球体验小猿搜题 | lovexl">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="写这篇文章的目的接着上一篇把蜗牛读书的规则给出来，有一个老哥需要小猿搜题的，再写一下，希望大家多多练习下，授之以鱼不如授之以渔。 教程app小猿搜题 希望达到的目的 通过修改体验vip 满足折腾的需求，实现diy设置  开始小猿搜题ios用的软件是http cacther(网球)，上一篇写了一些教程，需要的可以去看看[【IOS】http catcher使用教程，步骤超详]https://www.5">
 <meta name="keywords" content="网球">
@@ -425,9 +425,9 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="post-每天一个linux命令-文本替换" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-httpCacther网球修改蜗牛读书vip" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">每天一个linux命令-文本替换</h1>
+        <h1 class="article-title">httpCacther网球体验小猿搜题</h1>
     
     <div class="article-meta">
         
@@ -435,21 +435,21 @@
         
         <span class="book">
             
-                <a href="javascript:" data-rel="linux">linux</a>
+                <a href="javascript:" data-rel="网球">网球</a>
             
         </span>
         
         
         <span class="tag">
             
-            <a href="javascript:" class="color1">linux</a>
+            <a href="javascript:" class="color3">网球</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2019-08-20 11:40:22'>2019-08-19 22:10</time>
+        创建时间:<time class="date" title='更新时间: 2020-05-10 20:56:37'>2020-05-10 19:40</time>
         
     </div>
     <div class="article-meta">
@@ -471,7 +471,7 @@
     
     <div class="toc-ref">
     
-        
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#写这篇文章的目的"><span class="toc-text">写这篇文章的目的</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#教程app"><span class="toc-text">教程app</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#希望达到的目的"><span class="toc-text">希望达到的目的</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#开始"><span class="toc-text">开始</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#小猿搜题"><span class="toc-text">小猿搜题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#蜗牛读书"><span class="toc-text">蜗牛读书</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#本文使用的工具"><span class="toc-text">本文使用的工具</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#白嫖json文件"><span class="toc-text">白嫖json文件</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#最后"><span class="toc-text">最后</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -486,17 +486,34 @@
 </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <p>前几天面试被问到给定一个日志，里面存放一些与电话相关的内同，想要把以86开头的中国号码查找出来然后把86给去掉。</p>
-<ul>
-<li>一开始想直接直接grep 86然后通过tr来替换，然后结果是这样的。发现明显不对，原来tr只能匹配或删除单个字符，向86这种就不行，它会匹配8 || 6.</li>
+        <h1 id="写这篇文章的目的"><a href="#写这篇文章的目的" class="headerlink" title="写这篇文章的目的"></a>写这篇文章的目的</h1><p>接着上一篇把蜗牛读书的规则给出来，有一个老哥需要小猿搜题的，再写一下，希望大家多多练习下，授之以鱼不如授之以渔。</p>
+<h1 id="教程app"><a href="#教程app" class="headerlink" title="教程app"></a>教程app</h1><p>小猿搜题</p>
+<h1 id="希望达到的目的"><a href="#希望达到的目的" class="headerlink" title="希望达到的目的"></a>希望达到的目的</h1><ul>
+<li>通过修改体验vip</li>
+<li>满足折腾的需求，实现diy设置</li>
 </ul>
-<p><img src="https://i.postimg.cc/3x2vYhDk/screenshot-1.png" alt="img"></p>
-<ul>
-<li>那就用sed命令，sed的文本替换和vim的很相似。</li>
-</ul>
-<p><img src="https://i.postimg.cc/gjRZjbBt/screenshot-1.png" alt="postimg"></p>
-<p>成功的把86给替换成了空格，但是还有一个问题就是有可能有的86是出现在中间的，并且开头并 不是以86开头的。这种明显不是我们想要的。这种情况下该怎么办呢?</p>
-<p><img src="https://i.postimg.cc/bwYZcn8B/screenshot-1.png" alt="imag"></p>
+<h1 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h1><h2 id="小猿搜题"><a href="#小猿搜题" class="headerlink" title="小猿搜题"></a>小猿搜题</h2><p>ios用的软件是http cacther(网球)，上一篇写了一些教程，需要的可以去看看[【IOS】http catcher使用教程，步骤超详]<a href="https://www.52pojie.cn/thread-1175270-3-1.html" target="_blank" rel="noopener">https://www.52pojie.cn/thread-1175270-3-1.html</a></p>
+<ol>
+<li>打开网球和小猿搜题抓包。首先现在处于非会员状态。<br><a href="https://imgchr.com/i/Y8Ejdf" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/05/10/Y8Ejdf.md.png" alt="Y8Ejdf.md.png"></a></li>
+<li>搜索vip，user等关键字，找到一个既包含vip还包含user的，进去看看。<br><a href="https://imgchr.com/i/Y8VXc9" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/05/10/Y8VXc9.md.png" alt="Y8VXc9.md.png"></a></li>
+<li>查看该接口是不是正确的。看里面的参数是不是很熟悉呢？先改改试试。<br><a href="https://imgchr.com/i/Y8ZmHP" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/05/10/Y8ZmHP.md.png" alt="Y8ZmHP.md.png"></a></li>
+<li>修改参数，修改vip和expiretime。直接给出正则表达式了啊.看不明白的请参考上一篇文章或者直接用json文件。</li>
+</ol>
+<pre><code>vip&quot;:\s*\w+
+vip&quot;: true
+expireTime&quot;:\s*\d
+expireTime&quot;: 1602070768000</code></pre><ol start="5">
+<li>看下效果如何。不出意料的成功了。<br><a href="https://imgchr.com/i/Y8n8jH" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/05/10/Y8n8jH.md.png" alt="Y8n8jH.md.png"></a></li>
+</ol>
+<h2 id="蜗牛读书"><a href="#蜗牛读书" class="headerlink" title="蜗牛读书"></a>蜗牛读书</h2><p>补一下上一篇的蜗牛读书的。接口上一篇给了。<br>在/gian/readtime/info.json，还是把正则表达式给了吧。</p>
+<pre><code>tradeEndTime&quot;:\d+
+tradeEndTime&quot;: 1602070768000</code></pre><h2 id="本文使用的工具"><a href="#本文使用的工具" class="headerlink" title="本文使用的工具"></a>本文使用的工具</h2><ol>
+<li>unix时间戳，直接搜索 unix时间戳就可以转换，注意需转化为ms，也就是后面总是有3个零。</li>
+<li>正则表达式匹配。有人问正则表达式怎么匹配到的，说个小技巧，搜索一个正则表达式在线，把接口返回的内容复制里面，匹配成功了再粘贴到网球上就行了。</li>
+<li>json文件怎么使用。喏，在这里。点击进去，把原来的删了，把我发的粘贴进去保存就行了<br><a href="https://imgchr.com/i/Y8KeFx" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/05/10/Y8KeFx.md.jpg" alt="Y8KeFx.md.jpg"></a></li>
+</ol>
+<h2 id="白嫖json文件"><a href="#白嫖json文件" class="headerlink" title="白嫖json文件"></a>白嫖json文件</h2><p>就不放附件了，直接给吧，json文件太长，去gayhub下载吧。每次写教程都会在这里更新json文件<br><a href="https://github.com/yukerui/httpCatcher" target="_blank" rel="noopener">https://github.com/yukerui/httpCatcher</a></p>
+<h1 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h1><p>有问题评论区交流啊，以上教程仅供学习，52pojie首发哦(虽然也会发到我博客里)。请勿用于其他违法用途哦，请勿倒卖，有能力请支持正版。</p>
 
       
        
