@@ -6,24 +6,26 @@
   <meta name="keywords" content=" 源码 ">
   <meta name="description" content="ArrayList源码 | lovexl">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="写这篇文章的目的接着上一篇把蜗牛读书的规则给出来，有一个老哥需要小猿搜题的，再写一下，希望大家多多练习下，授之以鱼不如授之以渔。 教程app小猿搜题 希望达到的目的 通过修改体验vip 满足折腾的需求，实现diy设置  开始小猿搜题ios用的软件是http cacther(网球)，上一篇写了一些教程，需要的可以去看看[【IOS】http catcher使用教程，步骤超详]https://www.5">
-<meta name="keywords" content="网球">
+<meta name="description" content="写这篇文章的目的前面分享了几个用http cather实现抓包的原理，总体来说用手机操作还是没有电脑方便，另外http cather还需付费购买，本文尝试使用电脑端charles软件来实现，可以发现，charles的功能比网球更加强大。 使用到的软件 charles，搜索一下安装即可，key网上有 charles设置ssl成功，这个大家搜索配置一下，帖子里好像不能放链接吧。安卓用户好像麻烦一点 f">
 <meta property="og:type" content="article">
-<meta property="og:title" content="httpCacther网球体验小猿搜题">
-<meta property="og:url" content="http://kerui.tk/2020/05/10/httpCacther网球修改蜗牛读书vip/index.html">
+<meta property="og:title" content="利用charles体验fit健身软件vip。理论安卓ios都可以。">
+<meta property="og:url" content="http://kerui.tk/2020/05/12/利用charles体验fit健身软件vip-理论安卓ios都可以。/index.html">
 <meta property="og:site_name" content="lovexl">
-<meta property="og:description" content="写这篇文章的目的接着上一篇把蜗牛读书的规则给出来，有一个老哥需要小猿搜题的，再写一下，希望大家多多练习下，授之以鱼不如授之以渔。 教程app小猿搜题 希望达到的目的 通过修改体验vip 满足折腾的需求，实现diy设置  开始小猿搜题ios用的软件是http cacther(网球)，上一篇写了一些教程，需要的可以去看看[【IOS】http catcher使用教程，步骤超详]https://www.5">
+<meta property="og:description" content="写这篇文章的目的前面分享了几个用http cather实现抓包的原理，总体来说用手机操作还是没有电脑方便，另外http cather还需付费购买，本文尝试使用电脑端charles软件来实现，可以发现，charles的功能比网球更加强大。 使用到的软件 charles，搜索一下安装即可，key网上有 charles设置ssl成功，这个大家搜索配置一下，帖子里好像不能放链接吧。安卓用户好像麻烦一点 f">
 <meta property="og:locale" content="zh">
-<meta property="og:image" content="https://s1.ax1x.com/2020/05/10/Y8Ejdf.md.png">
-<meta property="og:image" content="https://s1.ax1x.com/2020/05/10/Y8VXc9.md.png">
-<meta property="og:image" content="https://s1.ax1x.com/2020/05/10/Y8ZmHP.md.png">
-<meta property="og:image" content="https://s1.ax1x.com/2020/05/10/Y8n8jH.md.png">
-<meta property="og:image" content="https://s1.ax1x.com/2020/05/10/Y8KeFx.md.jpg">
-<meta property="og:updated_time" content="2020-05-10T12:56:37.945Z">
+<meta property="og:image" content="https://s1.ax1x.com/2020/05/12/YYjL3q.md.jpg">
+<meta property="og:image" content="https://s1.ax1x.com/2020/05/12/YtpH1A.md.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/05/12/YYXYSP.md.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/05/12/YYvkgx.md.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/05/12/YYx9L8.md.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/05/12/YtpWm6.md.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/05/12/Yt9K39.md.jpg">
+<meta property="og:image" content="https://s1.ax1x.com/2020/05/12/Yt98HK.md.png">
+<meta property="og:updated_time" content="2020-05-12T02:53:29.867Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="httpCacther网球体验小猿搜题">
-<meta name="twitter:description" content="写这篇文章的目的接着上一篇把蜗牛读书的规则给出来，有一个老哥需要小猿搜题的，再写一下，希望大家多多练习下，授之以鱼不如授之以渔。 教程app小猿搜题 希望达到的目的 通过修改体验vip 满足折腾的需求，实现diy设置  开始小猿搜题ios用的软件是http cacther(网球)，上一篇写了一些教程，需要的可以去看看[【IOS】http catcher使用教程，步骤超详]https://www.5">
-<meta name="twitter:image" content="https://s1.ax1x.com/2020/05/10/Y8Ejdf.md.png">
+<meta name="twitter:title" content="利用charles体验fit健身软件vip。理论安卓ios都可以。">
+<meta name="twitter:description" content="写这篇文章的目的前面分享了几个用http cather实现抓包的原理，总体来说用手机操作还是没有电脑方便，另外http cather还需付费购买，本文尝试使用电脑端charles软件来实现，可以发现，charles的功能比网球更加强大。 使用到的软件 charles，搜索一下安装即可，key网上有 charles设置ssl成功，这个大家搜索配置一下，帖子里好像不能放链接吧。安卓用户好像麻烦一点 f">
+<meta name="twitter:image" content="https://s1.ax1x.com/2020/05/12/YYjL3q.md.jpg">
 
 
 <link rel="icon" href="/img/jerry.jpg">
@@ -114,15 +116,7 @@
 
 
 <ul>
-    <li><div class="all active">全部文章<small>(18)</small></div></li>
-    
-        
-            
-            <li><div data-rel="源码">源码<small>(1)</small></div>
-                
-            </li>
-            
-        
+    <li><div class="all active">全部文章<small>(19)</small></div></li>
     
         
             
@@ -134,7 +128,7 @@
     
         
             
-            <li><div data-rel="网球">网球<small>(2)</small></div>
+            <li><div data-rel="源码">源码<small>(1)</small></div>
                 
             </li>
             
@@ -150,7 +144,7 @@
     
         
             
-            <li><div data-rel="linux">linux<small>(3)</small></div>
+            <li><div data-rel="网球">网球<small>(2)</small></div>
                 
             </li>
             
@@ -167,6 +161,14 @@
         
             
             <li><div data-rel="java">java<small>(3)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="linux">linux<small>(3)</small></div>
                 
             </li>
             
@@ -191,7 +193,7 @@
     </div>
     <div><a style="border-right: 1px solid #fff; width: 49%"  class="about site_url"  href="/about">关于</a><a style="width: 50%"  class="friends">友链</a></div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="18">
+<input type="hidden" id="yelog_site_posts_number" value="19">
 
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
@@ -224,11 +226,19 @@
     <div class="tags-list">
     
     <li class="article-tag-list-item">
+        <a href="javascript:" class="color3">总结</a>
+    </li>
+    
+    <li class="article-tag-list-item">
         <a href="javascript:" class="color3">源码</a>
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color3">总结</a>
+        <a href="javascript:" class="color4">数据库</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color5">负载均衡</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -240,23 +250,15 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color5">负载均衡</a>
-    </li>
-    
-    <li class="article-tag-list-item">
-        <a href="javascript:" class="color1">linux</a>
-    </li>
-    
-    <li class="article-tag-list-item">
         <a href="javascript:" class="color3">主机</a>
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color4">数据库</a>
+        <a href="javascript:" class="color5">java</a>
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color5">java</a>
+        <a href="javascript:" class="color1">linux</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -275,6 +277,14 @@
            data-author="" >
             <span class="post-title" title="数组小知识">数组小知识</span>
             <span class="post-date" title="2019-08-27 11:39:16">2019/08/27</span>
+        </a>
+        
+        <a  class=""
+           href="/2020/05/12/利用charles体验fit健身软件vip-理论安卓ios都可以。/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="利用charles体验fit健身软件vip。理论安卓ios都可以。">利用charles体验fit健身软件vip。理论安卓ios都可以。</span>
+            <span class="post-date" title="2020-05-12 10:42:15">2020/05/12</span>
         </a>
         
         <a  class="网球 "
@@ -695,7 +705,7 @@ List&lt;E&gt; subList(int fromIndex, int toIndex);</code></pre><p>可以看出�
     /*作者、标签的自动补全*/
     $(function () {
         $('.search').AutoComplete({
-            'data': ['#源码','#总结','#多线程','#网球','#负载均衡','#linux','#主机','#数据库','#java','#操作系统',],
+            'data': ['#总结','#源码','#数据库','#负载均衡','#多线程','#网球','#主机','#java','#linux','#操作系统',],
             'itemHeight': 20,
             'width': 418
         }).AutoComplete('show');
