@@ -136,7 +136,7 @@
     
         
             
-            <li><div data-rel="网球">网球<small>(3)</small></div>
+            <li><div data-rel="负载均衡">负载均衡<small>(1)</small></div>
                 
             </li>
             
@@ -144,7 +144,7 @@
     
         
             
-            <li><div data-rel="负载均衡">负载均衡<small>(1)</small></div>
+            <li><div data-rel="网球">网球<small>(3)</small></div>
                 
             </li>
             
@@ -160,7 +160,7 @@
     
         
             
-            <li><div data-rel="主机操作">主机操作<small>(1)</small></div>
+            <li><div data-rel="java">java<small>(3)</small></div>
                 
             </li>
             
@@ -168,7 +168,7 @@
     
         
             
-            <li><div data-rel="java">java<small>(3)</small></div>
+            <li><div data-rel="主机操作">主机操作<small>(1)</small></div>
                 
             </li>
             
@@ -230,6 +230,10 @@
     </li>
     
     <li class="article-tag-list-item">
+        <a href="javascript:" class="color4">数据库</a>
+    </li>
+    
+    <li class="article-tag-list-item">
         <a href="javascript:" class="color3">总结</a>
     </li>
     
@@ -238,15 +242,11 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color3">网球</a>
-    </li>
-    
-    <li class="article-tag-list-item">
-        <a href="javascript:" class="color4">数据库</a>
-    </li>
-    
-    <li class="article-tag-list-item">
         <a href="javascript:" class="color5">负载均衡</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color3">网球</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -254,11 +254,11 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color3">主机</a>
+        <a href="javascript:" class="color5">java</a>
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color5">java</a>
+        <a href="javascript:" class="color3">主机</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -455,7 +455,7 @@
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2020-05-09 00:32:18'>2020-05-09 00:31</time>
+        创建时间:<time class="date" title='更新时间: 2020-05-14 15:00:04'>2020-05-09 00:31</time>
         
     </div>
     <div class="article-meta">
@@ -495,7 +495,7 @@
         <h2 id="Charles-抓包并修改包"><a href="#Charles-抓包并修改包" class="headerlink" title="Charles 抓包并修改包"></a>Charles 抓包并修改包</h2><h3 id="一-安装证书解密-https-包"><a href="#一-安装证书解密-https-包" class="headerlink" title="一.安装证书解密 https 包"></a>一.安装证书解密 https 包</h3><ol>
 <li>想要解密 https 包需要安装证书并将证书加入到受信任根证书里面去。选择 help 下的 SSL Proxying。点击 Install Charles root certificate。<br><a href="https://imgchr.com/i/YKqlpn" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/05/08/YKqlpn.md.png" alt="安装ssl"></a></li>
 <li>点击安装证书，选择本地计算机，点击下一步，选择第二项，点击浏览，选择受信任的根证书。<br><a href="https://imgchr.com/i/YKvnRH" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/05/08/YKvnRH.md.png" alt="安装根证书"></a></li>
-<li>如果需要解密手机端的 https 包，选择第一章图中的第三项即可。这种情况下点击 Help 下的 Local Ip Address 查看当前 ip，选择对应网卡的 ip 地址即可，一般情况是以 192.168 开头。假设为 192.168.0.102。最后手机与电脑连接上相同的网络，将无线的代理 ip 设置为 192.168.0.102，端口设置为 8888 即可。</li>
+<li>如果需要解密手机端的 https 包，选择第一章图中的第三项即可。这种情况下点击 Help 下的 Local Ip Address 查看当前 ip，选择对应网卡的 ip 地址即可，一般情况是以 192.168 开头。假设为 192.168.0.102。最后手机与电脑连接上相同的网络，将无线的代理 ip 设置为 192.168.0.102，端口设置为 8888 即可。最后在手机浏览器打开chls.pro/ssl下载证书就可以了</li>
 </ol>
 <h3 id="二-charles-设置断点"><a href="#二-charles-设置断点" class="headerlink" title="二 charles 设置断点"></a>二 charles 设置断点</h3><p>charles 可以通过设置断点的方式来修改 response。以<a href="https://reqres.in/api/users/1" target="_blank" rel="noopener">reqres.in</a>这个网址为例：该接口返回的数据为：</p>
 <pre><code class="json">    &quot;data&quot;:{
@@ -604,7 +604,7 @@
     /*作者、标签的自动补全*/
     $(function () {
         $('.search').AutoComplete({
-            'data': ['#源码','#总结','#多线程','#网球','#数据库','#负载均衡','#linux','#主机','#java','#操作系统',],
+            'data': ['#源码','#数据库','#总结','#多线程','#负载均衡','#网球','#linux','#java','#主机','#操作系统',],
             'itemHeight': 20,
             'width': 418
         }).AutoComplete('show');
