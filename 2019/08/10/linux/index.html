@@ -10,7 +10,7 @@
 <meta name="keywords" content="网球">
 <meta property="og:type" content="article">
 <meta property="og:title" content="终极蛇皮之charles修改洪恩双语绘本，超详细的哦">
-<meta property="og:url" content="http://kerui.tk/2020/05/14/终极蛇皮之charles修改洪恩双语绘本，有小朋友的进来看看，超详细的哦/index.html">
+<meta property="og:url" content="http://blog.930113.xyz/2020/05/14/终极蛇皮之charles修改洪恩双语绘本，有小朋友的进来看看，超详细的哦/index.html">
 <meta property="og:site_name" content="lovexl">
 <meta property="og:description" content="之前的帖子：http cacther修改小猿搜题这个没有实际效果，熟悉下修改的流程，还修改了蜗牛读书http cacther使用教程，多图超详细这个修改的app是轻听英语必杀技之利用charles体验fit健身软件vip。理论安卓ios都可以这个修改的是fit软件，健身用的Charles 断点、rewrite详细教程，这个是我之前写的，违规了我再编辑 写这篇文章的目的前面的分享包括了英语，健身，读">
 <meta property="og:locale" content="zh">
@@ -191,7 +191,7 @@
     <a class="dynamic-menu " target="_blank"  href="https://github.com/yukerui">github</a>
     
     </div>
-    <div><a style="border-right: 1px solid #fff; width: 49%"  class="about site_url"  href="/about">关于</a><a style="width: 50%"  class="friends">友链</a></div>
+    <div><a  class="friends">友链</a></div>
 </div>
 <input type="hidden" id="yelog_site_posts_number" value="20">
 
@@ -226,6 +226,10 @@
     <div class="tags-list">
     
     <li class="article-tag-list-item">
+        <a href="javascript:" class="color4">数据库</a>
+    </li>
+    
+    <li class="article-tag-list-item">
         <a href="javascript:" class="color3">源码</a>
     </li>
     
@@ -235,10 +239,6 @@
     
     <li class="article-tag-list-item">
         <a href="javascript:" class="color4">多线程</a>
-    </li>
-    
-    <li class="article-tag-list-item">
-        <a href="javascript:" class="color4">数据库</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -485,6 +485,17 @@
         </span>
         
         
+        <span class="top-comment" title="跳转至评论区">
+            <a href="#comments">
+                评论:<span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </a>
+        </span>
+        
     </div>
     
     <div class="toc-ref">
@@ -510,6 +521,10 @@
     </div>
 </article>
 
+
+<p>
+    <a href="javascript:void(0)" class="dashang" onclick="dashangToggle()">赏</a>
+</p>
 
 
 
@@ -544,7 +559,7 @@
 
     </div>
     <div class="copyright">
-        <p class="footer-entry">©2019 yukerui</p>
+        <p class="footer-entry">©2020 yukerui</p>
 <p>lovexl forever</p>
     </div>
     <div class="full-toc">
@@ -560,6 +575,24 @@
 </div>
 <div class="acParent"></div>
 
+<div class="hide_box" onclick="dashangToggle()"></div>
+<div class="shang_box">
+    <a class="shang_close" href="javascript:void(0)" onclick="dashangToggle()">×</a>
+    <div class="shang_tit">
+        <p>喜欢就点赞,疼爱就打赏</p>
+    </div>
+    <div class="shang_payimg">
+        <div class="pay_img">
+            <img src="/img/alipay.jpg" class="alipay" title="扫码支持">
+            <img src="/img/weixin.jpg" class="weixin" title="扫码支持">
+        </div>
+    </div>
+    <div class="shang_payselect">
+        <span><label><input type="radio" name="pay" checked value="alipay">支付宝</label></span><span><label><input type="radio" name="pay" value="weixin">微信</label></span>
+    </div>
+</div>
+
+
 </body>
 <script src="//cdn.bootcss.com/jquery.pjax/2.0.1/jquery.pjax.min.js"></script>
 
@@ -569,7 +602,7 @@
     /*作者、标签的自动补全*/
     $(function () {
         $('.search').AutoComplete({
-            'data': ['#源码','#总结','#多线程','#数据库','#负载均衡','#网球','#主机','#java','#linux','#操作系统',],
+            'data': ['#数据库','#源码','#总结','#多线程','#负载均衡','#网球','#主机','#java','#linux','#操作系统',],
             'itemHeight': 20,
             'width': 418
         }).AutoComplete('show');
@@ -581,6 +614,14 @@
         
 
         /*渲染打赏样式*/
+        
+        $("input[name=pay]").on("click", function () {
+            if($("input[name=pay]:checked").val()=="weixin"){
+                $(".shang_box .shang_payimg .pay_img").addClass("weixin_img");
+            } else {
+                $(".shang_box .shang_payimg .pay_img").removeClass("weixin_img");
+            }
+        })
         
 
         /*高亮代码块行号*/
@@ -612,6 +653,11 @@
     }
 
     /*打赏页面隐藏与展示*/
+    
+    function dashangToggle() {
+        $(".shang_box").fadeToggle();
+        $(".hide_box").fadeToggle();
+    }
     
 
 </script>
