@@ -2,9 +2,9 @@
 <html>
 <head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
-  <title>ArrayList源码 | lovexl</title>
-  <meta name="keywords" content=" 源码 ">
-  <meta name="description" content="ArrayList源码 | lovexl">
+  <title>终极蛇皮之charles修改洪恩双语绘本，有小朋友的进来看看，超详细的哦 | lovexl</title>
+  <meta name="keywords" content=" 网球 ">
+  <meta name="description" content="终极蛇皮之charles修改洪恩双语绘本，有小朋友的进来看看，超详细的哦 | lovexl">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="之前的帖子：http cacther修改小猿搜题这个没有实际效果，熟悉下修改的流程，还修改了蜗牛读书http cacther使用教程，多图超详细这个修改的app是轻听英语必杀技之利用charles体验fit健身软件vip。理论安卓ios都可以这个修改的是fit软件，健身用的Charles 断点、rewrite详细教程，这个是我之前写的，违规了我再编辑 写这篇文章的目的前面的分享包括了英语，健身，读">
 <meta name="keywords" content="网球">
@@ -443,9 +443,9 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="post-ArrayList源码" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-终极蛇皮之charles修改洪恩双语绘本，有小朋友的进来看看，超详细的哦" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">ArrayList源码</h1>
+        <h1 class="article-title">终极蛇皮之charles修改洪恩双语绘本，有小朋友的进来看看，超详细的哦</h1>
     
     <div class="article-meta">
         
@@ -453,21 +453,21 @@
         
         <span class="book">
             
-                <a href="javascript:" data-rel="源码">源码</a>
+                <a href="javascript:" data-rel="网球">网球</a>
             
         </span>
         
         
         <span class="tag">
             
-            <a href="javascript:" class="color3">源码</a>
+            <a href="javascript:" class="color3">网球</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2019-08-16 21:50:19'>2019-08-16 21:46</time>
+        创建时间:<time class="date" title='更新时间: 2020-05-14 10:36:30'>2020-05-14 10:29</time>
         
     </div>
     <div class="article-meta">
@@ -489,7 +489,7 @@
     
     <div class="toc-ref">
     
-        
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#之前的帖子："><span class="toc-text">之前的帖子：</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#写这篇文章的目的"><span class="toc-text">写这篇文章的目的</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#使用到的软件"><span class="toc-text">使用到的软件</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#教程开始"><span class="toc-text">教程开始</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#网球json白嫖"><span class="toc-text">网球json白嫖</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#最后"><span class="toc-text">最后</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -504,151 +504,35 @@
 </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <p>我们知道ArrayList是List接口的实现类,List又是继承Collection接口的,因此,先看下这两个接口里面有哪些方法.</p>
-<pre><code>//没写完
-public interface Collection&lt;E&gt;{
+        <h1 id="之前的帖子："><a href="#之前的帖子：" class="headerlink" title="之前的帖子："></a>之前的帖子：</h1><p><a href="[https://blog.930113.xyz/2020/05/10/httpCacther%E7%BD%91%E7%90%83%E4%BF%AE%E6%94%B9%E8%9C%97%E7%89%9B%E8%AF%BB%E4%B9%A6vip/](https://blog.930113.xyz/2020/05/10/httpCacther网球修改蜗牛读书vip/)">http cacther修改小猿搜题</a><br>这个没有实际效果，熟悉下修改的流程，还修改了蜗牛读书<br><a href="[https://blog.930113.xyz/2020/05/09/httpCacther%E7%BD%91%E7%90%83%E4%BF%AE%E6%94%B9%E8%BD%BB%E5%90%AC%E8%8B%B1%E8%AF%ADvip/](https://blog.930113.xyz/2020/05/09/httpCacther网球修改轻听英语vip/)">http cacther使用教程，多图超详细</a><br>这个修改的app是轻听英语<br><a href="[https://blog.930113.xyz/2020/05/12/%E5%88%A9%E7%94%A8charles%E4%BD%93%E9%AA%8Cfit%E5%81%A5%E8%BA%AB%E8%BD%AF%E4%BB%B6vip-%E7%90%86%E8%AE%BA%E5%AE%89%E5%8D%93ios%E9%83%BD%E5%8F%AF%E4%BB%A5%E3%80%82/](https://blog.930113.xyz/2020/05/12/利用charles体验fit健身软件vip-理论安卓ios都可以。/)">必杀技之利用charles体验fit健身软件vip。理论安卓ios都可以</a><br>这个修改的是fit软件，健身用的<br><a href="https://blog.930113.xyz/2020/05/09/charles%E6%96%AD%E7%82%B9%E3%80%81rewrite%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/" target="_blank" rel="noopener">Charles 断点、rewrite详细教程</a>，这个是我之前写的，违规了我再编辑</p>
+<h1 id="写这篇文章的目的"><a href="#写这篇文章的目的" class="headerlink" title="写这篇文章的目的"></a>写这篇文章的目的</h1><p>前面的分享包括了英语，健身，读书的软件，有一个老哥去我的github上提了个issues问我能不能改一个儿童故事类的软件，叫洪恩双语绘本，经过一番苦战终于搞定了。所以我又来了.</p>
+<h1 id="使用到的软件"><a href="#使用到的软件" class="headerlink" title="使用到的软件"></a>使用到的软件</h1><ul>
+<li>charles，论坛中有大佬分享了破解版，搜索一下安装即可</li>
+<li>charles设置ssl成功，没配制好的上面的链接配置一下</li>
+<li>洪恩双语绘本，给小朋友看故事书的。</li>
+</ul>
+<h1 id="教程开始"><a href="#教程开始" class="headerlink" title="教程开始"></a>教程开始</h1><p>本教程默认ssl已经装好并且手机已经信任了证书。</p>
+<ol>
+<li>看下不是vip的情况。对于需要vip的书籍只能试看几页就不行了。可以看出，这个app的会员是需要通过app store订阅的。</li>
+</ol>
+<p><a href="https://imgchr.com/i/Ywvoo6" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/05/14/Ywvoo6.md.png" alt="非vip"></a><br><a href="https://imgchr.com/i/Ywv7FK" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/05/14/Ywv7FK.md.png" alt="非vip"></a></p>
+<ol start="2">
+<li>打开charles和该app。先搜索user试试，定位到get_user_info这个接口，可以看到vip_status，我们将它改为1，感觉是不是结束了，然而并没有成功。<br><a href="https://imgchr.com/i/YwxTns" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/05/14/YwxTns.md.png" alt="YwxTns.md.png"></a></li>
+<li>什么原因呢？可以看到_s这个字段里面有个debug_signsrc和sk，初步推断可能是加密请求服务器。如果是这种情况下的话，我们下载付费书可能服务器只会下发包含特定页面的链接，也就是下载到本地的书就只有试看的那几页。</li>
+<li>尝试下一本付费书看下。接口在resource/ios/books/下面，好在这个没有加密，是个压缩包打开可以看到是一本完整的书。打脸了，不过好事是为下面的修改打下了基础。</li>
+<li>debug_signsrc字段中还有vip_status.expire_time，再修改一下试试，同样get_usr_info下还有一个get_purchase_list接口，同样这样修改试下，发现还是没用。又打脸了。可能存在有加密，这种情况下就没办法修改了。<br>```<br>userinfo.uid=7673475&amp;userinfo.vip_status.expire_time=<br>&amp;userinfo.vip_status.pack_list=&amp;<br>userinfo.vip_status.vip_type=0<br>```</li>
+<li>难道就这样放弃了吗？突然想到里面还有免费的书籍，看看免费的是怎么判断的啊。通过比较付费的和免费的或许可以提供点思路。先点开哪吒闹海然后再点开付费的睡美人看下接口情况。 额，唯一的区别就是book_id不同，打脸那么多次过后再次推断可能会有个接口判断对应的book_id是否需要会员，需要会员的话再比较自身账号是否是。<br><a href="https://imgchr.com/i/Y0ZKbT" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/05/14/Y0ZKbT.md.png" alt="Y0ZKbT.md.png"></a>.</li>
+<li>本着大脸不过三，我又去找接口了，终于在get_book_info找到了，我摸着肿起来的脸陷入了沉思，这次会成功吗？可以看到上图中需要付费的book_id=0011赫然出现在这里，一同出现的还有它的下载链接，对比发现是他是他就是他。修改is_vip再试试看吧。<br><a href="https://imgchr.com/i/Y0eQyt" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/05/14/Y0eQyt.md.png" alt="Y0eQyt.md.png"></a></li>
+<li>看下效果<br><a href="https://imgchr.com/i/Y0mm7T" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/05/14/Y0mm7T.md.png" alt="Y0mm7T.md.png"></a><br>终于不用打脸了。<br><a href="https://imgchr.com/i/Y0meBV" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/05/14/Y0meBV.md.png" alt="Y0meBV.md.png"></a></li>
+</ol>
+<p>对应接口：/v3/get_book_info<br>正则表达式：<br>```<br>is_vip”\s<em>:\s</em>\d<br>is_vip”: 0<br>```<br># 软件逻辑<br>总结下这个软件的逻辑：</p>
+<ol>
+<li>打开app时先请求get_usr_info下还有get_purchase_list接口判断用户是否是会员，这两个接口有加密信息在，不好修改。</li>
+<li>有一个get_book_info接口会给定书籍是否需要会员，需要会员的话就只提供几页试读。</li>
+</ol>
+<h1 id="网球json白嫖"><a href="#网球json白嫖" class="headerlink" title="网球json白嫖"></a>网球json白嫖</h1><p><a href="https://github.com/yukerui/httpCatcher-rules/blob/master/%E6%B4%AA%E6%81%A9%E5%8F%8C%E8%AF%AD%E7%BB%98%E6%9C%AC.json" target="_blank" rel="noopener">洪恩双语</a></p>
+<h1 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h1><p>事实证明，打脸还是有好处的，这个程序百密一疏啊，居然直接返回个json到本地判断，直接在服务器上判断如果不是会员的话就只提供试看的zip岂不是更好。<br>有需要的去提issues哦，顺便求star一波，好惨，这种教程看的人好少，我的博客根本没人看。哎，感觉没啥动力</p>
 
-        int size();
-
-        boolean isEmpty();
-
-        boolean contains(Object o);
-
-        Object[] toArray();
-
-        boolean add(E e);
-
-        boolean remove(Object o);
-
-        boolean containsAll(Collection&lt;?&gt; c);
-
-        boolean addAll(Collection&lt;? extends E&gt; c);
-
-        boolean removeAll(Collection&lt;?&gt; c);
-
-        void clear();
-}</code></pre><p>List接口在Collection的基础上新加的方法有:</p>
-<pre><code>E get(int index);
-//set一个element到index位置上
-E set(int index,E element);
-//找到o第一次出现的位置,不存在的话返回-1
-int indexOf(Object o)
-//最后一次出现的位置
-int lastIdexOf(Object o);
-//子list
-List&lt;E&gt; subList(int fromIndex, int toIndex);</code></pre><p>可以看出来不管是ArrayList还是LinkedList都可以通过get(index)方法来遍历,LInkedList的get实现还是通过next来做的.并且都可以通过add来添加,remove来移除.</p>
-<p>再来看一下ArrayList的实现方式:</p>
-<blockquote>
-<p>public class ArrayList extends AbstractList implements List RandomAccess, Cloneable, java.io.Serializable</p>
-</blockquote>
-<p>AbstractList是一个实现了List接口的抽象类实现一些基本的功能,具体参见抽象类的功能,实现了RandomAccess(随机访问),Cloneable,Serializable(序列化)的接口,序列化是网络传输或者保存到本地的需要,对于不想序列化的参数可以用transient或者readObject,writeObject来实现,后面会讲到.</p>
-<p>ArrayList底层是通过数组来实现的,默认的数组大小为10.</p>
-<blockquote>
-<p>private static final int DEFAULT_CAPACITY = 10;</p>
-</blockquote>
-<p>通过elementData数组来存放数据,因为elementData在超过threshold时会扩容,因此不需要将所有的都序列化,因此加了个transient关键字.</p>
-<blockquote>
-<p>transient Object[] elementData;</p>
-</blockquote>
-<p>get方法:</p>
-<pre><code>public E get(int index) {
-    //先判断输入index是否有效
-      rangeCheck(index);
-      //直接返回对应下标的值
-      return elementData(index);
-  }</code></pre><p>add方法:</p>
-<pre><code>public boolean add(E e) {
-         //保证容量
-        ensureCapacityInternal(size + 1);
-        elementData[size++] = e;
-        return true;
-    }</code></pre><p>remove 某个index的方法:</p>
-<pre><code>public E remove(int index) {
-        //
-        rangeCheck(index);
-        //记录数组被修改的次数, 修改数组可能会对正在进行的迭代造成不正确的结果
-        modCount++;
-        E oldValue = elementData(index);
-        //需要移动的数据的总数
-        int numMoved = size - index - 1;
-        if (numMoved &gt; 0)
-            /**arrayCopy方法:
-            **第一个elementData:源数组
-            **index+1:开始的位置
-            **第二个elementData:目标数组
-            **index:开始的位置
-            **numMoved:总共需要复制多少个
-            System.arraycopy(elementData, index+1, elementData, index,
-                             numMoved);
-          //将最后一个设置为nul,让GC回收
-        elementData[--size] = null; // clear to let GC do its work
-
-        return oldValue;
-    }</code></pre><p>remove某个Object的方法:逻辑很简单,遍历数组找到与o相同的,然后调用fastRemove方法</p>
-<pre><code>public boolean remove(Object o) {
-        if (o == null) {
-            for (int index = 0; index &lt; size; index++)
-                if (elementData[index] == null) {
-                    fastRemove(index);
-                    return true;
-                }
-        } else {
-            for (int index = 0; index &lt; size; index++)
-                if (o.equals(elementData[index])) {
-                    fastRemove(index);
-                    return true;
-                }
-        }
-        return false;
-    }</code></pre><p>clear方法:</p>
-<pre><code> public void clear() { modCount++;
-    // clear to let GC do its work
-    for (int i = 0; i &lt; size; i++)
-        elementData[i] = null;
-
-    size = 0;
-}</code></pre><p>readObject方法:</p>
-<pre><code>private void readObject(java.io.ObjectInputStream s)
-        throws java.io.IOException, ClassNotFoundException {
-        elementData = EMPTY_ELEMENTDATA;
-
-        // Read in size, and any hidden stuff
-        s.defaultReadObject();
-
-        // Read in capacity
-        s.readInt(); // ignored
-
-        if (size &gt; 0) {
-            // be like clone(), allocate array based upon size not capacity
-            int capacity = calculateCapacity(elementData, size);
-            SharedSecrets.getJavaOISAccess().checkArray(s, Object[].class, capacity);
-            ensureCapacityInternal(size);
-
-            Object[] a = elementData;
-            // Read in all elements in the proper order.
-            for (int i=0; i&lt;size; i++) {
-                a[i] = s.readObject();
-            }
-        }
-    }</code></pre><p>ArrayList的扩容机制: 在add操作时,有个判断当前容量的ensureCapacityInternal方法,首先会把modCount++,然后判断 minCapcity(传过来的是size+1)比数组的长度大时扩容</p>
-<pre><code>private void ensureExplicitCapacity(int minCapacity) {
-        modCount++;
-
-        // overflow-conscious code
-        if (minCapacity - elementData.length &gt; 0)
-            grow(minCapacity);
-    }</code></pre><p>很明显可以看出,扩容是按照1.5倍进行扩容.</p>
-<pre><code>private void grow(int minCapacity) {
-        // overflow-conscious code
-        int oldCapacity = elementData.length;
-        int newCapacity = oldCapacity + (oldCapacity &gt;&gt; 1);
-        if (newCapacity - minCapacity &lt; 0)
-            newCapacity = minCapacity;
-        if (newCapacity - MAX_ARRAY_SIZE &gt; 0)
-            newCapacity = hugeCapacity(minCapacity);
-        // minCapacity is usually close to size, so this is a win:
-        elementData = Arrays.copyOf(elementData, newCapacity);
-    }</code></pre>
       
        
     </div>
