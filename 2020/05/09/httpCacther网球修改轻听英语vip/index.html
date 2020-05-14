@@ -226,15 +226,15 @@
     <div class="tags-list">
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color4">数据库</a>
-    </li>
-    
-    <li class="article-tag-list-item">
         <a href="javascript:" class="color3">源码</a>
     </li>
     
     <li class="article-tag-list-item">
         <a href="javascript:" class="color3">总结</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color4">数据库</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -467,7 +467,7 @@
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2020-05-14 17:27:11'>2020-05-09 14:39</time>
+        创建时间:<time class="date" title='更新时间: 2020-05-14 17:52:15'>2020-05-09 14:39</time>
         
     </div>
     <div class="article-meta">
@@ -542,12 +542,19 @@
 </li>
 <li><p>最后一刻，修改对应参数。</p>
 <ul>
-<li>在图2对应的url出左滑-更多-新建重写，名称随意，点击添加规则，目标为响应，行为为Body。我们先尝试修改”dl_quota“参数，在查找中输入”dl_quota”\s<em>\s</em>\d+。解释以下\s*表示匹配零个或多个空格，\d+表示匹配多个数字。在替换中写”dl_quota”: 8888,点击完成即可。<br><a href="https://imgchr.com/i/YQdkqO" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/05/09/YQdkqO.md.png" alt="YQdkqO.md.png"></a><br>重新打开app查看效果。成功了！！！！<br><a href="https://imgchr.com/i/YQdFsK" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/05/09/YQdFsK.md.png" alt="YQdFsK.md.png"></a></li>
+<li>在图2对应的url出左滑-更多-新建重写，名称随意，点击添加规则，目标为响应，行为为Body。我们先尝试修改”dl_quota“参数，在查找中输入”dl_quota”\s<em>\s</em>\d+。解释以下\s*表示匹配零个或多个空格，\d+表示匹配多个数字。在替换中写”dl_quota”: 8888,点击完成即可。请使用以下的正则表达式:</li>
+</ul>
+<pre><code class="json">dl_quota&quot;\s*\s*\d+
+dl_quota&quot;: 8888</code></pre>
+<ul>
+<li><a href="https://imgchr.com/i/YQdkqO" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/05/09/YQdkqO.md.png" alt="YQdkqO.md.png"></a>```<br>重新打开app查看效果。成功了！！！！</li>
+<li><a href="https://imgchr.com/i/YQdFsK" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/05/09/YQdFsK.md.png" alt="YQdFsK.md.png"></a></li>
 </ul>
 </li>
 </ol>
 <ul>
-<li>尝试修改vip<br>根据上面的流程，我们尝试修改“expire_date”，“user_type”和“granted”参数，将 user_type和granted改为1，expire_date为unix时间戳，比如改为2020年8月8日，对应值为：1596845288000。<br><a href="https://imgchr.com/i/YQyvCD" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/05/09/YQyvCD.md.png" alt="YQyvCD.md.png"></a><br>重开打开后看下效果。<br><a href="https://imgchr.com/i/YQ6RsA" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/05/09/YQ6RsA.md.png" alt="YQ6RsA.md.png"></a></li>
+<li>尝试修改vip</li>
+<li>根据上面的流程，我们尝试修改“expire_date”，“user_type”和“granted”参数，将 user_type和granted改为1，expire_date为unix时间戳，比如改为2020年8月8日，对应值为：1596845288000。<br><a href="https://imgchr.com/i/YQyvCD" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/05/09/YQyvCD.md.png" alt="YQyvCD.md.png"></a><br>重开打开后看下效果。<br><a href="https://imgchr.com/i/YQ6RsA" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/05/09/YQ6RsA.md.png" alt="YQ6RsA.md.png"></a></li>
 </ul>
 
       
@@ -636,7 +643,7 @@
     /*作者、标签的自动补全*/
     $(function () {
         $('.search').AutoComplete({
-            'data': ['#数据库','#源码','#总结','#多线程','#负载均衡','#网球','#主机','#java','#linux','#操作系统',],
+            'data': ['#源码','#总结','#数据库','#多线程','#负载均衡','#网球','#主机','#java','#linux','#操作系统',],
             'itemHeight': 20,
             'width': 418
         }).AutoComplete('show');
