@@ -121,7 +121,7 @@
     
         
             
-            <li><div data-rel="源码">源码<small>(1)</small></div>
+            <li><div data-rel="总结">总结<small>(1)</small></div>
                 
             </li>
             
@@ -129,7 +129,7 @@
     
         
             
-            <li><div data-rel="总结">总结<small>(1)</small></div>
+            <li><div data-rel="源码">源码<small>(1)</small></div>
                 
             </li>
             
@@ -161,7 +161,7 @@
     
         
             
-            <li><div data-rel="主机操作">主机操作<small>(1)</small></div>
+            <li><div data-rel="java">java<small>(3)</small></div>
                 
             </li>
             
@@ -169,7 +169,7 @@
     
         
             
-            <li><div data-rel="java">java<small>(3)</small></div>
+            <li><div data-rel="主机操作">主机操作<small>(1)</small></div>
                 
             </li>
             
@@ -195,7 +195,7 @@
     <div><a  class="friends">友链</a></div>
 </div>
 <input type="hidden" id="yelog_site_posts_number" value="20">
-
+<input type="hidden" id="yelog_site_word_count" value="15k">
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
     <span id="busuanzi_value_site_pv"></span>
@@ -227,15 +227,19 @@
     <div class="tags-list">
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color3">源码</a>
-    </li>
-    
-    <li class="article-tag-list-item">
         <a href="javascript:" class="color3">总结</a>
     </li>
     
     <li class="article-tag-list-item">
         <a href="javascript:" class="color4">数据库</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color3">源码</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color4">多线程</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -251,15 +255,11 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color3">主机</a>
-    </li>
-    
-    <li class="article-tag-list-item">
         <a href="javascript:" class="color5">java</a>
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color4">多线程</a>
+        <a href="javascript:" class="color3">主机</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -447,7 +447,7 @@
         <article class="index">
             <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#blog的用途"><span class="toc-text">blog的用途</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#关于本人"><span class="toc-text">关于本人</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#最要感谢的是晓兰的耐心陪伴，陪伴是最长情的告白。"><span class="toc-text">最要感谢的是晓兰的耐心陪伴，陪伴是最长情的告白。</span></a></li></ol></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#blog的用途"><span class="toc-text">blog的用途</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#关于本博客"><span class="toc-text">关于本博客</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#最要感谢的是晓兰的耐心陪伴，陪伴是最长情的告白。"><span class="toc-text">最要感谢的是晓兰的耐心陪伴，陪伴是最长情的告白。</span></a></li></ol></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -461,7 +461,8 @@
 </style>
 </div>
             <h1 id="blog的用途"><a href="#blog的用途" class="headerlink" title="blog的用途"></a>blog的用途</h1><p>主要用来记录一下学习中遇到的问题，包括java，jvm，多线程，操作系统的一些知识，算法也会涉及到，也是为了自己复习用吧。</p>
-<h2 id="关于本人"><a href="#关于本人" class="headerlink" title="关于本人"></a>关于本人</h2><p>普通211渣硕一枚,目前在秋招找工作</p>
+<h2 id="关于本博客"><a href="#关于本博客" class="headerlink" title="关于本博客"></a>关于本博客</h2><p>到目前为止已经写了<code class="article_number"></code>篇文章， 共<code class="site_word_count"></code>字。</p>
+<p>本站访问人数：<code class="site_uv"></code>人次 ， 访问量：<code class="site_pv"></code>次</p>
 <h3 id="最要感谢的是晓兰的耐心陪伴，陪伴是最长情的告白。"><a href="#最要感谢的是晓兰的耐心陪伴，陪伴是最长情的告白。" class="headerlink" title="最要感谢的是晓兰的耐心陪伴，陪伴是最长情的告白。"></a>最要感谢的是晓兰的耐心陪伴，陪伴是最长情的告白。</h3>
         </article>
         
@@ -536,7 +537,7 @@
     /*作者、标签的自动补全*/
     $(function () {
         $('.search').AutoComplete({
-            'data': ['#源码','#总结','#数据库','#负载均衡','#网球','#linux','#主机','#java','#多线程','#操作系统',],
+            'data': ['#总结','#数据库','#源码','#多线程','#负载均衡','#网球','#linux','#java','#主机','#操作系统',],
             'itemHeight': 20,
             'width': 418
         }).AutoComplete('show');
