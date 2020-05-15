@@ -2,9 +2,9 @@
 <html>
 <head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
-  <title>删除map或list中的指定元素 | lovexl</title>
-  <meta name="keywords" content=" java ">
-  <meta name="description" content="删除map或list中的指定元素 | lovexl">
+  <title>终极蛇皮教程二：charles修改洪恩故事，过程很详细哦 | lovexl</title>
+  <meta name="keywords" content>
+  <meta name="description" content="终极蛇皮教程二：charles修改洪恩故事，过程很详细哦 | lovexl">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="不会用charles的看下这个Charles 断点、rewrite详细教程之前的帖子：http cacther修改小猿搜题这个没有实际效果，熟悉下修改的流程，还修改了蜗牛读书http cacther使用教程，多图超详细这个修改的app是轻听英语必杀技之利用charles体验fit健身软件vip。理论安卓ios都可以这个修改的是fit软件，健身用的终极蛇皮之charles修改洪恩双语绘本，有小朋友的">
 <meta property="og:type" content="article">
@@ -468,36 +468,24 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="post-删除map或list中的指定元素" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-终极蛇皮教程二：charles修改洪恩故事，过程很详细哦" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">删除map或list中的指定元素</h1>
+        <h1 class="article-title">终极蛇皮教程二：charles修改洪恩故事，过程很详细哦</h1>
     
     <div class="article-meta">
         
         
         
-        <span class="book">
-            
-                <a href="javascript:" data-rel="java">java</a>
-            
-        </span>
-        
-        
-        <span class="tag">
-            
-            <a href="javascript:" class="color5">java</a>
-            
-        </span>
         
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2019-08-31 18:50:54'>2019-08-31 18:36</time>
+        创建时间:<time class="date" title='更新时间: 2020-05-15 17:08:45'>2020-05-15 16:58</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:488</span>
+        <span>字数:1.3k</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -527,7 +515,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#删除指定元素"><span class="toc-text">删除指定元素</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#不会用charles的看下这个Charles-断点、rewrite详细教程"><span class="toc-text">不会用charles的看下这个Charles 断点、rewrite详细教程</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#之前的帖子："><span class="toc-text">之前的帖子：</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#写这篇文章的目的"><span class="toc-text">写这篇文章的目的</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#使用到的软件"><span class="toc-text">使用到的软件</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#教程开始"><span class="toc-text">教程开始</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#软件逻辑"><span class="toc-text">软件逻辑</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#正则表达式"><span class="toc-text">正则表达式</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#最后"><span class="toc-text">最后</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#特别申明"><span class="toc-text">特别申明</span></a>
     
 <style>
     .left-col .switch-btn,
@@ -542,45 +530,58 @@
 </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="删除指定元素"><a href="#删除指定元素" class="headerlink" title="删除指定元素"></a>删除指定元素</h2><p>​        之前说过在通过iterator遍历的时候不能删除元素，会报ConcurrentModificationException，因为在iterator中一般会设置一个标识来判断循环时是原数据结构是否被更改了。</p>
-<p>​        比如想把map中value为1的全部删除掉，如果用下面这种的话，直接remove掉可行不？？？？？？</p>
-<pre><code class="java">for (Map.Entry&lt;Integer,Integer&gt; entry:map.entrySet()){
-            if (entry.getValue()==1){
-                map.remove(entry.getKey());
-            }
-        }
----------------------------------------------------------------------------------
-Exception in thread &quot;main&quot; java.util.ConcurrentModificationException
-    at java.util.HashMap$HashIterator.nextNode(HashMap.java:1442)
-    at java.util.HashMap$EntryIterator.next(HashMap.java:1476)
-    at java.util.HashMap$EntryIterator.next(HashMap.java:1474)</code></pre>
-<p>​        很明显不行，for each语句其实就是通过iterator来做的，Iterator 被创建之后会建立一个指向原来对象的单链索引表，当原来的对象数量发生变化时，这个索引表的内容不会同步改变，所以当索引指针往后移动的时候就找不到要迭代的对象，所以按照 fail-fast 原则，Iterator 会马上抛出 java.util.ConcurrentModificationException 异常。所以 Iterator 在工作的时候是不允许被迭代的对象被改变的。那怎么样才能删除呢?</p>
-<p>​        其实直接用iterator的remove函数就可以了， Iterator.remove() 方法会在删除当前迭代对象的同时维护索引的一致性。</p>
-<pre><code class="java">Iterator&lt;Map.Entry&lt;Integer,Integer&gt;&gt; iterator=map.entrySet().iterator();         
-while (iterator.hasNext()){             
-         Map.Entry&lt;Integer, Integer&gt; entry= iterator.next();
-         int value=entry.getValue();             
-         if (value==1){                 
-              iterator.remove();             
-         } 
-}
------------------------------------------------------------------------------</code></pre>
-<p>​        同理，list删除元素也是一样的道理。</p>
-<p>​        发现了一个宝藏，Collection里实现了一个方法，removeIf(),原理一样的，只要实现Collection接口的可以直接用这个函数，比如List，Queue和Set。</p>
-<pre><code class="java">default boolean removeIf(Predicate&lt;? super E&gt; filter) {
-        Objects.requireNonNull(filter);
-        boolean removed = false;
-        final Iterator&lt;E&gt; each = iterator();
-        while (each.hasNext()) {
-            if (filter.test(each.next())) {
-                each.remove();
-                removed = true;
-            }
-        }
-        return removed;
-    }</code></pre>
-<p>​        Predicate是在package java.util.function包中，注解是@FunctionalInterface，是个函数式编程的接口。</p>
-<p>​        像上面的就可以用<code>list.removeIf(integer -&gt; integer == 1);</code></p>
+        <h2 id="不会用charles的看下这个Charles-断点、rewrite详细教程"><a href="#不会用charles的看下这个Charles-断点、rewrite详细教程" class="headerlink" title="不会用charles的看下这个Charles 断点、rewrite详细教程"></a>不会用charles的看下这个<a href="https://blog.930113.xyz/2020/05/09/charles%E6%96%AD%E7%82%B9%E3%80%81rewrite%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/">Charles 断点、rewrite详细教程</a></h2><h1 id="之前的帖子："><a href="#之前的帖子：" class="headerlink" title="之前的帖子："></a>之前的帖子：</h1><p><a href="https://www.52pojie.cn/thread-1176231-1-1.html" target="_blank" rel="noopener">http cacther修改小猿搜题</a><br>这个没有实际效果，熟悉下修改的流程，还修改了蜗牛读书<br><a href="https://www.52pojie.cn/thread-1175270-1-1.html" target="_blank" rel="noopener">http cacther使用教程，多图超详细</a><br>这个修改的app是轻听英语<br><a href="https://www.52pojie.cn/thread-1177250-1-1.html" target="_blank" rel="noopener">必杀技之利用charles体验fit健身软件vip。理论安卓ios都可以</a><br>这个修改的是fit软件，健身用的<br><a href="https://www.52pojie.cn/forum.php?mod=viewthread&tid=1178751&page=1#pid31914377" target="_blank" rel="noopener">终极蛇皮之charles修改洪恩双语绘本，有小朋友的进来看看，超详细的哦</a></p>
+<h1 id="写这篇文章的目的"><a href="#写这篇文章的目的" class="headerlink" title="写这篇文章的目的"></a>写这篇文章的目的</h1><p>有老哥github问我能不能看看洪恩故事，所以我又来了。注意，本次教程无手机版本，仅支持pc使用.</p>
+<h1 id="使用到的软件"><a href="#使用到的软件" class="headerlink" title="使用到的软件"></a>使用到的软件</h1><ul>
+<li>charles，论坛中有大佬分享了破解版，搜索一下安装即可</li>
+<li>charles设置ssl成功，没配制好的上面的链接配置一下</li>
+<li>洪恩故事，给小朋友听故事的。</li>
+</ul>
+<h1 id="教程开始"><a href="#教程开始" class="headerlink" title="教程开始"></a>教程开始</h1><p>本教程默认ssl已经装好并且手机已经信任了证书。<br>1.看下不是vip的情况。对于需要vip的故事只能听前几个，后面的就不行了。<br><a href="https://imgchr.com/i/Ysi5zn" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/05/15/Ysi5zn.md.png" alt="Ysi5zn.md.png"></a><br><a href="https://imgchr.com/i/Ysi4Rs" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/05/15/Ysi4Rs.md.png" alt="Ysi4Rs.md.png"></a></p>
+<ol start="2">
+<li><p>打开charles和该app。有了修改洪恩双语绘本的基础，我们首先找到<br>get_user_info这个接口，额，和上次一样，有加密的。<br><a href="https://imgchr.com/i/YskiXq" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/05/15/YskiXq.md.png" alt="YskiXq.md.png"></a></p>
+</li>
+<li><p>再找下看有没有获得全部故事的接口，搜索story_info试试看，然而并没有，找了半天也没找见，最后找见了个get_homepage接口，发现有is_purchased字段，改为1试下。<br><a href="https://imgchr.com/i/Yskc4g" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/05/15/Yskc4g.md.png" alt="Yskc4g.md.png"></a></p>
+</li>
+<li><p>尝试打开一本付费如爱丽丝梦游奇遇记，发现不需要购买了，点击vip字样的故事中也不提示让购买了，但是听不了故事。什么原因呢？</p>
+</li>
+<li><p>点击试听的前几个发现会通过/resource/story_sound下载音频，而我们点击vip时压根就不请求，没有音频资源当然听不了了。<br><a href="https://imgchr.com/i/YsEdmt" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/05/15/YsEdmt.png" alt="YsEdmt.png"></a></p>
+</li>
+<li><p>联想到上次的教程可能会有一个接口返回对应故事不同集数的mp3链接。退到主页再次点进爱丽丝梦游奇遇记发现会调用/v2/get_album_info这个接口，点进去一看心都凉了，果然付费的需要服务器校验然后才返回链接，可以看到请求体中有个uid，这个表示账户号，经过我的测试返回值和这个uid有关，若是vip账户会返回全部的链接，非vip则只返回试读的链接。这样的话在本地改什么都成功不了了。<br><a href="https://imgchr.com/i/YsZFGF" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/05/15/YsZFGF.md.png" alt="YsZFGF.md.png"></a></p>
+</li>
+<li><p>难道这就结束了吗？你以为我蛇皮怪和大家闹着玩呢，在这浪费大家时间？以上分析透露出两个细节：</p>
+<ul>
+<li>下载mp3资源是不用校验vip的，有链接就可以下载。</li>
+<li>/v2/get_album_info这个接口返回的值也都是对应故事的信息，没有和会员相关的值，也就是说这个链接对于所有vip返回的值都是相同的。</li>
+</ul>
+</li>
+<li><p>如果我能通过vip账户拿到 /v2/get_album_info返回的全部值，也就是对应故事集数的所有链接，那么我就可以播放vip对应的集数了。</p>
+</li>
+<li><p>转机来了。注册账户送3天会员，所以吗，你懂的。vip对应的爱丽丝梦游奇遇记的返回值，可以看出，所有集数的链接都有了。<br><a href="https://imgchr.com/i/YsmShT" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/05/15/YsmShT.md.png" alt="YsmShT.md.png"></a></p>
+</li>
+<li><p>下面就要隆重介绍charles的另一位成员了，Map Local功能，限于篇幅问题，这里就不多做介绍了，右键 /v2/get_album_info接口复制链接，到Tools下的Map Local里面添加，Local path选择本地对应的json。</p>
+</li>
+<li><p>看下效果。可以清楚的看到返回值已经修改。同样可以看到需要vip的集数也可以播放了，这个播放有bug，多试几次啊，一次不一定能成功，建议点那个下载按钮下下来播放。<br><a href="https://imgchr.com/i/YsmW2F" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/05/15/YsmW2F.md.png" alt="YsmW2F.md.png"></a><br><a href="https://imgchr.com/i/YsJF7F" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/05/15/YsJF7F.md.png" alt="YsJF7F.md.png"></a></p>
+</li>
+<li><p>需要注意的是，每个付费的故事都需要在本地有对应的文件。这个当然难不住我了，我把大部分vip故事都下下来了。tips：找到对应接口，直接爬虫保存就行。</p>
+</li>
+<li><p>以防万一，再随便测试一个付费的试试，选个格林通话精选。进到之前的Map Local里面，把Local Path换成格林童话的文件，如下图所示。额，试了好几次都没加载出来，我还是下载吧。下载后再播放。</p>
+<p><a href="https://imgchr.com/i/Ysdc34" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/05/15/Ysdc34.png" alt="Ysdc34.png"></a></p>
+</li>
+<li><p>[<img src="https://s1.ax1x.com/2020/05/15/YsYaG9.md.png" alt="YsYaG9.md.png">](<a href="https://imgchr.com/i/YsYaG9" target="_blank" rel="noopener">https://imgchr.com/i/YsYaG9</a></p>
+</li>
+</ol>
+<h1 id="软件逻辑"><a href="#软件逻辑" class="headerlink" title="软件逻辑"></a>软件逻辑</h1><p>总结下这个软件的逻辑：</p>
+<ol>
+<li>打开app时先请求get_usr_info下判断用户是否是会员，这个接口有加密信息在，不好修改。</li>
+<li>有一个/v2/get_album_info接口会返回故事对应集数的是链接，需要会员的话就只提供前几集试读的url。</li>
+</ol>
+<h1 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h1><p>对应接口：/get_homepage</p>
+<pre><code>is_purchased&quot;:\s*\d
+is_purchased&quot;: 1</code></pre><p><a href="https://imgchr.com/i/Yst9dU" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/05/15/Yst9dU.png" alt="Yst9dU.png"></a></p>
+<p>json文件：<a href="https://cloud.189.cn/t/N7viEvQvaeAj（访问码：q3f5）" target="_blank" rel="noopener">https://cloud.189.cn/t/N7viEvQvaeAj（访问码：q3f5）</a></p>
+<h1 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h1><p>有需要的兄弟去提issues哦，顺便求github star一波，好惨，我的博客总共就300个人看。哎，太难了。</p>
+<h1 id="特别申明"><a href="#特别申明" class="headerlink" title="特别申明"></a>特别申明</h1><p>教程有时效性，有能力的请支持正版，本教程仅供学习使用，切勿用于商业用途。请勿转发(本人博客除外)。</p>
 
       
        
