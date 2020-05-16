@@ -2,9 +2,9 @@
 <html>
 <head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
-  <title>每天一个操作系统知识-僵死和孤儿进程 | lovexl</title>
-  <meta name="keywords" content=" 操作系统 ">
-  <meta name="description" content="每天一个操作系统知识-僵死和孤儿进程 | lovexl">
+  <title>看前需知之基础教程 | lovexl</title>
+  <meta name="keywords" content=" 基础教程 ">
+  <meta name="description" content="看前需知之基础教程 | lovexl">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="看前需知之基础教程本博客的文章涉及到电脑抓包的均使用charles软件，手机抓包的软件使用的是http catcher。请尽量阅读并理解以下教程。  charles配置教程   charles配置，设置断点、rewrite详细教程 charles Map Local详细教程：待更新   httpCatcher教程：  正则表达式   你需要知道的正则表达式：待更新   如何快速找到接口并调试参数？">
 <meta name="keywords" content="基础教程">
@@ -484,36 +484,38 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="post-每天一个操作系统知识-僵死和孤儿进程" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-看前须知" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">每天一个操作系统知识-僵死和孤儿进程</h1>
+        <h1 class="article-title">看前需知之基础教程</h1>
     
     <div class="article-meta">
+        
+        <span class="top"><a href="javascript:">置顶</a></span>
         
         
         
         <span class="book">
             
-                <a href="javascript:" data-rel="操作系统">操作系统</a>
+                <a href="javascript:" data-rel="基础教程">基础教程</a>
             
         </span>
         
         
         <span class="tag">
             
-            <a href="javascript:" class="color5">操作系统</a>
+            <a href="javascript:" class="color5">基础教程</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2019-08-19 22:09:03'>2019-08-12 22:06</time>
+        创建时间:<time class="date" title='更新时间: 2020-05-16 09:06:16'>2020-05-16 08:55</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:403</span>
+        <span>字数:151</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -543,7 +545,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#原理"><span class="toc-text">原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#僵死线程很容易造成进程号的大量占用，那么该如何处理这种问题呢"><span class="toc-text">僵死线程很容易造成进程号的大量占用，那么该如何处理这种问题呢?</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#看前需知之基础教程"><span class="toc-text">看前需知之基础教程</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -558,12 +560,28 @@
 </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><p>我们知道，linux中父进程通过fork和exec来创建并运行子线程，由于linux存在一个机制，就是父进程只要想要拿到子进程的结束时的信息就可以得到，因此每个子进程退出的时候，内核释放进程持有的所有资源，包括打开的文件，占用的内存等，但是仍然会保留一定的信息(包括进程号)供父进程调用，父进程通过调用wait或waitpid方法来释放这一部分资源，如果父进程迟迟不调用的话，这种子线程就叫僵死线程，当有大量的僵死线程的话会占用大量的进程号，由于进程号是有限的很可能会造成其他的进程不能被创建。</p>
+        <h1 id="看前需知之基础教程"><a href="#看前需知之基础教程" class="headerlink" title="看前需知之基础教程"></a>看前需知之基础教程</h1><p>本博客的文章涉及到电脑抓包的均使用charles软件，手机抓包的软件使用的是http catcher。请尽量阅读并理解以下教程。</p>
+<ol>
+<li>charles配置教程</li>
+</ol>
 <ul>
-<li>僵死线程:由以上分析可知，僵死线程为父进程没有调用wait或waitpid方法导致的。</li>
-<li>孤儿线程: 孤儿线程就是子进程还在，父进程没了就成孤儿进程了，孤儿进程会被init进程托管，并由init进程对它门完成状态收集工作，问题不大。</li>
+<li><a href="https://blog.930113.xyz/2020/05/09/charles%E6%96%AD%E7%82%B9%E3%80%81rewrite%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/">charles配置，设置断点、rewrite详细教程</a></li>
+<li>charles Map Local详细教程：待更新</li>
 </ul>
-<h2 id="僵死线程很容易造成进程号的大量占用，那么该如何处理这种问题呢"><a href="#僵死线程很容易造成进程号的大量占用，那么该如何处理这种问题呢" class="headerlink" title="僵死线程很容易造成进程号的大量占用，那么该如何处理这种问题呢?"></a>僵死线程很容易造成进程号的大量占用，那么该如何处理这种问题呢?</h2><p>产生这种线程的原因一般都是父线程只管创建子线程，但是不调用wait或waitpid方法来处理，一般情况下是找到这个父线程，然后kill掉，这样这些僵死线程就变成孤儿线程了，这样的话init线程就能回收。</p>
+<ol start="2">
+<li>httpCatcher教程： </li>
+<li>正则表达式</li>
+</ol>
+<ul>
+<li>你需要知道的正则表达式：待更新</li>
+</ul>
+<ol start="4">
+<li>如何快速找到接口并调试参数？</li>
+</ol>
+<p>如果你想更深入的了解背后的原理，下面这些也许对你有所帮助。</p>
+<ol>
+<li>charles怎么实现抓包的？</li>
+</ol>
 
       
        
