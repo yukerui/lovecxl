@@ -2,9 +2,9 @@
 <html>
 <head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
-  <title>ThreadLocal | lovexl</title>
-  <meta name="keywords" content=" 多线程 ">
-  <meta name="description" content="ThreadLocal | lovexl">
+  <title>修改手机步数，Zfb森林能量满满 | lovexl</title>
+  <meta name="keywords" content=" 网球 ">
+  <meta name="description" content="修改手机步数，Zfb森林能量满满 | lovexl">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="教程有时效性，有能力的请支持正版，本教程仅供学习使用，切勿用于商业用途。请勿转发(本人博客除外)。不会用charles的看下这个Charles 断点、rewrite详细教程看前需知之基础教程还是不会的话ios有个软件叫http catcher，是付费的，json文件用法：全选复制json文件(不用下载) -&amp;gt; 打开网球-&amp;gt;更多-&amp;gt;重写-&amp;gt;右上角+ -&amp;gt;在文本编辑器编辑">
 <meta name="keywords" content="网球">
@@ -528,30 +528,36 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="post-ThreadLocal-md" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-修改手机步数，zfb森林能量满满" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">ThreadLocal</h1>
+        <h1 class="article-title">修改手机步数，Zfb森林能量满满</h1>
     
     <div class="article-meta">
         
         
         
+        <span class="book">
+            
+                <a href="javascript:" data-rel="网球">网球</a>
+            
+        </span>
+        
         
         <span class="tag">
             
-            <a href="javascript:" class="color4">多线程</a>
+            <a href="javascript:" class="color3">网球</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2019-08-10 09:21:35'>2019-08-10 08:54</time>
+        创建时间:<time class="date" title='更新时间: 2020-05-18 21:47:05'>2020-05-18 21:45</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:356</span>
+        <span>字数:658</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -581,7 +587,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#ThreadLocal源码分析"><span class="toc-text">ThreadLocal源码分析</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#定义"><span class="toc-text">定义:</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#与线程同步机制的区别"><span class="toc-text">与线程同步机制的区别</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#教程有时效性，有能力的请支持正版，本教程仅供学习使用，切勿用于商业用途。请勿转发-本人博客除外-。"><span class="toc-text">教程有时效性，有能力的请支持正版，本教程仅供学习使用，切勿用于商业用途。请勿转发(本人博客除外)。</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#不会用charles的看下这个Charles-断点、rewrite详细教程"><span class="toc-text">不会用charles的看下这个Charles 断点、rewrite详细教程</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#看前需知之基础教程"><span class="toc-text">看前需知之基础教程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#还是不会的话ios有个软件叫http-catcher，是付费的，json文件用法：全选复制json文件-不用下载-gt-打开网球-gt-更多-gt-重写-gt-右上角-gt-在文本编辑器编辑-gt-全选粘贴完成即可"><span class="toc-text">还是不会的话ios有个软件叫http catcher，是付费的，json文件用法：全选复制json文件(不用下载) -&gt; 打开网球-&gt;更多-&gt;重写-&gt;右上角+ -&gt;在文本编辑器编辑-&gt; 全选粘贴完成即可</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#写这篇文章的目的"><span class="toc-text">写这篇文章的目的</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#使用到的软件"><span class="toc-text">使用到的软件</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#教程开始"><span class="toc-text">教程开始</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#教程"><span class="toc-text">教程</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#最后"><span class="toc-text">最后</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#json文件白嫖"><span class="toc-text">json文件白嫖</span></a>
     
 <style>
     .left-col .switch-btn,
@@ -596,16 +602,28 @@
 </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="ThreadLocal源码分析"><a href="#ThreadLocal源码分析" class="headerlink" title="ThreadLocal源码分析"></a>ThreadLocal源码分析</h1><h2 id="定义"><a href="#定义" class="headerlink" title="定义:"></a>定义:</h2><p>该类提供了线程局部变量。这些变量不同于它们的普通对应物，因为访问某个变量(通过get或者set)的每个线程都有自己的局部变量，它独立于变量的初始化副本。ThreadLocal实例通常是类中的private static字段，它们希望将状态与某一个线程相关联。</p>
-<h2 id="与线程同步机制的区别"><a href="#与线程同步机制的区别" class="headerlink" title="与线程同步机制的区别"></a>与线程同步机制的区别</h2><p>线程同步机制是多个线程共享一个变量，而ThreadLocal是为每一个线程创建一个单独的变量副本。每个线程都可以独立的改变自己的副本而不影响别人。为多线程环境下变量问题提供了另外一种解决思路。</p>
-<p>ThreadLocal定义了四个方法:</p>
-<ul>
-<li>get(): 返回此线程局部变量的当前线程副本中的值</li>
-<li>initialValue(): 返回此线程局部变量的当前线程的“初始值”</li>
-<li>remove(): 删除当前线程局部变量当前线程的值</li>
-<li>set(T value): 将此线程局部变量的当前线程副本中的值设置为指定值</li>
+        <h2 id="教程有时效性，有能力的请支持正版，本教程仅供学习使用，切勿用于商业用途。请勿转发-本人博客除外-。"><a href="#教程有时效性，有能力的请支持正版，本教程仅供学习使用，切勿用于商业用途。请勿转发-本人博客除外-。" class="headerlink" title="教程有时效性，有能力的请支持正版，本教程仅供学习使用，切勿用于商业用途。请勿转发(本人博客除外)。"></a>教程有时效性，有能力的请支持正版，本教程仅供学习使用，切勿用于商业用途。请勿转发(本人博客除外)。</h2><h2 id="不会用charles的看下这个Charles-断点、rewrite详细教程"><a href="#不会用charles的看下这个Charles-断点、rewrite详细教程" class="headerlink" title="不会用charles的看下这个Charles 断点、rewrite详细教程"></a>不会用charles的看下这个<a href="https://blog.930113.xyz/2020/05/09/charles%E6%96%AD%E7%82%B9%E3%80%81rewrite%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/">Charles 断点、rewrite详细教程</a></h2><h1 id="看前需知之基础教程"><a href="#看前需知之基础教程" class="headerlink" title="看前需知之基础教程"></a><a href="https://blog.930113.xyz/2020/05/16/%E7%9C%8B%E5%89%8D%E9%A1%BB%E7%9F%A5/">看前需知之基础教程</a></h1><h3 id="还是不会的话ios有个软件叫http-catcher，是付费的，json文件用法：全选复制json文件-不用下载-gt-打开网球-gt-更多-gt-重写-gt-右上角-gt-在文本编辑器编辑-gt-全选粘贴完成即可"><a href="#还是不会的话ios有个软件叫http-catcher，是付费的，json文件用法：全选复制json文件-不用下载-gt-打开网球-gt-更多-gt-重写-gt-右上角-gt-在文本编辑器编辑-gt-全选粘贴完成即可" class="headerlink" title="还是不会的话ios有个软件叫http catcher，是付费的，json文件用法：全选复制json文件(不用下载) -&gt; 打开网球-&gt;更多-&gt;重写-&gt;右上角+ -&gt;在文本编辑器编辑-&gt; 全选粘贴完成即可"></a>还是不会的话ios有个软件叫http catcher，是付费的，json文件用法：全选复制json文件(不用下载) -&gt; 打开网球-&gt;更多-&gt;重写-&gt;右上角+ -&gt;在文本编辑器编辑-&gt; 全选粘贴完成即可</h3><h1 id="写这篇文章的目的"><a href="#写这篇文章的目的" class="headerlink" title="写这篇文章的目的"></a>写这篇文章的目的</h1><p>之前找改步数发现有个小米运动+运动宝盒，试了下好像不太能用了，又找了找发现有好多网站可以修改步数，发现它们的共同点都是用了乐心运动的app，提供刷步功能的网站要么广告很多要么要充会员，况且用别人的网站还有泄露信息的可能，不如自己动手了。</p>
+<h1 id="使用到的软件"><a href="#使用到的软件" class="headerlink" title="使用到的软件"></a>使用到的软件</h1><ul>
+<li>ios用户可直接使用httpCatcher</li>
+<li>安卓用户需要配合charles使用，论坛中有大佬分享了破解版，搜索一下安装即可，搜索不到的可以到我博客上下载。</li>
+<li>charles设置ssl成功，没配制好的上面的链接配置一下</li>
+<li>乐心健康</li>
 </ul>
-<p>除了以上的，ThreadLocal内部还有一个静态内部类ThreadLocalMap，get(),set(),remove()都是基于该内部操作。ThreadLocalMap提供了一种键值对方式存储每一个线程的变量副本的方法，key为当前ThreadLocal对象，value则是对应线程的变量副本。</p>
+<h1 id="教程开始"><a href="#教程开始" class="headerlink" title="教程开始"></a>教程开始</h1><p>本教程默认ssl已经装好并且手机已经信任了证书。</p>
+<h2 id="教程"><a href="#教程" class="headerlink" title="教程"></a>教程</h2><ol>
+<li><p>打开该软件和charles，先通过搜索当前步数的方式试下，可以看到有getDayStep的接口，接口中有step”: 2325的字样，通过修改它只能修改本地的数据，wx和zfb里的步数并不会发生变化。</p>
+</li>
+<li><p>既然别人能调用乐心的接口达到修改步数并且能够同步，那么一定是将该数据上传到服务器上了，因此初步推断大概是通过post的方法将步数上传到服务器上了。上传的英文是upload，尝试搜索一下试试。</p>
+</li>
+<li><p>可以搜索到uploadMobileStepV2接口，可以看出request的step中包含了要上传的步数信息。通过修改这个字段就可以成功的更新步数。</p>
+</li>
+<li><p>毕竟是修改服务器的数据还是要谨慎，细节部分就不写了啊，害怕。</p>
+</li>
+</ol>
+<h1 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h1><p>提示一波：具体的接口已经给了，这次修改还之前不同的点在于，之前修改的是response的body，本次修改的是request的body，然后匹配的正则表达式是</p>
+<pre><code>step&quot;:\s*&quot;\d+
+step&quot;: 你想改的步数值</code></pre><h1 id="json文件白嫖"><a href="#json文件白嫖" class="headerlink" title="json文件白嫖"></a>json文件白嫖</h1><p>httpCathcer的 json文件:</p>
+<p><a href="https://github.com/yukerui/httpCatcher-rules/blob/master/%E6%AD%A5%E6%95%B0%E4%BF%AE%E6%94%B9.json" target="_blank" rel="noopener">步数修改</a></p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 本网站发布的一切文章仅限用于学习和研究目的；不得将上述内容用于商业或者非法用途，否则，一切后果请用户自负。本站信息来自网络，版权争议与本站无关。您必须在下载后的24个小时之内，从您的电脑中彻底删除上述内容。如果您喜欢该程序，请支持正版软件，购买注册，得到更好的正版服务。如有侵权请联系邮箱:1194325527@qq.com处理 </span>
