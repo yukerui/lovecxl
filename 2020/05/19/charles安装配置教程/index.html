@@ -2,9 +2,9 @@
 <html>
 <head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
-  <title>每天一个Linux命令-管道 | lovexl</title>
-  <meta name="keywords" content=" linux ">
-  <meta name="description" content="每天一个Linux命令-管道 | lovexl">
+  <title>Charles安装配置教程 | lovexl</title>
+  <meta name="keywords" content=" 基础教程 ">
+  <meta name="description" content="Charles安装配置教程 | lovexl">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="电脑上的抓包软件种类繁多，较为出名的有fiddler，wireshark，charles等，其中wireshark主要用于分析七层结构较为底层，charles与fiddler非常的类似，由于习惯问题，笔者比较习惯使用charles，下面就介绍下charles本机证书和手机证书的安装，以便在电脑端和手机端都可以方便的抓包。 下载链接https://www.charlesproxy.com/downl">
 <meta name="keywords" content="基础教程">
@@ -548,9 +548,9 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="post-每天一个linux命令-管道" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-charles安装配置教程" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">每天一个Linux命令-管道</h1>
+        <h1 class="article-title">Charles安装配置教程</h1>
     
     <div class="article-meta">
         
@@ -558,26 +558,26 @@
         
         <span class="book">
             
-                <a href="javascript:" data-rel="linux">linux</a>
+                <a href="javascript:" data-rel="基础教程">基础教程</a>
             
         </span>
         
         
         <span class="tag">
             
-            <a href="javascript:" class="color1">linux</a>
+            <a href="javascript:" class="color5">基础教程</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2019-08-19 22:09:11'>2019-08-11 12:35</time>
+        创建时间:<time class="date" title='更新时间: 2020-05-19 14:14:28'>2020-05-19 13:31</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:397</span>
+        <span>字数:668</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -607,7 +607,7 @@
     
     <div class="toc-ref">
     
-        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#下载链接"><span class="toc-text">下载链接</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装证书"><span class="toc-text">安装证书</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#windows"><span class="toc-text">windows</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Ios端"><span class="toc-text">Ios端</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -622,32 +622,36 @@
 </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <p>&nbsp;&nbsp;经常被问到进程间是怎么通信的?常见的有socket，管道，消息队列，共享内存等。以后会专门写一个总结一下，这次研究一下管道是什么?<br> &nbsp;&nbsp;一般遇到这种名词的话一般都会想这个是用来解决什么问题了，又是怎么解决的。</p>
-<ul>
-<li><p>解决了什么问题?<br>&nbsp;&nbsp;* 前面提到了解决了进程间通信的问题,比如一个很简单的例子，想要在nohup.out中搜索某个关键字，cat nohup.out | grep “key” cat是一个进程，grep也是一个进程，它们是怎么通信的。<br>&nbsp;* 怎么解决的?<br>&nbsp;&nbsp;&nbsp;* 上面命令中的 | 就相当于在两个进程之间建立了一个管道(是一个虚拟的文件，是由内存管理的一个缓冲区)，一头对应着一个进程的输出端，一头对应着另一个进程的输入端，上面的例子就是将cat命令的输出作为grep的输入。</p>
-<p>&nbsp;&nbsp;linux的进程都有独立的地址，因此在用户态进程之间是没法访问的。而内核是进程共享的，因此线程想要通信就要内核做个中间人。<br><img src="https://lovexl-1254108494.cos.ap-chengdu.myqcloud.com/%E5%86%85%E6%A0%B8%E7%AE%A1%E9%81%931.jpg" alt="avatar"><br>&nbsp;&nbsp;pipe的实现和图示一样，在pipefs文件中有一个属性</p>
-<blockquote>
-<p>struct pipe_inode_info    *i_pipe; <br></p>
-</blockquote>
-<p>&nbsp;&nbsp;pipe_inode_info定义如下:<br></p>
-<pre><code>pipe_fs_i.h
-struct pipe_inode_info {
- struct mutex mutex;
- wait_queue_head_t wait;
- unsigned int nrbufs, curbuf, buffers;
- unsigned int readers;
- unsigned int writers;
- unsigned int files;
- unsigned int waiting_writers;
- unsigned int r_counter;
- unsigned int w_counter;
- struct page *tmp_page;
- struct fasync_struct *fasync_readers;
- struct fasync_struct *fasync_writers;
- struct pipe_buffer *bufs;
- struct user_struct *user;
- };</code></pre></li>
-</ul>
+        <p>电脑上的抓包软件种类繁多，较为出名的有fiddler，wireshark，charles等，其中wireshark主要用于分析七层结构较为底层，charles与fiddler非常的类似，由于习惯问题，笔者比较习惯使用charles，下面就介绍下charles本机证书和手机证书的安装，以便在电脑端和手机端都可以方便的抓包。</p>
+<h2 id="下载链接"><a href="#下载链接" class="headerlink" title="下载链接"></a>下载链接</h2><p><a href="https://www.charlesproxy.com/download/" target="_blank" rel="noopener">https://www.charlesproxy.com/download/</a></p>
+<p>若上面链接下载较慢的话用这个下载：</p>
+<p><a href="https://cloud.189.cn/t/3yUJ3uUjQNRr（访问码：cob5）" target="_blank" rel="noopener">https://cloud.189.cn/t/3yUJ3uUjQNRr（访问码：cob5）</a></p>
+<pre><code>Registered Name:https://zhile.io
+License Key: 48891cf209c6d32bf4</code></pre><h2 id="安装证书"><a href="#安装证书" class="headerlink" title="安装证书"></a>安装证书</h2><p>由于我们需要抓取电脑和手机端的包，因此两个都需要安装证书。</p>
+<h3 id="windows"><a href="#windows" class="headerlink" title="windows"></a>windows</h3><p>首先点击菜单栏Help–&gt;SSL Proxying–&gt;install Charles Root Certificate进行安装，如图2-1所示：</p>
+<p><img src="https://service-fq8cp3z8-1254108494.hk.apigw.tencentcs.com/release/onedrive/onedrive/%E5%9B%BE%E5%BA%8A/charles%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B/%E5%AE%89%E8%A3%85%E6%9C%AC%E5%9C%B0%E8%AF%81%E4%B9%A6.png" alt="图2-1 pc证书安装入口"></p>
+<p>点击后会弹出证书具体界面，如图2-2：</p>
+<p><img src="https://service-fq8cp3z8-1254108494.hk.apigw.tencentcs.com/release/onedrive/onedrive/%E5%9B%BE%E5%BA%8A/charles%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B/%E8%AF%81%E4%B9%A6%E7%95%8C%E9%9D%A2.png" alt="图2-2 证书具体界面"></p>
+<p>点击安装证书，进入证书导入向导，如下图所示：</p>
+<p><img src="https://service-fq8cp3z8-1254108494.hk.apigw.tencentcs.com/release/onedrive/onedrive/%E5%9B%BE%E5%BA%8A/charles%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B/%E8%AF%81%E4%B9%A6%E5%AE%89%E8%A3%85%E5%90%91%E5%AF%BC%E4%B8%80.png" alt></p>
+<p>点击下一步，选择第二项将所有证书都放入以下存储，再点击下面的浏览，选择守信用的根证书颁发机构。</p>
+<p><img src="https://service-fq8cp3z8-1254108494.hk.apigw.tencentcs.com/release/onedrive/onedrive/%E5%9B%BE%E5%BA%8A/charles%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B/%E8%AF%81%E4%B9%A6%E5%AE%89%E8%A3%85%E5%90%91%E5%AF%BC%E4%B8%89.png" alt></p>
+<p>再点击下一步完成即可。</p>
+<h3 id="Ios端"><a href="#Ios端" class="headerlink" title="Ios端"></a>Ios端</h3><p>点击Help–&gt;Local IP Address查看当前电脑的ip地址。注意，由于我使用的是无线，因此选择的是第二个，若使用的为有线的话请注意选择对应网卡的ip地址。</p>
+<p><img src="https://service-fq8cp3z8-1254108494.hk.apigw.tencentcs.com/release/onedrive/onedrive/%E5%9B%BE%E5%BA%8A/charles%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B/%E8%AF%81%E4%B9%A6%E5%AE%89%E8%A3%85%E5%90%91%E5%AF%BC%E4%BA%8C.png" alt></p>
+<p>将手机与电脑连到相同的网络，电脑使用有线网就将手机连到相同的无线网下，使用有线网的话可以开热点供手机连接。然后依次点击Help–&gt;SSL Proxying–&gt;install Charles Root Certificate on a Mobie Device or Remote Browser：</p>
+<p><img src="https://service-fq8cp3z8-1254108494.hk.apigw.tencentcs.com/release/onedrive/onedrive/%E5%9B%BE%E5%BA%8A/charles%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B/%E6%89%8B%E6%9C%BA%E5%AE%89%E8%A3%85%E8%AF%81%E4%B9%A6%E4%B8%80.png" alt></p>
+<p>点击后弹出以下界面，请注意，若第一个框中的ip地址与上面的图中不同，请注意替换。对于我这边，需要改为192.168.0.106:888</p>
+<p><img src="https://service-fq8cp3z8-1254108494.hk.apigw.tencentcs.com/release/onedrive/onedrive/%E5%9B%BE%E5%BA%8A/charles%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B/%E6%89%8B%E6%9C%BA%E5%AE%89%E8%A3%85%E8%AF%81%E4%B9%A6%E4%BA%8C.png" alt></p>
+<p>打开手机无线配置页，找到配置代理将其改为手动，不同的ios系统可能图片不太一样。</p>
+<p><img src="https://service-fq8cp3z8-1254108494.hk.apigw.tencentcs.com/release/onedrive/onedrive/%E5%9B%BE%E5%BA%8A/charles%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B/wifi%E7%95%8C%E9%9D%A2.png" alt></p>
+<p>在服务器中填入ip地址，在端口中填入8888，ip地址因人而异，请替换成上面获取到的。</p>
+<p><img src="https://service-fq8cp3z8-1254108494.hk.apigw.tencentcs.com/release/onedrive/onedrive/%E5%9B%BE%E5%BA%8A/charles%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B/%E5%A1%AB%E5%86%99%E4%BB%A3%E7%90%86.png" alt></p>
+<p>最后在浏览器中输入chls.pro/ssl下载对应描述文件，然后在手机中 设置–&gt;通用–&gt;描述文件中安装描述文件，</p>
+<p><img src="https://service-fq8cp3z8-1254108494.hk.apigw.tencentcs.com/release/onedrive/onedrive/%E5%9B%BE%E5%BA%8A/charles%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B/%E5%AE%89%E8%A3%85%E6%8F%8F%E8%BF%B0%E6%96%87%E4%BB%B6.png" alt></p>
+<p>然后在设置–&gt;通用–&gt;关于本机–&gt;证书信任设置中找到charles Proxy CA将其启用即可。</p>
+<p><img src="https://service-fq8cp3z8-1254108494.hk.apigw.tencentcs.com/release/onedrive/onedrive/%E5%9B%BE%E5%BA%8A/charles%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B/%E4%BF%A1%E4%BB%BB%E8%AF%81%E4%B9%A6.png" alt></p>
+<p>配置完成后电脑端charles后弹出一个是否允许接入的弹窗，选择Allow就行了，这时在手机上随便打开一个网址就能看到charles已经能够成功抓到包了。</p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 本网站发布的一切文章仅限用于学习和研究目的；不得将上述内容用于商业或者非法用途，否则，一切后果请用户自负。本站信息来自网络，版权争议与本站无关。您必须在下载后的24个小时之内，从您的电脑中彻底删除上述内容。如果您喜欢该程序，请支持正版软件，购买注册，得到更好的正版服务。如有侵权请联系邮箱:1194325527@qq.com处理 </span>
