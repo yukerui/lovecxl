@@ -6,30 +6,28 @@
   <meta name="keywords" content>
   <meta name="description" content="Charles 断点、Rewrite详细教程 | lovexl">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="电脑上的抓包软件种类繁多，较为出名的有fiddler，wireshark，charles等，其中wireshark主要用于分析七层结构较为底层，charles与fiddler非常的类似，由于习惯问题，笔者比较习惯使用charles，下面就介绍下charles本机证书和手机证书的安装，以便在电脑端和手机端都可以方便的抓包。 下载链接https://www.charlesproxy.com/downl">
-<meta name="keywords" content="基础教程">
+<meta name="description" content="教程有时效性，有能力的请支持正版，本教程仅供学习使用，切勿用于商业用途。请勿转发(本人博客除外)。不会用charles的看下这个Charles 断点、rewrite详细教程看前需知之基础教程还是不会的话ios有个软件叫http catcher，是付费的，json文件用法：全选复制json文件(不用下载) -&amp;gt; 打开网球-&amp;gt;更多-&amp;gt;重写-&amp;gt;右上角+ -&amp;gt;在文本编辑器编辑">
+<meta name="keywords" content="网球">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Charles安装配置教程">
-<meta property="og:url" content="http://blog.930113.xyz/2020/05/19/charles安装配置教程/index.html">
+<meta property="og:title" content="Charles实战教程四之rr视频">
+<meta property="og:url" content="http://blog.930113.xyz/2020/05/20/0004/index.html">
 <meta property="og:site_name" content="lovexl">
-<meta property="og:description" content="电脑上的抓包软件种类繁多，较为出名的有fiddler，wireshark，charles等，其中wireshark主要用于分析七层结构较为底层，charles与fiddler非常的类似，由于习惯问题，笔者比较习惯使用charles，下面就介绍下charles本机证书和手机证书的安装，以便在电脑端和手机端都可以方便的抓包。 下载链接https://www.charlesproxy.com/downl">
+<meta property="og:description" content="教程有时效性，有能力的请支持正版，本教程仅供学习使用，切勿用于商业用途。请勿转发(本人博客除外)。不会用charles的看下这个Charles 断点、rewrite详细教程看前需知之基础教程还是不会的话ios有个软件叫http catcher，是付费的，json文件用法：全选复制json文件(不用下载) -&amp;gt; 打开网球-&amp;gt;更多-&amp;gt;重写-&amp;gt;右上角+ -&amp;gt;在文本编辑器编辑">
 <meta property="og:locale" content="zh">
-<meta property="og:image" content="https://service-fq8cp3z8-1254108494.hk.apigw.tencentcs.com/release/onedrive/onedrive/%E5%9B%BE%E5%BA%8A/charles%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B/%E5%AE%89%E8%A3%85%E6%9C%AC%E5%9C%B0%E8%AF%81%E4%B9%A6.png">
-<meta property="og:image" content="https://service-fq8cp3z8-1254108494.hk.apigw.tencentcs.com/release/onedrive/onedrive/%E5%9B%BE%E5%BA%8A/charles%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B/%E8%AF%81%E4%B9%A6%E7%95%8C%E9%9D%A2.png">
-<meta property="og:image" content="https://service-fq8cp3z8-1254108494.hk.apigw.tencentcs.com/release/onedrive/onedrive/%E5%9B%BE%E5%BA%8A/charles%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B/%E8%AF%81%E4%B9%A6%E5%AE%89%E8%A3%85%E5%90%91%E5%AF%BC%E4%B8%80.png">
-<meta property="og:image" content="https://service-fq8cp3z8-1254108494.hk.apigw.tencentcs.com/release/onedrive/onedrive/%E5%9B%BE%E5%BA%8A/charles%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B/%E8%AF%81%E4%B9%A6%E5%AE%89%E8%A3%85%E5%90%91%E5%AF%BC%E4%B8%89.png">
-<meta property="og:image" content="https://service-fq8cp3z8-1254108494.hk.apigw.tencentcs.com/release/onedrive/onedrive/%E5%9B%BE%E5%BA%8A/charles%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B/%E8%AF%81%E4%B9%A6%E5%AE%89%E8%A3%85%E5%90%91%E5%AF%BC%E4%BA%8C.png">
-<meta property="og:image" content="https://service-fq8cp3z8-1254108494.hk.apigw.tencentcs.com/release/onedrive/onedrive/%E5%9B%BE%E5%BA%8A/charles%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B/%E6%89%8B%E6%9C%BA%E5%AE%89%E8%A3%85%E8%AF%81%E4%B9%A6%E4%B8%80.png">
-<meta property="og:image" content="https://service-fq8cp3z8-1254108494.hk.apigw.tencentcs.com/release/onedrive/onedrive/%E5%9B%BE%E5%BA%8A/charles%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B/%E6%89%8B%E6%9C%BA%E5%AE%89%E8%A3%85%E8%AF%81%E4%B9%A6%E4%BA%8C.png">
-<meta property="og:image" content="https://service-fq8cp3z8-1254108494.hk.apigw.tencentcs.com/release/onedrive/onedrive/%E5%9B%BE%E5%BA%8A/charles%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B/wifi%E7%95%8C%E9%9D%A2.png">
-<meta property="og:image" content="https://service-fq8cp3z8-1254108494.hk.apigw.tencentcs.com/release/onedrive/onedrive/%E5%9B%BE%E5%BA%8A/charles%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B/%E5%A1%AB%E5%86%99%E4%BB%A3%E7%90%86.png">
-<meta property="og:image" content="https://service-fq8cp3z8-1254108494.hk.apigw.tencentcs.com/release/onedrive/onedrive/%E5%9B%BE%E5%BA%8A/charles%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B/%E5%AE%89%E8%A3%85%E6%8F%8F%E8%BF%B0%E6%96%87%E4%BB%B6.png">
-<meta property="og:image" content="https://service-fq8cp3z8-1254108494.hk.apigw.tencentcs.com/release/onedrive/onedrive/%E5%9B%BE%E5%BA%8A/charles%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B/%E4%BF%A1%E4%BB%BB%E8%AF%81%E4%B9%A6.png">
-<meta property="og:updated_time" content="2020-05-19T06:14:28.115Z">
+<meta property="og:image" content="https://dec-onemanager.herokuapp.com/%E5%9B%BE%E5%BA%8A/charles%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B/20200520_100738.png">
+<meta property="og:image" content="https://dec-onemanager.herokuapp.com/%E5%9B%BE%E5%BA%8A/%E4%BA%BA%E4%BA%BA%E8%A7%86%E9%A2%91/%E5%BC%80%E5%B1%8F%E5%B9%BF%E5%91%8A.png">
+<meta property="og:image" content="https://dec-onemanager.herokuapp.com/%E5%9B%BE%E5%BA%8A/%E4%BA%BA%E4%BA%BA%E8%A7%86%E9%A2%91/%E7%A6%81%E6%AD%A2%E5%BC%80%E5%B1%8F%E5%B9%BF%E5%91%8A.png">
+<meta property="og:image" content="https://dec-onemanager.herokuapp.com/%E5%9B%BE%E5%BA%8A/%E4%BA%BA%E4%BA%BA%E8%A7%86%E9%A2%91/%E8%A7%86%E9%A2%91%E6%B8%85%E6%99%B0%E5%BA%A6.png">
+<meta property="og:image" content="https://dec-onemanager.herokuapp.com/%E5%9B%BE%E5%BA%8A/%E4%BA%BA%E4%BA%BA%E8%A7%86%E9%A2%91/%E8%A7%86%E9%A2%91%E6%BA%90.png">
+<meta property="og:image" content="https://dec-onemanager.herokuapp.com/%E5%9B%BE%E5%BA%8A/%E4%BA%BA%E4%BA%BA%E8%A7%86%E9%A2%91/%E6%9A%82%E5%81%9C%E5%B9%BF%E5%91%8A.png">
+<meta property="og:image" content="https://dec-onemanager.herokuapp.com/%E5%9B%BE%E5%BA%8A/%E4%BA%BA%E4%BA%BA%E8%A7%86%E9%A2%91/%E6%9A%82%E5%81%9C%E5%B9%BF%E5%91%8A%E6%8E%A5%E5%8F%A3.png">
+<meta property="og:image" content="https://dec-onemanager.herokuapp.com/%E5%9B%BE%E5%BA%8A/%E4%BA%BA%E4%BA%BA%E8%A7%86%E9%A2%91/%E4%BF%AE%E6%94%B9%E6%B8%85%E6%99%B0%E5%BA%A6.png">
+<meta property="og:image" content="https://dec-onemanager.herokuapp.com/%E5%9B%BE%E5%BA%8A/%E4%BA%BA%E4%BA%BA%E8%A7%86%E9%A2%91/%E6%88%90%E5%8A%9F%E6%88%AA%E5%9B%BE.png">
+<meta property="og:updated_time" content="2020-05-20T06:08:55.413Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Charles安装配置教程">
-<meta name="twitter:description" content="电脑上的抓包软件种类繁多，较为出名的有fiddler，wireshark，charles等，其中wireshark主要用于分析七层结构较为底层，charles与fiddler非常的类似，由于习惯问题，笔者比较习惯使用charles，下面就介绍下charles本机证书和手机证书的安装，以便在电脑端和手机端都可以方便的抓包。 下载链接https://www.charlesproxy.com/downl">
-<meta name="twitter:image" content="https://service-fq8cp3z8-1254108494.hk.apigw.tencentcs.com/release/onedrive/onedrive/%E5%9B%BE%E5%BA%8A/charles%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B/%E5%AE%89%E8%A3%85%E6%9C%AC%E5%9C%B0%E8%AF%81%E4%B9%A6.png">
+<meta name="twitter:title" content="Charles实战教程四之rr视频">
+<meta name="twitter:description" content="教程有时效性，有能力的请支持正版，本教程仅供学习使用，切勿用于商业用途。请勿转发(本人博客除外)。不会用charles的看下这个Charles 断点、rewrite详细教程看前需知之基础教程还是不会的话ios有个软件叫http catcher，是付费的，json文件用法：全选复制json文件(不用下载) -&amp;gt; 打开网球-&amp;gt;更多-&amp;gt;重写-&amp;gt;右上角+ -&amp;gt;在文本编辑器编辑">
+<meta name="twitter:image" content="https://dec-onemanager.herokuapp.com/%E5%9B%BE%E5%BA%8A/charles%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B/20200520_100738.png">
 
 
 <link rel="icon" href="/img/jerry.webp">
@@ -121,11 +119,11 @@
 
 
 <ul>
-    <li><div class="all active">全部文章<small>(28)</small></div></li>
+    <li><div class="all active">全部文章<small>(29)</small></div></li>
     
         
             
-            <li><div data-rel="源码">源码<small>(1)</small></div>
+            <li><div data-rel="网球">网球<small>(7)</small></div>
                 
             </li>
             
@@ -141,15 +139,7 @@
     
         
             
-            <li><div data-rel="抓包">抓包<small>(1)</small></div>
-                
-            </li>
-            
-        
-    
-        
-            
-            <li><div data-rel="网球">网球<small>(6)</small></div>
+            <li><div data-rel="源码">源码<small>(1)</small></div>
                 
             </li>
             
@@ -165,7 +155,7 @@
     
         
             
-            <li><div data-rel="负载均衡">负载均衡<small>(1)</small></div>
+            <li><div data-rel="抓包">抓包<small>(1)</small></div>
                 
             </li>
             
@@ -173,7 +163,7 @@
     
         
             
-            <li><div data-rel="java">java<small>(3)</small></div>
+            <li><div data-rel="负载均衡">负载均衡<small>(1)</small></div>
                 
             </li>
             
@@ -190,6 +180,14 @@
         
             
             <li><div data-rel="主机操作">主机操作<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="java">java<small>(3)</small></div>
                 
             </li>
             
@@ -222,8 +220,8 @@
     </div>
     <div><a  class="friends">友链</a></div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="28">
-<input type="hidden" id="yelog_site_word_count" value="20.7k">
+<input type="hidden" id="yelog_site_posts_number" value="29">
+<input type="hidden" id="yelog_site_word_count" value="21.9k">
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
     <span id="busuanzi_value_site_pv"></span>
@@ -255,7 +253,7 @@
     <div class="tags-list">
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color3">源码</a>
+        <a href="javascript:" class="color3">网球</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -263,19 +261,7 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color3">抓包</a>
-    </li>
-    
-    <li class="article-tag-list-item">
-        <a href="javascript:" class="color4">数据库</a>
-    </li>
-    
-    <li class="article-tag-list-item">
-        <a href="javascript:" class="color3">网球</a>
-    </li>
-    
-    <li class="article-tag-list-item">
-        <a href="javascript:" class="color4">多线程</a>
+        <a href="javascript:" class="color3">源码</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -283,11 +269,19 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color5">负载均衡</a>
+        <a href="javascript:" class="color4">数据库</a>
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color5">java</a>
+        <a href="javascript:" class="color4">多线程</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color3">抓包</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color5">负载均衡</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -296,6 +290,10 @@
     
     <li class="article-tag-list-item">
         <a href="javascript:" class="color3">主机</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color5">java</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -326,6 +324,14 @@
            data-author="" >
             <span class="post-title" title="Http Catcher规则合集">Http Catcher规则合集</span>
             <span class="post-date" title="2020-05-16 08:42:20">2020/05/16</span>
+        </a>
+        
+        <a  class="网球 "
+           href="/2020/05/20/0004/"
+           data-tag="网球"
+           data-author="" >
+            <span class="post-title" title="Charles实战教程四之rr视频">Charles实战教程四之rr视频</span>
+            <span class="post-date" title="2020-05-20 14:06:11">2020/05/20</span>
         </a>
         
         <a  class="基础教程 "
@@ -740,7 +746,7 @@
     /*作者、标签的自动补全*/
     $(function () {
         $('.search').AutoComplete({
-            'data': ['#源码','#总结','#抓包','#数据库','#网球','#多线程','#基础教程','#负载均衡','#java','#linux','#主机','#操作系统','#进阶教程',],
+            'data': ['#网球','#总结','#源码','#基础教程','#数据库','#多线程','#抓包','#负载均衡','#linux','#主机','#java','#操作系统','#进阶教程',],
             'itemHeight': 20,
             'width': 418
         }).AutoComplete('show');

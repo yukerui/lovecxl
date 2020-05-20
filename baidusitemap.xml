@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://blog.930113.xyz/2020/05/20/0004/</loc>
+    <lastmod>2020-05-20</lastmod>
+  </url>  <url>
+    <loc>http://blog.930113.xyz/2020/05/16/%E7%9C%8B%E5%89%8D%E9%A1%BB%E7%9F%A5/</loc>
+    <lastmod>2020-05-20</lastmod>
+  </url>  <url>
     <loc>http://blog.930113.xyz/2020/05/16/httpCacther%E8%A7%84%E5%88%99%E9%9B%86%E5%90%88/</loc>
     <lastmod>2020-05-19</lastmod>
   </url>  <url>
@@ -23,9 +29,6 @@
     <lastmod>2020-05-19</lastmod>
   </url>  <url>
     <loc>http://blog.930113.xyz/2020/05/09/charles%E6%96%AD%E7%82%B9%E3%80%81rewrite%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/</loc>
-    <lastmod>2020-05-19</lastmod>
-  </url>  <url>
-    <loc>http://blog.930113.xyz/2020/05/16/%E7%9C%8B%E5%89%8D%E9%A1%BB%E7%9F%A5/</loc>
     <lastmod>2020-05-19</lastmod>
   </url>  <url>
     <loc>http://blog.930113.xyz/2020/05/19/charles%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B/</loc>
