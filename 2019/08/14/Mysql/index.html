@@ -139,14 +139,6 @@
     
         
             
-            <li><div data-rel="抓包">抓包<small>(1)</small></div>
-                
-            </li>
-            
-        
-    
-        
-            
             <li><div data-rel="进阶教程">进阶教程<small>(1)</small></div>
                 
             </li>
@@ -155,7 +147,7 @@
     
         
             
-            <li><div data-rel="总结">总结<small>(1)</small></div>
+            <li><div data-rel="抓包">抓包<small>(1)</small></div>
                 
             </li>
             
@@ -171,7 +163,7 @@
     
         
             
-            <li><div data-rel="linux">linux<small>(3)</small></div>
+            <li><div data-rel="总结">总结<small>(1)</small></div>
                 
             </li>
             
@@ -187,7 +179,7 @@
     
         
             
-            <li><div data-rel="java">java<small>(3)</small></div>
+            <li><div data-rel="linux">linux<small>(3)</small></div>
                 
             </li>
             
@@ -196,6 +188,14 @@
         
             
             <li><div data-rel="主机操作">主机操作<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="java">java<small>(3)</small></div>
                 
             </li>
             
@@ -261,15 +261,11 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color3">抓包</a>
-    </li>
-    
-    <li class="article-tag-list-item">
         <a href="javascript:" class="color5">进阶教程</a>
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color3">总结</a>
+        <a href="javascript:" class="color3">抓包</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -277,15 +273,7 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color4">数据库</a>
-    </li>
-    
-    <li class="article-tag-list-item">
-        <a href="javascript:" class="color1">linux</a>
-    </li>
-    
-    <li class="article-tag-list-item">
-        <a href="javascript:" class="color4">多线程</a>
+        <a href="javascript:" class="color3">总结</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -293,11 +281,23 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color5">java</a>
+        <a href="javascript:" class="color4">数据库</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color4">多线程</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color1">linux</a>
     </li>
     
     <li class="article-tag-list-item">
         <a href="javascript:" class="color3">主机</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color5">java</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -592,6 +592,17 @@
         </span>
         
         
+        <span class="top-comment" title="跳转至评论区">
+            <a href="#comments">
+                评论:<span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </a>
+        </span>
+        
     </div>
     
     <div class="toc-ref">
@@ -630,6 +641,27 @@
 </p>
 
 
+
+
+    <div id="comments"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+
+<script type="text/javascript">
+    $.getScript('/js/gitalk.js', function () {
+        var gitalk = new Gitalk({
+            clientID: '704315d1e535036fa462',
+            clientSecret: 'd5fc691bc9f449f3793b545aed930309f211fb71',
+            repo: 'lovecxl',
+            owner: 'yukerui',
+            admin: ['yukerui'],
+            id: decodeURI(location.pathname),
+            distractionFreeMode: 'true',
+            language: 'zh-CN',
+            perPage: parseInt('10',10)
+        })
+        gitalk.render('comments')
+    })
+</script>
 
 
 
@@ -684,7 +716,7 @@
     /*作者、标签的自动补全*/
     $(function () {
         $('.search').AutoComplete({
-            'data': ['#基础教程','#网球','#抓包','#进阶教程','#总结','#源码','#数据库','#linux','#多线程','#负载均衡','#java','#主机','#操作系统',],
+            'data': ['#基础教程','#网球','#进阶教程','#抓包','#源码','#总结','#负载均衡','#数据库','#多线程','#linux','#主机','#java','#操作系统',],
             'itemHeight': 20,
             'width': 418
         }).AutoComplete('show');
