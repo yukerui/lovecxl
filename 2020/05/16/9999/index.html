@@ -6,28 +6,25 @@
   <meta name="keywords" content=" 网球 ">
   <meta name="description" content="Http Catcher规则合集 | lovexl">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="教程有时效性，有能力的请支持正版，本教程仅供学习使用，切勿用于商业用途。请勿转发(本人博客除外)。不会用charles的看下这个Charles 断点、rewrite详细教程看前需知之基础教程还是不会的话ios有个软件叫http catcher，是付费的，json文件用法：全选复制json文件(不用下载) -&amp;gt; 打开网球-&amp;gt;更多-&amp;gt;重写-&amp;gt;右上角+ -&amp;gt;在文本编辑器编辑">
-<meta name="keywords" content="网球">
+<meta name="description" content="Map从字面上的意思看来可以有映射的意思，简单的说就是可以把请求的返回值映射到本地文件或远程文件上。charles中的Map功能分为Map Local和Map remote两种。 Map Local 同样以reqres.in这个网址为例：该接口返回的数据如下：  {     &amp;quot;data&amp;quot;:{         &amp;quot;id&amp;quot;:1,         &amp;quot;ema">
+<meta name="keywords" content="抓包">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Charles实战教程四之rr视频">
-<meta property="og:url" content="http://blog.930113.xyz/2020/05/20/0012/index.html">
+<meta property="og:title" content="Charles Map功能详细教程">
+<meta property="og:url" content="http://blog.930113.xyz/2020/05/22/13/index.html">
 <meta property="og:site_name" content="lovexl">
-<meta property="og:description" content="教程有时效性，有能力的请支持正版，本教程仅供学习使用，切勿用于商业用途。请勿转发(本人博客除外)。不会用charles的看下这个Charles 断点、rewrite详细教程看前需知之基础教程还是不会的话ios有个软件叫http catcher，是付费的，json文件用法：全选复制json文件(不用下载) -&amp;gt; 打开网球-&amp;gt;更多-&amp;gt;重写-&amp;gt;右上角+ -&amp;gt;在文本编辑器编辑">
+<meta property="og:description" content="Map从字面上的意思看来可以有映射的意思，简单的说就是可以把请求的返回值映射到本地文件或远程文件上。charles中的Map功能分为Map Local和Map remote两种。 Map Local 同样以reqres.in这个网址为例：该接口返回的数据如下：  {     &amp;quot;data&amp;quot;:{         &amp;quot;id&amp;quot;:1,         &amp;quot;ema">
 <meta property="og:locale" content="zh">
-<meta property="og:image" content="https://dec-onemanager.herokuapp.com/%E5%9B%BE%E5%BA%8A/charles%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B/20200520_100738.png">
-<meta property="og:image" content="https://dec-onemanager.herokuapp.com/%E5%9B%BE%E5%BA%8A/%E4%BA%BA%E4%BA%BA%E8%A7%86%E9%A2%91/%E5%BC%80%E5%B1%8F%E5%B9%BF%E5%91%8A.png">
-<meta property="og:image" content="https://dec-onemanager.herokuapp.com/%E5%9B%BE%E5%BA%8A/%E4%BA%BA%E4%BA%BA%E8%A7%86%E9%A2%91/%E7%A6%81%E6%AD%A2%E5%BC%80%E5%B1%8F%E5%B9%BF%E5%91%8A.png">
-<meta property="og:image" content="https://dec-onemanager.herokuapp.com/%E5%9B%BE%E5%BA%8A/%E4%BA%BA%E4%BA%BA%E8%A7%86%E9%A2%91/%E8%A7%86%E9%A2%91%E6%B8%85%E6%99%B0%E5%BA%A6.png">
-<meta property="og:image" content="https://dec-onemanager.herokuapp.com/%E5%9B%BE%E5%BA%8A/%E4%BA%BA%E4%BA%BA%E8%A7%86%E9%A2%91/%E8%A7%86%E9%A2%91%E6%BA%90.png">
-<meta property="og:image" content="https://dec-onemanager.herokuapp.com/%E5%9B%BE%E5%BA%8A/%E4%BA%BA%E4%BA%BA%E8%A7%86%E9%A2%91/%E6%9A%82%E5%81%9C%E5%B9%BF%E5%91%8A.png">
-<meta property="og:image" content="https://dec-onemanager.herokuapp.com/%E5%9B%BE%E5%BA%8A/%E4%BA%BA%E4%BA%BA%E8%A7%86%E9%A2%91/%E6%9A%82%E5%81%9C%E5%B9%BF%E5%91%8A%E6%8E%A5%E5%8F%A3.png">
-<meta property="og:image" content="https://dec-onemanager.herokuapp.com/%E5%9B%BE%E5%BA%8A/%E4%BA%BA%E4%BA%BA%E8%A7%86%E9%A2%91/%E4%BF%AE%E6%94%B9%E6%B8%85%E6%99%B0%E5%BA%A6.png">
-<meta property="og:image" content="https://dec-onemanager.herokuapp.com/%E5%9B%BE%E5%BA%8A/%E4%BA%BA%E4%BA%BA%E8%A7%86%E9%A2%91/%E6%88%90%E5%8A%9F%E6%88%AA%E5%9B%BE.png">
-<meta property="og:updated_time" content="2020-05-20T06:08:55.413Z">
+<meta property="og:image" content="https://dec-onemanager.herokuapp.com/%E5%9B%BE%E5%BA%8A/charles%20Map%E5%8A%9F%E8%83%BD/Local%E6%96%87%E4%BB%B6.png">
+<meta property="og:image" content="https://dec-onemanager.herokuapp.com/%E5%9B%BE%E5%BA%8A/charles%20Map%E5%8A%9F%E8%83%BD/charles%E6%9C%AC%E5%9C%B0Map.png">
+<meta property="og:image" content="https://dec-onemanager.herokuapp.com/%E5%9B%BE%E5%BA%8A/charles%20Map%E5%8A%9F%E8%83%BD/charles%E6%9C%AC%E5%9C%B0Map%E8%AF%A6%E7%BB%86.png">
+<meta property="og:image" content="https://dec-onemanager.herokuapp.com/%E5%9B%BE%E5%BA%8A/charles%20Map%E5%8A%9F%E8%83%BD/%E4%BF%AE%E6%94%B9%E6%88%90%E5%8A%9F.png">
+<meta property="og:image" content="https://dec-onemanager.herokuapp.com/%E5%9B%BE%E5%BA%8A/charles%20Map%E5%8A%9F%E8%83%BD/%E6%9C%AC%E5%9C%B0Map%20Local.png">
+<meta property="og:image" content="https://dec-onemanager.herokuapp.com/%E5%9B%BE%E5%BA%8A/charles%20Map%E5%8A%9F%E8%83%BD/charles%E8%BF%9C%E7%A8%8BMap.png">
+<meta property="og:updated_time" content="2020-05-22T12:18:18.530Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Charles实战教程四之rr视频">
-<meta name="twitter:description" content="教程有时效性，有能力的请支持正版，本教程仅供学习使用，切勿用于商业用途。请勿转发(本人博客除外)。不会用charles的看下这个Charles 断点、rewrite详细教程看前需知之基础教程还是不会的话ios有个软件叫http catcher，是付费的，json文件用法：全选复制json文件(不用下载) -&amp;gt; 打开网球-&amp;gt;更多-&amp;gt;重写-&amp;gt;右上角+ -&amp;gt;在文本编辑器编辑">
-<meta name="twitter:image" content="https://dec-onemanager.herokuapp.com/%E5%9B%BE%E5%BA%8A/charles%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B/20200520_100738.png">
+<meta name="twitter:title" content="Charles Map功能详细教程">
+<meta name="twitter:description" content="Map从字面上的意思看来可以有映射的意思，简单的说就是可以把请求的返回值映射到本地文件或远程文件上。charles中的Map功能分为Map Local和Map remote两种。 Map Local 同样以reqres.in这个网址为例：该接口返回的数据如下：  {     &amp;quot;data&amp;quot;:{         &amp;quot;id&amp;quot;:1,         &amp;quot;ema">
+<meta name="twitter:image" content="https://dec-onemanager.herokuapp.com/%E5%9B%BE%E5%BA%8A/charles%20Map%E5%8A%9F%E8%83%BD/Local%E6%96%87%E4%BB%B6.png">
 
 
 <link rel="icon" href="/img/jerry.webp">
@@ -119,15 +116,7 @@
 
 
 <ul>
-    <li><div class="all active">全部文章<small>(29)</small></div></li>
-    
-        
-            
-            <li><div data-rel="基础教程">基础教程<small>(2)</small></div>
-                
-            </li>
-            
-        
+    <li><div class="all active">全部文章<small>(30)</small></div></li>
     
         
             
@@ -139,7 +128,15 @@
     
         
             
-            <li><div data-rel="抓包">抓包<small>(1)</small></div>
+            <li><div data-rel="基础教程">基础教程<small>(2)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="抓包">抓包<small>(2)</small></div>
                 
             </li>
             
@@ -220,8 +217,8 @@
     </div>
     <div><a  class="friends">友链</a></div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="29">
-<input type="hidden" id="yelog_site_word_count" value="21.9k">
+<input type="hidden" id="yelog_site_posts_number" value="30">
+<input type="hidden" id="yelog_site_word_count" value="22.4k">
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
     <span id="busuanzi_value_site_pv"></span>
@@ -253,11 +250,11 @@
     <div class="tags-list">
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color5">基础教程</a>
+        <a href="javascript:" class="color3">网球</a>
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color3">网球</a>
+        <a href="javascript:" class="color5">基础教程</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -324,6 +321,14 @@
            data-author="" >
             <span class="post-title" title="Http Catcher规则合集">Http Catcher规则合集</span>
             <span class="post-date" title="2020-05-16 08:42:20">2020/05/16</span>
+        </a>
+        
+        <a  class="抓包 "
+           href="/2020/05/22/13/"
+           data-tag="抓包"
+           data-author="" >
+            <span class="post-title" title="Charles Map功能详细教程">Charles Map功能详细教程</span>
+            <span class="post-date" title="2020-05-22 18:29:40">2020/05/22</span>
         </a>
         
         <a  class="网球 "
@@ -748,7 +753,7 @@
     /*作者、标签的自动补全*/
     $(function () {
         $('.search').AutoComplete({
-            'data': ['#基础教程','#网球','#抓包','#进阶教程','#源码','#总结','#数据库','#多线程','#负载均衡','#linux','#主机','#java','#操作系统',],
+            'data': ['#网球','#基础教程','#抓包','#进阶教程','#源码','#总结','#数据库','#多线程','#负载均衡','#linux','#主机','#java','#操作系统',],
             'itemHeight': 20,
             'width': 418
         }).AutoComplete('show');

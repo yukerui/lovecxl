@@ -2,9 +2,9 @@
 <html>
 <head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
-  <title>每天一个Linux命令-文本替换 | lovexl</title>
-  <meta name="keywords" content=" linux ">
-  <meta name="description" content="每天一个Linux命令-文本替换 | lovexl">
+  <title>Charles Map功能详细教程 | lovexl</title>
+  <meta name="keywords" content=" 抓包 ">
+  <meta name="description" content="Charles Map功能详细教程 | lovexl">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="Map从字面上的意思看来可以有映射的意思，简单的说就是可以把请求的返回值映射到本地文件或远程文件上。charles中的Map功能分为Map Local和Map remote两种。 Map Local 同样以reqres.in这个网址为例：该接口返回的数据如下：  {     &amp;quot;data&amp;quot;:{         &amp;quot;id&amp;quot;:1,         &amp;quot;ema">
 <meta name="keywords" content="抓包">
@@ -559,9 +559,9 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="post-每天一个linux命令-文本替换" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-13" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">每天一个Linux命令-文本替换</h1>
+        <h1 class="article-title">Charles Map功能详细教程</h1>
     
     <div class="article-meta">
         
@@ -569,26 +569,26 @@
         
         <span class="book">
             
-                <a href="javascript:" data-rel="linux">linux</a>
+                <a href="javascript:" data-rel="抓包">抓包</a>
             
         </span>
         
         
         <span class="tag">
             
-            <a href="javascript:" class="color1">linux</a>
+            <a href="javascript:" class="color3">抓包</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2019-08-20 11:40:22'>2019-08-19 22:10</time>
+        创建时间:<time class="date" title='更新时间: 2020-05-22 20:18:18'>2020-05-22 18:29</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:193</span>
+        <span>字数:494</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -618,7 +618,7 @@
     
     <div class="toc-ref">
     
-        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Map-Local"><span class="toc-text">Map Local</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Map-Remote"><span class="toc-text">Map Remote</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -633,17 +633,38 @@
 </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <p>前几天面试被问到给定一个日志，里面存放一些与电话相关的内同，想要把以86开头的中国号码查找出来然后把86给去掉。</p>
-<ul>
-<li>一开始想直接直接grep 86然后通过tr来替换，然后结果是这样的。发现明显不对，原来tr只能匹配或删除单个字符，向86这种就不行，它会匹配8 || 6.</li>
-</ul>
-<p><img src="https://i.postimg.cc/3x2vYhDk/screenshot-1.png" alt="img"></p>
-<ul>
-<li>那就用sed命令，sed的文本替换和vim的很相似。</li>
-</ul>
-<p><img src="https://i.postimg.cc/gjRZjbBt/screenshot-1.png" alt="postimg"></p>
-<p>成功的把86给替换成了空格，但是还有一个问题就是有可能有的86是出现在中间的，并且开头并 不是以86开头的。这种明显不是我们想要的。这种情况下该怎么办呢?</p>
-<p><img src="https://i.postimg.cc/bwYZcn8B/screenshot-1.png" alt="imag"></p>
+        <p>Map从字面上的意思看来可以有映射的意思，简单的说就是可以把请求的返回值映射到本地文件或远程文件上。charles中的Map功能分为Map Local和Map remote两种。</p>
+<h2 id="Map-Local"><a href="#Map-Local" class="headerlink" title="Map Local"></a>Map Local</h2><ol>
+<li>同样以<a href="https://reqres.in/api/users/1" target="_blank" rel="noopener">reqres.in</a>这个网址为例：该接口返回的数据如下：</li>
+</ol>
+<pre><code class="json">{
+    &quot;data&quot;:{
+        &quot;id&quot;:1,
+        &quot;email&quot;:&quot;george.bluth@reqres.in&quot;,
+        &quot;first_name&quot;:&quot;George&quot;,
+        &quot;last_name&quot;:&quot;Bluth&quot;,
+        &quot;avatar&quot;:&quot;https://s3.amazonaws.com/uifaces/faces/twitter/calebogden/128.jpg&quot;
+    },
+    &quot;ad&quot;:{
+        &quot;company&quot;:&quot;StatusCode Weekly&quot;,
+        &quot;url&quot;:&quot;http://statuscode.org/&quot;,
+        &quot;text&quot;:&quot;A weekly newsletter focusing on software development, infrastructure, the server, performance, and the stack end of things.&quot;
+    }
+}</code></pre>
+<p>首先我们将上面的数据复制并保存为文件并修改其中我们需要修改的数据，比如将id改为2，假设我们以test.json的名称保存在桌面上。</p>
+<p><img src="https://dec-onemanager.herokuapp.com/%E5%9B%BE%E5%BA%8A/charles%20Map%E5%8A%9F%E8%83%BD/Local%E6%96%87%E4%BB%B6.png" alt></p>
+<ol start="2">
+<li>在对应链接右键选择Map Local，此时弹出一个Edit Mapping的弹窗。</li>
+</ol>
+<p><img src="https://dec-onemanager.herokuapp.com/%E5%9B%BE%E5%BA%8A/charles%20Map%E5%8A%9F%E8%83%BD/charles%E6%9C%AC%E5%9C%B0Map.png" alt></p>
+<p><img src="https://dec-onemanager.herokuapp.com/%E5%9B%BE%E5%BA%8A/charles%20Map%E5%8A%9F%E8%83%BD/charles%E6%9C%AC%E5%9C%B0Map%E8%AF%A6%E7%BB%86.png" alt></p>
+<p>可以看到上图中有Map From和Map To两块，其中Map From填写要修改的url，在右键选择Map Local时该部分会自动填写，Map To表示需要用本地的哪个文件来表示Map From的返回值，我们选择上面保存的test.json。再次请求该链接可以看到数据已经修改。</p>
+<p><img src="https://dec-onemanager.herokuapp.com/%E5%9B%BE%E5%BA%8A/charles%20Map%E5%8A%9F%E8%83%BD/%E4%BF%AE%E6%94%B9%E6%88%90%E5%8A%9F.png" alt></p>
+<p>点击Tools–&gt;Map Local便可看到设置的Map Local，点击对应的进去便可修改。</p>
+<p><img src="https://dec-onemanager.herokuapp.com/%E5%9B%BE%E5%BA%8A/charles%20Map%E5%8A%9F%E8%83%BD/%E6%9C%AC%E5%9C%B0Map%20Local.png" alt></p>
+<h2 id="Map-Remote"><a href="#Map-Remote" class="headerlink" title="Map Remote"></a>Map Remote</h2><p>和Map Local同理，只不过对应的Map to需要填写远程的文件。同样Map From中的值是自动填写的，在Map To中填写对应的远端服务器即可。这种方法适用于将文件保存在服务器上，然后通过Map Remote的方式进行修改。</p>
+<p><img src="https://dec-onemanager.herokuapp.com/%E5%9B%BE%E5%BA%8A/charles%20Map%E5%8A%9F%E8%83%BD/charles%E8%BF%9C%E7%A8%8BMap.png" alt></p>
+<p>好了，Map功能这就讲完了，是不是觉得不算太难呢，最后<a href="https://blog.930113.xyz/2020/05/15/0006/">Charles实战教程三之洪恩故事</a>这篇文章使用的就是通过Map Local的方法来实现的，快去试试吧。</p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 本网站发布的一切文章仅限用于学习和研究目的；不得将上述内容用于商业或者非法用途，否则，一切后果请用户自负。本站信息来自网络，版权争议与本站无关。您必须在下载后的24个小时之内，从您的电脑中彻底删除上述内容。如果您喜欢该程序，请支持正版软件，购买注册，得到更好的正版服务。如有侵权请联系邮箱:1194325527@qq.com处理 </span>
