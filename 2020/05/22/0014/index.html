@@ -2,9 +2,9 @@
 <html>
 <head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
-  <title>Mysql | lovexl</title>
-  <meta name="keywords" content=" 数据库 ">
-  <meta name="description" content="Mysql | lovexl">
+  <title>charles,httpCather过滤广告 | lovexl</title>
+  <meta name="keywords" content=" 抓包 ">
+  <meta name="description" content="charles,httpCather过滤广告 | lovexl">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="我们可以发现某些app上存在很多的广告，抓包的功能之一便是可以屏蔽掉这些广告，屏蔽广告的原理就是拒绝那些广告的请求，下面以rr视频为例分别介绍charles和http catcher如何过滤广告。 charles去广告打开rr视频可以看到开屏有广告出现，在charles定位到广告是由pangolin.snssdk.com这个域名加载出来的，本文只介绍如何屏蔽广告，如何找到广告会根据对应的app有对">
 <meta name="keywords" content="抓包">
@@ -567,30 +567,36 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="post-Mysql" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-0014" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">Mysql</h1>
+        <h1 class="article-title">charles,httpCather过滤广告</h1>
     
     <div class="article-meta">
         
         
         
+        <span class="book">
+            
+                <a href="javascript:" data-rel="抓包">抓包</a>
+            
+        </span>
+        
         
         <span class="tag">
             
-            <a href="javascript:" class="color4">数据库</a>
+            <a href="javascript:" class="color3">抓包</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2019-08-16 10:04:48'>2019-08-14 23:27</time>
+        创建时间:<time class="date" title='更新时间: 2020-05-22 21:04:51'>2020-05-22 20:23</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:360</span>
+        <span>字数:432</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -620,7 +626,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Mysql并发控制"><span class="toc-text">Mysql并发控制</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#charles去广告"><span class="toc-text">charles去广告</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#http-Catcher去广告"><span class="toc-text">http Catcher去广告</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -635,13 +641,27 @@
 </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <p>#Mysql</p>
-<h2 id="Mysql并发控制"><a href="#Mysql并发控制" class="headerlink" title="Mysql并发控制"></a>Mysql并发控制</h2><p> &nbsp; &nbsp;假设表中的一行记录，在高并发的情况下，一个在读，另一个试图修改，有可能读的会报错退出，也有可能读到错误的数据，因此需要加锁，解决此问题的经典方法就是读写锁。<br> &nbsp;&nbsp;读写锁就是含有两把锁，通常被称为共享锁和排他锁,也叫读锁和写锁。读锁是共享的，读的过程互相不阻塞，而写锁是排他的，在写的过程中会阻塞其他写锁和读锁。</p>
-<p>##锁粒度<br> &nbsp;&nbsp;加锁的范围尽量只锁定想要锁定的部分数据。因为加锁的数据越小，争锁的几率就越小，系统的并发性就越高。<br> &nbsp;&nbsp;加锁本身就是一个耗费资源的操作，包括获得锁，检查锁，释放锁都会增加系统开销，因此说策略，无非就是在资源开销和数据安全性中寻找一个tradeoff。Mysql提供以下两种锁。</p>
-<ul>
-<li>表锁<br>它会锁定整张表，当在对表进行写操作前，需要先拿到写锁然后阻塞其他用户对该表的所有读写操作，只有没有写锁时，其他读取的用户才能拿到读锁。</li>
-<li>行级锁<br>行级锁可以最大程度的支持并发处理，在InnoDB和XtrDB中实现了行级锁。</li>
-</ul>
+        <p>我们可以发现某些app上存在很多的广告，抓包的功能之一便是可以屏蔽掉这些广告，屏蔽广告的原理就是拒绝那些广告的请求，下面以rr视频为例分别介绍charles和http catcher如何过滤广告。</p>
+<h2 id="charles去广告"><a href="#charles去广告" class="headerlink" title="charles去广告"></a>charles去广告</h2><p>打开rr视频可以看到开屏有广告出现，在charles定位到广告是由pangolin.snssdk.com这个域名加载出来的，本文只介绍如何屏蔽广告，如何找到广告会根据对应的app有对应的教程。</p>
+<img src="https://dec-onemanager.herokuapp.com/%E5%9B%BE%E5%BA%8A/charles%E5%8E%BB%E5%B9%BF%E5%91%8A/rr%E5%B9%BF%E5%91%8A.png" style="zoom:50%;">
+
+<p>在对应url处右键选择Block List，如图所示</p>
+<p> <img src="https://dec-onemanager.herokuapp.com/%E5%9B%BE%E5%BA%8A/charles%E5%8E%BB%E5%B9%BF%E5%91%8A/charles%E5%8E%BB%E5%B9%BF%E5%91%8A.png" alt></p>
+<p>选择Tools–&gt;Blocking List即可看到屏蔽掉的网址。需要确保Enable Block List旁边的勾打上，Blocking action处有Drop connection(断开请求)，Return 403 response(返回403请求)，默认为Drop connection一般不需要修改。屏蔽掉后就能看到广告已经被去掉了。</p>
+<p><img src="https://dec-onemanager.herokuapp.com/%E5%9B%BE%E5%BA%8A/charles%E5%8E%BB%E5%B9%BF%E5%91%8A/Block%20List%20Setting.png" alt></p>
+<h3 id="http-Catcher去广告"><a href="#http-Catcher去广告" class="headerlink" title="http Catcher去广告"></a>http Catcher去广告</h3><ol>
+<li>找到对应链接左滑选择添加黑名单就可以加入到黑名单了。</li>
+</ol>
+<p><img src="https://dec-onemanager.herokuapp.com/%E5%9B%BE%E5%BA%8A/charles%E5%8E%BB%E5%B9%BF%E5%91%8A/%E7%BD%91%E7%90%83%E5%8E%BB%E5%B9%BF%E5%91%8A.png" alt></p>
+<ol start="2">
+<li>可以将PATH中的数据替换成*,这样表示该HOST下的所有链接均被屏蔽。</li>
+</ol>
+<p><img src="https://dec-onemanager.herokuapp.com/%E5%9B%BE%E5%BA%8A/charles%E5%8E%BB%E5%B9%BF%E5%91%8A/%E7%BD%91%E7%90%83%E5%8E%BB%E5%B9%BF%E5%91%8A%E8%AF%A6%E6%83%85.png" alt></p>
+<ol start="3">
+<li>在HTTP Cathcer的更多–&gt;黑名单中可以找到设置的黑名单，点击对应链接的右边的圆圈里面有个i那个标记可以编辑，需要注意要将该界面的黑名单选项开启。</li>
+</ol>
+<p><img src="https://dec-onemanager.herokuapp.com/%E5%9B%BE%E5%BA%8A/charles%E5%8E%BB%E5%B9%BF%E5%91%8A/%E7%BD%91%E7%90%83%E9%BB%91%E5%90%8D%E5%8D%95.png" alt></p>
+<p>ok，这就是charles和网球去广告的教程，是不是也很简单呢，我会在每篇的文章中详细介绍如何找到广告的url，在知道对应的url后便可以使用该方法去广告了哦。可以去<a href="https://blog.930113.xyz/2020/05/20/0012/">Charles实战教程四之rr视频</a>中尝试一下啊。</p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 本网站发布的一切文章仅限用于学习和研究目的；不得将上述内容用于商业或者非法用途，否则，一切后果请用户自负。本站信息来自网络，版权争议与本站无关。您必须在下载后的24个小时之内，从您的电脑中彻底删除上述内容。如果您喜欢该程序，请支持正版软件，购买注册，得到更好的正版服务。如有侵权请联系邮箱:1194325527@qq.com处理 </span>
