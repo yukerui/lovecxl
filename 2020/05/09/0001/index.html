@@ -6,25 +6,25 @@
   <meta name="keywords" content>
   <meta name="description" content="Charles 断点、Rewrite详细教程 | lovexl">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="我们可以发现某些app上存在很多的广告，抓包的功能之一便是可以屏蔽掉这些广告，屏蔽广告的原理就是拒绝那些广告的请求，下面以rr视频为例分别介绍charles和http catcher如何过滤广告。 charles去广告打开rr视频可以看到开屏有广告出现，在charles定位到广告是由pangolin.snssdk.com这个域名加载出来的，本文只介绍如何屏蔽广告，如何找到广告会根据对应的app有对">
+<meta name="description" content="不会用charles的看下这个Charles详细教程写这篇文章的目的之前的帖子说了charles怎么进行rewrite，没有说明怎么使用Map和黑名单的功能，这次就用b站来教学一下 使用到的软件 charles，论坛中有大佬分享了破解版，搜索一下安装即可 charles设置ssl成功，没配制好的上面的链接配置一下 b站  教程开始本教程默认ssl已经装好并且手机已经信任了证书。1.打开charle">
 <meta name="keywords" content="抓包">
 <meta property="og:type" content="article">
-<meta property="og:title" content="charles,httpCacther过滤广告">
-<meta property="og:url" content="http://blog.930113.xyz/2020/05/22/0014/index.html">
+<meta property="og:title" content="charles实现DIY B站样式">
+<meta property="og:url" content="http://blog.930113.xyz/2020/05/23/0015/index.html">
 <meta property="og:site_name" content="lovexl">
-<meta property="og:description" content="我们可以发现某些app上存在很多的广告，抓包的功能之一便是可以屏蔽掉这些广告，屏蔽广告的原理就是拒绝那些广告的请求，下面以rr视频为例分别介绍charles和http catcher如何过滤广告。 charles去广告打开rr视频可以看到开屏有广告出现，在charles定位到广告是由pangolin.snssdk.com这个域名加载出来的，本文只介绍如何屏蔽广告，如何找到广告会根据对应的app有对">
+<meta property="og:description" content="不会用charles的看下这个Charles详细教程写这篇文章的目的之前的帖子说了charles怎么进行rewrite，没有说明怎么使用Map和黑名单的功能，这次就用b站来教学一下 使用到的软件 charles，论坛中有大佬分享了破解版，搜索一下安装即可 charles设置ssl成功，没配制好的上面的链接配置一下 b站  教程开始本教程默认ssl已经装好并且手机已经信任了证书。1.打开charle">
 <meta property="og:locale" content="zh">
-<meta property="og:image" content="https://dec-onemanager.herokuapp.com/%E5%9B%BE%E5%BA%8A/charles%E5%8E%BB%E5%B9%BF%E5%91%8A/rr%E5%B9%BF%E5%91%8A.png">
-<meta property="og:image" content="https://dec-onemanager.herokuapp.com/%E5%9B%BE%E5%BA%8A/charles%E5%8E%BB%E5%B9%BF%E5%91%8A/charles%E5%8E%BB%E5%B9%BF%E5%91%8A.png">
-<meta property="og:image" content="https://dec-onemanager.herokuapp.com/%E5%9B%BE%E5%BA%8A/charles%E5%8E%BB%E5%B9%BF%E5%91%8A/Block%20List%20Setting.png">
-<meta property="og:image" content="https://dec-onemanager.herokuapp.com/%E5%9B%BE%E5%BA%8A/charles%E5%8E%BB%E5%B9%BF%E5%91%8A/%E7%BD%91%E7%90%83%E5%8E%BB%E5%B9%BF%E5%91%8A.png">
-<meta property="og:image" content="https://dec-onemanager.herokuapp.com/%E5%9B%BE%E5%BA%8A/charles%E5%8E%BB%E5%B9%BF%E5%91%8A/%E7%BD%91%E7%90%83%E5%8E%BB%E5%B9%BF%E5%91%8A%E8%AF%A6%E6%83%85.png">
-<meta property="og:image" content="https://dec-onemanager.herokuapp.com/%E5%9B%BE%E5%BA%8A/charles%E5%8E%BB%E5%B9%BF%E5%91%8A/%E7%BD%91%E7%90%83%E9%BB%91%E5%90%8D%E5%8D%95.png">
-<meta property="og:updated_time" content="2020-05-22T13:07:43.442Z">
+<meta property="og:image" content="https://dec-onemanager.herokuapp.com/%E5%9B%BE%E5%BA%8A/b%E7%AB%99/b%E7%AB%99%E5%BC%80%E5%B1%8F%E5%B9%BF%E5%91%8A.png">
+<meta property="og:image" content="https://dec-onemanager.herokuapp.com/%E5%9B%BE%E5%BA%8A/b%E7%AB%99/tab%E6%8E%A5%E5%8F%A3%E5%86%85%E5%AE%B9.png">
+<meta property="og:image" content="https://dec-onemanager.herokuapp.com/%E5%9B%BE%E5%BA%8A/b%E7%AB%99/b%E7%AB%99tab.jpg">
+<meta property="og:image" content="https://dec-onemanager.herokuapp.com/%E5%9B%BE%E5%BA%8A/b%E7%AB%99/tab%E5%8F%AF%E4%BB%A5%E5%88%A0%E9%99%A4%E7%9A%84.png">
+<meta property="og:image" content="https://dec-onemanager.herokuapp.com/%E5%9B%BE%E5%BA%8A/b%E7%AB%99/charles%E4%BF%AE%E6%94%B9tab.png">
+<meta property="og:image" content="https://dec-onemanager.herokuapp.com/%E5%9B%BE%E5%BA%8A/b%E7%AB%99/b%E7%AB%99%E6%88%91%E7%9A%84%E7%B2%BE%E7%AE%80.jpg">
+<meta property="og:updated_time" content="2020-05-23T14:26:29.279Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="charles,httpCacther过滤广告">
-<meta name="twitter:description" content="我们可以发现某些app上存在很多的广告，抓包的功能之一便是可以屏蔽掉这些广告，屏蔽广告的原理就是拒绝那些广告的请求，下面以rr视频为例分别介绍charles和http catcher如何过滤广告。 charles去广告打开rr视频可以看到开屏有广告出现，在charles定位到广告是由pangolin.snssdk.com这个域名加载出来的，本文只介绍如何屏蔽广告，如何找到广告会根据对应的app有对">
-<meta name="twitter:image" content="https://dec-onemanager.herokuapp.com/%E5%9B%BE%E5%BA%8A/charles%E5%8E%BB%E5%B9%BF%E5%91%8A/rr%E5%B9%BF%E5%91%8A.png">
+<meta name="twitter:title" content="charles实现DIY B站样式">
+<meta name="twitter:description" content="不会用charles的看下这个Charles详细教程写这篇文章的目的之前的帖子说了charles怎么进行rewrite，没有说明怎么使用Map和黑名单的功能，这次就用b站来教学一下 使用到的软件 charles，论坛中有大佬分享了破解版，搜索一下安装即可 charles设置ssl成功，没配制好的上面的链接配置一下 b站  教程开始本教程默认ssl已经装好并且手机已经信任了证书。1.打开charle">
+<meta name="twitter:image" content="https://dec-onemanager.herokuapp.com/%E5%9B%BE%E5%BA%8A/b%E7%AB%99/b%E7%AB%99%E5%BC%80%E5%B1%8F%E5%B9%BF%E5%91%8A.png">
 
 
 <link rel="icon" href="/img/jerry.webp">
@@ -116,7 +116,7 @@
 
 
 <ul>
-    <li><div class="all active">全部文章<small>(31)</small></div></li>
+    <li><div class="all active">全部文章<small>(32)</small></div></li>
     
         
             
@@ -136,7 +136,7 @@
     
         
             
-            <li><div data-rel="抓包">抓包<small>(3)</small></div>
+            <li><div data-rel="抓包">抓包<small>(4)</small></div>
                 
             </li>
             
@@ -217,8 +217,8 @@
     </div>
     <div><a  class="friends">友链</a></div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="31">
-<input type="hidden" id="yelog_site_word_count" value="22.8k">
+<input type="hidden" id="yelog_site_posts_number" value="32">
+<input type="hidden" id="yelog_site_word_count" value="23.6k">
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
     <span id="busuanzi_value_site_pv"></span>
@@ -274,7 +274,7 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color4">多线程</a>
+        <a href="javascript:" class="color4">数据库</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -282,7 +282,7 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color4">数据库</a>
+        <a href="javascript:" class="color4">多线程</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -321,6 +321,14 @@
            data-author="" >
             <span class="post-title" title="Http Catcher规则合集">Http Catcher规则合集</span>
             <span class="post-date" title="2020-05-16 08:42:20">2020/05/16</span>
+        </a>
+        
+        <a  class="抓包 "
+           href="/2020/05/23/0015/"
+           data-tag="抓包"
+           data-author="" >
+            <span class="post-title" title="charles实现DIY B站样式">charles实现DIY B站样式</span>
+            <span class="post-date" title="2020-05-23 22:25:21">2020/05/23</span>
         </a>
         
         <a  class="抓包 "
@@ -759,7 +767,7 @@
     /*作者、标签的自动补全*/
     $(function () {
         $('.search').AutoComplete({
-            'data': ['#基础教程','#网球','#抓包','#进阶教程','#源码','#总结','#多线程','#负载均衡','#数据库','#linux','#主机','#java','#操作系统',],
+            'data': ['#基础教程','#网球','#抓包','#进阶教程','#源码','#总结','#数据库','#负载均衡','#多线程','#linux','#主机','#java','#操作系统',],
             'itemHeight': 20,
             'width': 418
         }).AutoComplete('show');
